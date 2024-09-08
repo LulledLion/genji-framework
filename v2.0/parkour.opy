@@ -57,8 +57,14 @@ rule "On ground":
     @Event eachPlayer
     @Condition eventPlayer.hasSpawned() == eventPlayer.isAlive()
     @Condition eventPlayer.isOnGround() == true
-    @Condition distance(eventPlayer.getPosition(), CP_EndPositions[eventPlayer.CP_Index]) < (CP_Radii[eventPlayer.CP_Index] if len(CP_Radii) else CP_Radii)
-    
-    eventPlayer.CP_Index += true
+ 
+    if distance(eventPlayer.getPosition(), CP_StartPositions[eventPlayer.CP_Index]) < (CP_Radii[eventPlayer.CP_Index] if len(CP_Radii) else CP_Radii):
+    elif distance(eventPlayer.getPosition(), CP_EndPositions[eventPlayer.CP_Index]) < (CP_Radii[eventPlayer.CP_Index] if len(CP_Radii) else CP_Radii):
+        eventPlayer.CP_Index += true
+    else:
+        ResetPlayer()
+    wait(false)
+    if RULE_CONDITION:
+        goto RULE_START
 
 
