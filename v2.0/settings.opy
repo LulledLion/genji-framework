@@ -59,9 +59,10 @@ settings {
 #!extension playMoreEffects
 
 #Global variables
-globalvar CP_StartPositions 0
-globalvar CP_EndPositions 1
-globalvar CP_Radii 2
+globalvar CP_StartPos 0
+globalvar CP_EndPos 1
+globalvar CP_Radius 2
+globalvar CP_Hero 3
 
 
 #Player variables
@@ -70,3 +71,4 @@ playervar CP_Index 0
 #Subroutine names
 
 subroutine ResetPlayer 0
+subroutine ResetAbilities 1
