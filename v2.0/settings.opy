@@ -59,10 +59,9 @@ settings {
 #!extension playMoreEffects
 
 #Global variables
-globalvar CP_StartPos 0
-globalvar CP_EndPos 1
-globalvar CP_Radius 2
-globalvar CP_Hero 3
+globalvar CP_Pos 0
+globalvar CP_Radius 1
+globalvar CP_Hero 2
 
 
 #Player variables
