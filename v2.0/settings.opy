@@ -42,15 +42,13 @@ settings {
     },
     "heroes": {
         "allTeams": {
-            "genji": {
-                "enableAbility2": false,
-                "ability1Cooldown%": 0,
-                "ultDuration%": 25,
-                "passiveUltGen%": 0,
-            },
             "enabledHeroes": [
-                "genji"
-            ]
+                "ana"
+            ],
+            "general": {
+                "ultDuration%": 25,
+                "passiveUltGen%": 0
+            }
         }
     }
 }
@@ -66,6 +64,7 @@ globalvar CP_Hero 2
 
 #Player variables
 playervar CP_Index 0
+playervar Immune 1
 
 #Subroutine names
 
