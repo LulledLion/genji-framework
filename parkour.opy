@@ -59,9 +59,6 @@ rule "fisho cp cheat for overpy toggle":
         eventPlayer.CurrentCheckpoint += 1
         eventPlayer.teleport(CheckpointPositions[eventPlayer.CurrentCheckpoint])
 
-
-FILLER
-
 rule "------------------------------------------------------------------------  General functions ------------------------------------------------------------------------ ":
     @Delimiter
     @Disabled
@@ -604,20 +601,20 @@ rule "Arrive | Ground reset | traces":
     @Condition eventPlayer.isAlive()
     @Condition not eventPlayer.DontPlay
     if eventPlayer.CurrentCheckpoint == len(CheckpointPositions) - 1:
-        
+        #Completion
         if (eventPlayer.isMoving() and eventPlayer.PracticeToggle == false and eventPlayer.invis == false and eventPlayer.EditorOn == false and CompMode == false):
             # traces ----------------------------------------------------------------------------------------------------
             eventPlayer.finishfxcache = [Color.RED, Color.ORANGE, Color.YELLOW, Color.LIME_GREEN, Color.GREEN, Color.TURQUOISE, Color.BLUE, Color.PURPLE, Color.VIOLET, Color.ROSE][(floor(getTotalTimeElapsed()*2))%10]
             #eventPlayer.finishfxcache =  rgb((cosDeg(getTotalTimeElapsed()/2 * 360 - 0) + 0.5) * 255, (cosDeg(getTotalTimeElapsed/2 * 360 - 120) + 0.5) * 255, (cosDeg(getTotalTimeElapsed/2 * 360 - 240) + 0.5) * 255)
             wait(0.16)
             # 1.6 - 0.2 in 0.2 steps
-            playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, eventPlayer.finishfxcache, eventPlayer.getPosition(), 1.4)
-            playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, eventPlayer.finishfxcache, eventPlayer.getPosition(), 1.2)
-            playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, eventPlayer.finishfxcache, eventPlayer.getPosition(), 1)
-            playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, eventPlayer.finishfxcache, eventPlayer.getPosition(), 0.8)
-            playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, eventPlayer.finishfxcache, eventPlayer.getPosition(), 0.6)
-            playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, eventPlayer.finishfxcache, eventPlayer.getPosition(), 0.4)
-            wait(0.128)     
+            playEffect(localPlayer, DynamicEffect.RING_EXPLOSION, eventPlayer.finishfxcache, eventPlayer.getPosition(), 1.4)
+            playEffect(localPlayer, DynamicEffect.RING_EXPLOSION, eventPlayer.finishfxcache, eventPlayer.getPosition(), 1.2)
+            playEffect(localPlayer, DynamicEffect.RING_EXPLOSION, eventPlayer.finishfxcache, eventPlayer.getPosition(), 1)
+            playEffect(localPlayer, DynamicEffect.RING_EXPLOSION, eventPlayer.finishfxcache, eventPlayer.getPosition(), 0.8)
+            playEffect(localPlayer, DynamicEffect.RING_EXPLOSION, eventPlayer.finishfxcache, eventPlayer.getPosition(), 0.6)
+            playEffect(localPlayer, DynamicEffect.RING_EXPLOSION, eventPlayer.finishfxcache, eventPlayer.getPosition(), 0.4)
+            wait(0.128)
     elif eventPlayer.NotOnLastCp and eventPlayer.InvincibleToggle == false and (CompMode == false or CompTime > 0) and eventPlayer.LockState == false:
         if distance(eventPlayer, CheckpointPositions[eventPlayer.CurrentCheckpoint + 1]) <= cpcircleradius:
             # arrived ----------------------------------------------------------------------------------------------------
@@ -780,23 +777,23 @@ rule "Death Reset":
     else:
         eventPlayer.respawn()
     checkpointFailReset()
-    # rest is to prevent dead spaming from crashign server
+    # rest is to prevent dead spaming from crashing server
     # but doing waits only when needed
     waitUntil(eventPlayer.isAlive(), 1)
     waitUntil(eventPlayer.isDead(), 1)
-    if eventPlayer.isDead() and (not eventPlayer.SpectateToggle) and (not eventPlayer.CompDone):
+    if eventPlayer.isDead() and not(eventPlayer.SpectateToggle or eventPlayer.CompDone):
         wait(0.16)
         eventPlayer.resurrect()
         checkpointFailReset()
         waitUntil(eventPlayer.isAlive(), 1)
         waitUntil(eventPlayer.isDead(), 1)
-        if eventPlayer.isDead() and (not eventPlayer.SpectateToggle) and (not eventPlayer.CompDone):
+        if eventPlayer.isDead() and not(eventPlayer.SpectateToggle or eventPlayer.CompDone):
             wait(0.44)
             eventPlayer.resurrect()
             checkpointFailReset()
             waitUntil(eventPlayer.isAlive(), 1)
             waitUntil(eventPlayer.isDead(), 1)
-            if eventPlayer.isDead() and (not eventPlayer.SpectateToggle) and (not eventPlayer.CompDone):
+            if eventPlayer.isDead() and not(eventPlayer.SpectateToggle or eventPlayer.CompDone):
                 wait(0.64)
                 eventPlayer.resurrect()
                 checkpointFailReset()
