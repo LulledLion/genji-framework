@@ -1,4 +1,4 @@
-#!define versionhere "1.9.4a"
+#!define versionhere "1.9.5"
 # cheats ##############################
 #!define editortoggle(x) __script__("test-maps/togglescript.js")
 editortoggle(0) # 0 is editor, rest is numbers
@@ -24,7 +24,7 @@ editortoggle(0) # 0 is editor, rest is numbers
 #!define fxlimit 193
 #!define portaldistance 1.3
 
-# 1.4 is the default cirkle radius, fx is default to 1
+# 1.4 is the default circle radius, fx is default to 1
 #!define cpcircleradius 1.4
 #!define cpcirklefx 1
 

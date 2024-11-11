@@ -1,4 +1,4 @@
-#!mainFile "genji.opy"
+#!mainFile "parkour.opy"
 # code 代码
 settings {
     "main": {
