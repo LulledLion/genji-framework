@@ -43,7 +43,7 @@ settings {
     "heroes": {
         "allTeams": {
             "enabledHeroes": [
-                "ana"
+                "genji"
             ],
             "general": {
                 "ultDuration%": 25,
@@ -57,16 +57,28 @@ settings {
 #!extension playMoreEffects
 
 #Global variables
-globalvar CP_Pos 0
-globalvar CP_Radius 1
-globalvar CP_Hero 2
+globalvar CP_Pos
+globalvar CP_Hero
+globalvar CP_Ability
 
-
+/*
+globalvar CP_Ability1
+globalvar CP_Ability2
+globalvar CP_Crouch
+globalvar CP_Jump
+globalvar CP_Primary
+globalvar CP_Secondary
+globalvar CP_Ult
+*/
 #Player variables
-playervar CP_Index 0
-playervar Immune 1
+playervar CP_Index
+playervar CachedIndex
+playervar CachedAbilityIndex
+playervar Ability
+playervar Immune
 
 #Subroutine names
 
-subroutine ResetPlayer 0
-subroutine ResetAbilities 1
+subroutine ResetPlayer
+subroutine SetAbilities
+subroutine ResetAbilities
