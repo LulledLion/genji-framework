@@ -94,14 +94,15 @@ rule "Checking | In the air":
     @Condition eventPlayer.isInAir() 
     eventPlayer.JumpCount = 1
 
-/* Remove this rule? */
+/*
+# Removed Mechanic
 rule "Checking | Triple jump":
     @Event eachPlayer
     @Condition eventPlayer.JumpCount == 1
     # actualy just checks if you been in the air for atleast 0.1 seconds
     wait(0.1, Wait.ABORT_WHEN_FALSE)
     eventPlayer.JumpCount = 2
-
+*/
 rule "Checking | Player on the wall":
     @Event eachPlayer
     #This rule is also linked to the determination of wall climbing, please do not close/delete
@@ -177,6 +178,8 @@ rule "Checking | standing resets variables":
         goto RULE_START
     eventPlayer.BhopUsed = true
 
+/*
+#Currently disabled for excessive server load
 rule "Checking | Double Jump":
     @Disabled
     @Event eachPlayer
@@ -207,7 +210,7 @@ rule "Checking | Double Jump":
         waitUntil(eventPlayer.isOnGround() or not eventPlayer.isHoldingButton(Button.JUMP), 9999)
         if RULE_CONDITION:
             goto RULE_START
-
+*/
 rule "HUD | Multiclimb Counter":
     @Event eachPlayer
     @Condition eventPlayer.isOnWall()

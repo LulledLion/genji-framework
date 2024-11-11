@@ -17,7 +17,7 @@ editortoggle(0) # 0 is editor, rest is numbers
 #!define attemptcount 5
 #!define comptimelimit 120
 #!define comprestartlimit false
-# defaults: off, atempt:5, 120 min, restart:false
+# defaults: off, attempt: 5, 120 min, restart:false
 
 # settings ##############################
 # limit on how many orbs can be made
@@ -30,7 +30,7 @@ editortoggle(0) # 0 is editor, rest is numbers
 
 # distance range for player - orb 1.4
 #!define bounceorbdistance 1.4
-# eight added to player for orb detection. inludes the + 
+# height added to player for orb detection. inludes the + 
 #!define bounceoffset + vect(0,0.7,0)
 
 
@@ -86,7 +86,7 @@ def UpdateCache():
     eventPlayer.banstring = ""
     wait()
 
-    if createWorkshopSetting(bool, "Ban (applies to all levels)\n封禁(应用于所有关卡)", "ban Multiclim - 封禁蹭留", false, 1):
+    if createWorkshopSetting(bool, "Ban (applies to all levels)\n封禁(应用于所有关卡)", "ban Multiclimb - 封禁蹭留", false, 1):
         eventPlayer.ban_multi = true
     elif eventPlayer.CurrentCheckpoint in BanMulti:
         eventPlayer.banstring = "∞ {}".format(eventPlayer.banstring)
@@ -102,7 +102,7 @@ def UpdateCache():
     else:
         eventPlayer.ban_create = false
 
-    if createWorkshopSetting(bool, "Ban (applies to all levels)\n封禁(应用于所有关卡)","ban standcreate - 封禁站卡", false, 5):
+    if createWorkshopSetting(bool, "Ban (applies to all levels)\n封禁(应用于所有关卡)","ban Standcreate - 封禁站卡", false, 5):
         eventPlayer.ban_standcreate = true
     elif eventPlayer.CurrentCheckpoint in BanStand:
         eventPlayer.banstring = "♠ {}".format(eventPlayer.banstring) # ≥  √ ▼ ↓
@@ -588,8 +588,6 @@ def StartGame_Sub():
     
     eventPlayer.splittime = 0
     chase(eventPlayer.Timer, 9999999, rate=1, ChaseReeval.NONE)
-    eventPlayer.setStatusEffect(null, Status.PHASED_OUT, 9999)
-    eventPlayer.setStatusEffect(null, Status.INVINCIBLE, 9999)
     eventPlayer.LockCollected = []
     eventPlayer.InvincibleToggle = false
     eventPlayer.enableRespawn()
@@ -602,7 +600,6 @@ def StartGame_Sub():
 
 rule "Arrive | Ground reset | traces":
     @Event eachPlayer
-    #@Hero genji
     @Condition eventPlayer.isOnGround()
     @Condition eventPlayer.isAlive()
     @Condition not eventPlayer.DontPlay
@@ -778,7 +775,6 @@ rule "Death Reset":
     @Event playerDied
     @Condition not eventPlayer.SpectateToggle
     @Condition not eventPlayer.CompDone
-    eventPlayer.clearStatusEffect(Status.PHASED_OUT)
     if len(CheckpointPositions):
         eventPlayer.resurrect()
     else:
@@ -790,35 +786,20 @@ rule "Death Reset":
     waitUntil(eventPlayer.isDead(), 1)
     if eventPlayer.isDead() and (not eventPlayer.SpectateToggle) and (not eventPlayer.CompDone):
         wait(0.16)
-        eventPlayer.clearStatusEffect(Status.PHASED_OUT)
         eventPlayer.resurrect()
         checkpointFailReset()
         waitUntil(eventPlayer.isAlive(), 1)
         waitUntil(eventPlayer.isDead(), 1)
         if eventPlayer.isDead() and (not eventPlayer.SpectateToggle) and (not eventPlayer.CompDone):
             wait(0.44)
-            eventPlayer.clearStatusEffect(Status.PHASED_OUT)
             eventPlayer.resurrect()
             checkpointFailReset()
             waitUntil(eventPlayer.isAlive(), 1)
             waitUntil(eventPlayer.isDead(), 1)
             if eventPlayer.isDead() and (not eventPlayer.SpectateToggle) and (not eventPlayer.CompDone):
                 wait(0.64)
-                eventPlayer.clearStatusEffect(Status.PHASED_OUT)
                 eventPlayer.resurrect()
                 checkpointFailReset()
-
-rule "Player Phase":
-    @Event eachPlayer
-    @Condition not eventPlayer.hasStatusEffect(Status.PHASED_OUT)
-    @Condition eventPlayer.isAlive()
-    if eventPlayer.hasStatusEffect(Status.INVINCIBLE): # delay if its for afk sleep
-        wait(0.16)
-    eventPlayer.setStatusEffect(null, Status.PHASED_OUT, 9999)
-    eventPlayer.setStatusEffect(null, Status.INVINCIBLE, 9999)
-    wait(1)
-    if RULE_CONDITION:
-        goto RULE_START
 
 rule "Player Leaves":
     @Event playerLeft
@@ -845,12 +826,7 @@ rule "AFK timer":
     @Condition not eventPlayer.EditorOn
     wait(300, Wait.ABORT_WHEN_FALSE)
 
-    # clear status to apply sleep, auto re-aply via normal aply rule
-    eventPlayer.clearStatusEffect(Status.PHASED_OUT)
-    wait()
-    eventPlayer.clearStatusEffect(Status.INVINCIBLE)
-    wait()
-    eventPlayer.setStatusEffect(null, Status.ASLEEP, 9999)
+    eventPlayer.setStatusEffect(null, Status.ASLEEP, 99999)
       # raycast to prevent camera stuck on low wall
     eventPlayer.startCamera(
         eventPlayer.getPosition() + 
@@ -866,7 +842,7 @@ rule "AFK timer":
     )
     # cancel it after jumping or not sleep, reset cures sleep
     wait(1)
-    waitUntil(eventPlayer.isHoldingButton(Button.JUMP) or eventPlayer.hasStatusEffect(Status.ASLEEP) == false, 99999)
+    waitUntil(eventPlayer.isHoldingButton(Button.JUMP) or not eventPlayer.hasStatusEffect(Status.ASLEEP), 99999)
     eventPlayer.clearStatusEffect(Status.ASLEEP)
     eventPlayer.stopCamera()
     waitUntil(eventPlayer.isOnWall(), 2)
@@ -881,7 +857,7 @@ rule "AFK timer":
 
 #!include "commands.opy"     
 
-#!include "mechanics.opy"
+#!include "genji.opy"
 
 #!include "addons-page1.opy"
 
