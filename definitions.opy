@@ -324,6 +324,7 @@ playervar practicetimer 82
 playervar ult_cd_global                     # int                       --- tracks cd for ult even if rule restarts the waits
 playervar BhopHUDColor 85                   # Color                     --- Color for Bhop HUD
 playervar DoubleUsed 86                     # bool
+playervar lastFacing 87
 
 #Subroutine names
 subroutine StartGame_Sub 1
