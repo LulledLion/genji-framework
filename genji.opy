@@ -175,9 +175,9 @@ rule "Checking | standing resets variables":
         goto RULE_START
     eventPlayer.BhopUsed = true
 
-/*
 #Currently disabled for excessive server load
 rule "Checking | Double Jump":
+    @Disabled
     @Event eachPlayer
     @Hero genji
     @Condition eventPlayer.isAlive() == true
@@ -206,7 +206,7 @@ rule "Checking | Double Jump":
         waitUntil(eventPlayer.isOnGround() or not eventPlayer.isHoldingButton(Button.JUMP), 9999)
         if RULE_CONDITION:
             goto RULE_START
-*/
+
 rule "HUD | Multiclimb Counter":
     @Event eachPlayer
     @Condition eventPlayer.isOnWall()
