@@ -1,4 +1,4 @@
-#!mainFile "../genji.opy"
+#!mainFile "../parkour.opy"
 rule "test data":
 
     A = [vect(2.781, 0, -19.455), vect(-19.495, 0, -19.491), vect(-18.672, 0, 3.661), vect(-19.349, 0, 19.495), vect(17.624, 0, 19.38)]
