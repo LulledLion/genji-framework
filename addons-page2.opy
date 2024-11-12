@@ -307,6 +307,7 @@ rule "Fake Triple Jump - enable rule - 启用此规则 - 假三段跳":
     @Hero genji
     #Method D
     #Updated Script by LulledLion 9-1-24
+    #Requires Rule("Checking | Double Jump") be Enabled
     @Condition BanTriple == false
     @Condition eventPlayer.isOnGround() == false
     @Condition eventPlayer.DoubleUsed == false
