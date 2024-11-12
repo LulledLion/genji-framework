@@ -512,7 +512,7 @@ def checkpointFailReset():
     eventPlayer.DoubleUsed = null
     eventPlayer.applyImpulse(Vector.DOWN, eventPlayer.getSpeed(), Relativity.TO_PLAYER, Impulse.CANCEL_CONTRARY_MOTION)
     eventPlayer.setStatusEffect(null, Status.ROOTED, 0.1)
-
+    eventPlayer.setFacing(eventPlayer.lastFacing,Relativity.TO_WORLD)
     if len(CheckpointPositions):
         eventPlayer.teleport( CheckpointPositions[eventPlayer.CurrentCheckpoint].last() )
 
@@ -597,13 +597,17 @@ def StartGame_Sub():
     UpdateCache()
     TriggerOnFailSuccesReset()
 
+rule "Leaving Ground":
+    @Event eachPlayer
+    @Condition eventPlayer.isOnGround() == false
+    eventPlayer.lastFacing = eventPlayer.getFacingDirection()
+
 rule "Arrive | Ground reset | traces":
     @Event eachPlayer
     @Condition eventPlayer.isOnGround()
     @Condition eventPlayer.isAlive()
     @Condition not eventPlayer.DontPlay
     if eventPlayer.CurrentCheckpoint == len(CheckpointPositions) - 1:
-        #Completion
         if (eventPlayer.isMoving() and eventPlayer.PracticeToggle == false and eventPlayer.invis == false and eventPlayer.EditorOn == false and CompMode == false):
             # traces ----------------------------------------------------------------------------------------------------
             eventPlayer.finishfxcache = [Color.RED, Color.ORANGE, Color.YELLOW, Color.LIME_GREEN, Color.GREEN, Color.TURQUOISE, Color.BLUE, Color.PURPLE, Color.VIOLET, Color.ROSE][(floor(getTotalTimeElapsed()*2))%10]
