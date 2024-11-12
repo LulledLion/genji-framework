@@ -59,6 +59,8 @@ rule "fisho cp cheat for overpy toggle":
         eventPlayer.CurrentCheckpoint += 1
         eventPlayer.teleport(CheckpointPositions[eventPlayer.CurrentCheckpoint])
 
+#FILLER
+
 rule "------------------------------------------------------------------------  General functions ------------------------------------------------------------------------ ":
     @Delimiter
     @Disabled
@@ -763,10 +765,9 @@ rule "Bounce Ball / Orb | Activate":
     eventPlayer.bouncetouchedlast = -1
 
 /*
-death rule notes ( not death note)
-without wait it can crash server
-with wait it feels bad
-this waituntil contrusction gives higher delay without relying on a variable count
+Death Reset notes:
+Without using waits it can crash server, but with wait it feels bad.
+This gives repeated resets higher delays without relying on a variable counter
 */
 rule "Death Reset":
     @Event playerDied
