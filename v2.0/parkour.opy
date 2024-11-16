@@ -40,8 +40,14 @@ def ResetPlayer():
     eventPlayer.applyImpulse(-1 * eventPlayer.getVelocity(), 0, Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION_XYZ)
     eventPlayer.teleport(CP_Pos[eventPlayer.CP_Index].last())
     eventPlayer.resurrect()
+    ResetHero()
     ResetAbilities()
 
+def ResetHero():
+    @Name "Reset Hero"
+    /*
+    TODO: Add custom hero macros here later
+    */
 
 def ResetAbilities():
     @Name "Reset Abilities"
@@ -56,6 +62,65 @@ def ResetAbilities():
 
 def SetAbilities():
     @Name "Set Abilities"
+    eventPlayer.temp = eventPlayer.Ability
+    if eventPlayer.temp >= 16777216:
+        eventPlayer.temp -= 16777216
+    if eventPlayer.temp >= 8388608:
+        eventPlayer.temp -= 8388608
+    if eventPlayer.temp >= 4194304:
+        eventPlayer.temp -= 4194304
+    if eventPlayer.temp >= 2097152:
+        eventPlayer.temp -= 2097152
+
+    if eventPlayer.temp >= 1048576:
+        eventPlayer.temp -= 1048576
+    if eventPlayer.temp >= 524288:
+        eventPlayer.temp -= 524288
+    if eventPlayer.temp >= 262144:
+        eventPlayer.temp -= 262144
+    if eventPlayer.temp >= 131072:
+        eventPlayer.temp -= 131072
+        
+    if eventPlayer.temp >= 65536:
+        eventPlayer.temp -= 65536
+    if eventPlayer.temp >= 32768:
+        eventPlayer.temp -= 32768
+    if eventPlayer.temp >= 16384:
+        eventPlayer.temp -= 16384
+    if eventPlayer.temp >= 8192:
+        eventPlayer.temp -= 8192
+
+    if eventPlayer.temp >= 4096:
+        eventPlayer.temp -= 4096
+    if eventPlayer.temp >= 2048:
+        eventPlayer.temp -= 2048
+    if eventPlayer.temp >= 1024:
+        eventPlayer.temp -= 1024
+    if eventPlayer.temp >= 512:
+        eventPlayer.temp -= 512
+
+    if eventPlayer.temp >= 256:
+        eventPlayer.temp -= 256
+    if eventPlayer.temp >= 128:
+        eventPlayer.temp -= 128
+    if eventPlayer.temp >= 64:
+        eventPlayer.temp -= 64
+    if eventPlayer.temp >= 32:
+        eventPlayer.temp -= 32
+        
+    if eventPlayer.temp >= 16:
+        eventPlayer.temp -= 16
+    if eventPlayer.temp >= 8:
+        eventPlayer.temp -= 8
+    if eventPlayer.temp >= 4:
+        eventPlayer.temp -= 4
+    if eventPlayer.temp >= 2:
+        eventPlayer.temp -= 2
+    if eventPlayer.temp >= 1:
+
+
+
+    /*
     eventPlayer.Ability = eventPlayer.Ability % 4
     eventPlayer.Ability = eventPlayer.Ability / 4 % 4
     eventPlayer.Ability = eventPlayer.Ability / 16 % 4
@@ -69,6 +134,7 @@ def SetAbilities():
     eventPlayer.Ability = eventPlayer.Ability / 1048576 % 4
     eventPlayer.Ability = eventPlayer.Ability / 4194304 % 4
     eventPlayer.Ability = eventPlayer.Ability / 16777216 % 4
+    */
 /*
         eventPlayer.CachedAbility = CP_Ability.index(eventPlayer.CP_Index) + true
         eventPlayer.CachedButton = CP_Button.index(eventPlayer.CP_Index) + true

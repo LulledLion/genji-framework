@@ -76,9 +76,11 @@ playervar CachedIndex
 playervar CachedAbilityIndex
 playervar Ability
 playervar Immune
+playervar temp
 
 #Subroutine names
 
 subroutine ResetPlayer
 subroutine SetAbilities
+subroutine ResetHero
 subroutine ResetAbilities
