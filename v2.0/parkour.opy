@@ -29,13 +29,13 @@ rule "Local player effects":
 rule "Player died":
     @Event playerDied
     @Condition eventPlayer.isDummy() == false
-    
+
     ResetPlayer()
 
 
 def ResetPlayer():
     @Name "Reset Player"
-    
+
     eventPlayer.cancelPrimaryAction()
     eventPlayer.applyImpulse(-1 * eventPlayer.getVelocity(), 0, Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION_XYZ)
     eventPlayer.teleport(CP_Pos[eventPlayer.CP_Index].last())
@@ -62,63 +62,111 @@ def ResetAbilities():
 
 def SetAbilities():
     @Name "Set Abilities"
+/*
+0 Do Nothing
+1 Off
+2 Limited
+3 Unlimited
+*/
+
     eventPlayer.temp = eventPlayer.Ability
-    if eventPlayer.temp >= 16777216:
-        eventPlayer.temp -= 16777216
+    
     if eventPlayer.temp >= 8388608:
         eventPlayer.temp -= 8388608
-    if eventPlayer.temp >= 4194304:
-        eventPlayer.temp -= 4194304
+        if eventPlayer.temp >= 4194304:
+            eventPlayer.temp -= 4194304
+    else:
+        if eventPlayer.temp >= 4194304:
+            eventPlayer.temp -= 4194304
+
     if eventPlayer.temp >= 2097152:
         eventPlayer.temp -= 2097152
-
-    if eventPlayer.temp >= 1048576:
-        eventPlayer.temp -= 1048576
+        if eventPlayer.temp >= 1048576:
+            eventPlayer.temp -= 1048576
+    else:
+        if eventPlayer.temp >= 1048576:
+            eventPlayer.temp -= 1048576
+        
     if eventPlayer.temp >= 524288:
         eventPlayer.temp -= 524288
-    if eventPlayer.temp >= 262144:
-        eventPlayer.temp -= 262144
+        if eventPlayer.temp >= 262144:
+            eventPlayer.temp -= 262144
+    else:
+        if eventPlayer.temp >= 262144:
+            eventPlayer.temp -= 262144
+
     if eventPlayer.temp >= 131072:
         eventPlayer.temp -= 131072
-        
-    if eventPlayer.temp >= 65536:
-        eventPlayer.temp -= 65536
+        if eventPlayer.temp >= 65536:
+            eventPlayer.temp -= 65536
+    else:
+        if eventPlayer.temp >= 65536:
+            eventPlayer.temp -= 65536
+
     if eventPlayer.temp >= 32768:
         eventPlayer.temp -= 32768
-    if eventPlayer.temp >= 16384:
-        eventPlayer.temp -= 16384
+        if eventPlayer.temp >= 16384:
+            eventPlayer.temp -= 16384
+    else:
+        if eventPlayer.temp >= 16384:
+            eventPlayer.temp -= 16384
+
     if eventPlayer.temp >= 8192:
         eventPlayer.temp -= 8192
+        if eventPlayer.temp >= 4096:
+            eventPlayer.temp -= 4096
+    else:
+        if eventPlayer.temp >= 4096:
+            eventPlayer.temp -= 4096
 
-    if eventPlayer.temp >= 4096:
-        eventPlayer.temp -= 4096
     if eventPlayer.temp >= 2048:
         eventPlayer.temp -= 2048
-    if eventPlayer.temp >= 1024:
-        eventPlayer.temp -= 1024
+        if eventPlayer.temp >= 1024:
+            eventPlayer.temp -= 1024
+    else:
+        if eventPlayer.temp >= 1024:
+            eventPlayer.temp -= 1024
+
     if eventPlayer.temp >= 512:
         eventPlayer.temp -= 512
+        if eventPlayer.temp >= 256:
+            eventPlayer.temp -= 256
+    else:
+        if eventPlayer.temp >= 256:
+            eventPlayer.temp -= 256
 
-    if eventPlayer.temp >= 256:
-        eventPlayer.temp -= 256
     if eventPlayer.temp >= 128:
         eventPlayer.temp -= 128
-    if eventPlayer.temp >= 64:
-        eventPlayer.temp -= 64
+        if eventPlayer.temp >= 64:
+            eventPlayer.temp -= 64
+    else:
+        if eventPlayer.temp >= 64:
+            eventPlayer.temp -= 64
+
     if eventPlayer.temp >= 32:
         eventPlayer.temp -= 32
-        
-    if eventPlayer.temp >= 16:
-        eventPlayer.temp -= 16
+        if eventPlayer.temp >= 16:
+            eventPlayer.temp -= 16
+    else:
+        if eventPlayer.temp >= 16:
+            eventPlayer.temp -= 16
+
     if eventPlayer.temp >= 8:
         eventPlayer.temp -= 8
-    if eventPlayer.temp >= 4:
-        eventPlayer.temp -= 4
+        if eventPlayer.temp >= 4:
+            eventPlayer.temp -= 4
+    else:
+        if eventPlayer.temp >= 4:
+            eventPlayer.temp -= 4
+
     if eventPlayer.temp >= 2:
         eventPlayer.temp -= 2
-    if eventPlayer.temp >= 1:
-
-
+        if eventPlayer.temp >= 1:
+            #eventPlayer.temp -= 1
+        else:
+    else:
+        if eventPlayer.temp >= 1:
+            #eventPlayer.temp -= 1
 
     /*
     eventPlayer.Ability = eventPlayer.Ability % 4
@@ -168,7 +216,7 @@ rule "On ground":
     @Event eachPlayer
     @Condition eventPlayer.hasSpawned() == eventPlayer.isAlive()
     @Condition eventPlayer.isOnGround() == true
-    
+
     if distance(eventPlayer.getPosition(), CP_Pos[eventPlayer.CP_Index].last()) < Default_Radius:
         waitUntil(eventPlayer.getPosition() != evalOnce(eventPlayer.getPosition()), 99999)
     elif distance(eventPlayer.getPosition(), CP_Pos[eventPlayer.CP_Index + true]) < Default_Radius:
