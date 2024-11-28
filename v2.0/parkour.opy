@@ -62,7 +62,7 @@ def ResetAbilities():
 
 def SetAbilities():
     @Name "Set Abilities"
-/*
+/* 2 Bit Flags
 0 Do Nothing
 1 Off
 2 Limited
@@ -70,7 +70,7 @@ def SetAbilities():
 */
 
     eventPlayer.temp = eventPlayer.Ability
-    
+
     if eventPlayer.temp >= 8388608:
         eventPlayer.temp -= 8388608
         if eventPlayer.temp >= 4194304:
@@ -168,32 +168,7 @@ def SetAbilities():
         if eventPlayer.temp >= 1:
             #eventPlayer.temp -= 1
 
-    /*
-    eventPlayer.Ability = eventPlayer.Ability % 4
-    eventPlayer.Ability = eventPlayer.Ability / 4 % 4
-    eventPlayer.Ability = eventPlayer.Ability / 16 % 4
-    eventPlayer.Ability = eventPlayer.Ability / 64 % 4
-    eventPlayer.Ability = eventPlayer.Ability / 256 % 4
-    eventPlayer.Ability = eventPlayer.Ability / 1024 % 4
-    eventPlayer.Ability = eventPlayer.Ability / 4096 % 4
-    eventPlayer.Ability = eventPlayer.Ability / 16384 % 4
-    eventPlayer.Ability = eventPlayer.Ability / 65536 % 4
-    eventPlayer.Ability = eventPlayer.Ability / 262144 % 4
-    eventPlayer.Ability = eventPlayer.Ability / 1048576 % 4
-    eventPlayer.Ability = eventPlayer.Ability / 4194304 % 4
-    eventPlayer.Ability = eventPlayer.Ability / 16777216 % 4
-    */
 /*
-        eventPlayer.CachedAbility = CP_Ability.index(eventPlayer.CP_Index) + true
-        eventPlayer.CachedButton = CP_Button.index(eventPlayer.CP_Index) + true
-
-        eventPlayer.CachedReset[1] = CP_Ability1[CP_Ability1.index(eventPlayer.CP_Index) + true]
-        eventPlayer.CachedReset[2] = CP_Ability2[CP_Ability2.index(eventPlayer.CP_Index) + true]
-        eventPlayer.CachedReset[3] = CP_Crouch[CP_Crouch.index(eventPlayer.CP_Index) + true]
-        eventPlayer.CachedReset[4] = CP_Jump[CP_Jump.index(eventPlayer.CP_Index) + true]
-        eventPlayer.CachedReset[5] = CP_Primary[CP_Primary.index(eventPlayer.CP_Index) + true]
-        eventPlayer.CachedReset[6] = CP_Secondary[CP_Secondary.index(eventPlayer.CP_Index) + true]
-        eventPlayer.CachedReset[7] = CP_Ult[CP_Ult.index(eventPlayer.CP_Index) + true]
     eventPlayer.setAbility1Enabled(eventPlayer.CachedReset[2])
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, null)
     eventPlayer.setAbility2Enabled(eventPlayer.CachedReset[3])

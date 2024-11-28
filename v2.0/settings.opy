@@ -61,15 +61,6 @@ globalvar CP_Pos
 globalvar CP_Hero
 globalvar CP_Ability
 
-/*
-globalvar CP_Ability1
-globalvar CP_Ability2
-globalvar CP_Crouch
-globalvar CP_Jump
-globalvar CP_Primary
-globalvar CP_Secondary
-globalvar CP_Ult
-*/
 #Player variables
 playervar CP_Index
 playervar CachedIndex
