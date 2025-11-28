@@ -16,6 +16,14 @@ msgstr "表情留小 ♥ 已禁用!"
 msgid "Bhop"
 msgstr "小跳"
 
+# TODO: check if all occurrences have the same translation
+#. 2 occurrences:
+#.  - file climbers.opy, rule "Mechanic | Climbers | Ban Wallclimb - Message"
+#.  - file parkour.opy, rule "Parkour | Ground: Traces, Arrive, & Reset"
+#, hasMultipleOccurrencesNotification
+msgid "Climb ↑ Is Banned!"
+msgstr "爬墙 ↑ 已禁用!"
+
 #. file climbers.opy, rule "Mechanic | Climbers | Bhop count for stand ban"
 msgid "Stand Createbhop ♠ Is Banned!"
 msgstr "站卡 ♠ 已禁用!"
@@ -303,14 +311,6 @@ msgstr "技能1影已就绪"
 #. file parkour.opy, rule "Parkour | Ground: Traces, Arrive, & Reset"
 msgid "! Collect All Lock Orbs To Complete !"
 msgstr "! 进点前需集齐所有收集球 !"
-
-# TODO: check if all occurrences have the same translation
-#. 2 occurrences:
-#.  - file parkour.opy, rule "Parkour | Ground: Traces, Arrive, & Reset"
-#.  - file climbers.opy, rule "Mechanic | Climbers | Ban Wallclimb - Message"
-#, hasMultipleOccurrencesNotification
-msgid "Climb ↑ Is Banned!"
-msgstr "爬墙 ↑ 已禁用!"
 
 #. file parkour.opy, rule "Parkour | Ground: Traces, Arrive, & Reset"
 msgid "≥ Must Have A Bhop To Complete!"

@@ -4,7 +4,7 @@
 #!suppressWarnings w_lone_else
 #!suppressWarnings w_enum_constant
 ################################################################################
-#!define versionhere "1.10.4F"
+#!define versionhere "1.10.4F♨"
 #♨ Dev Build Icon
 ################################################################################
 #!define editortoggle(x) __script__("test-maps/togglescript.js")
@@ -37,12 +37,14 @@ macro attemptCount = 5
 macro compTimeLimit = 120
 macro compRestartLimit = false
 ################################################################################
-#!define importHero(Hero) __script__('mechanics/fwHero.js')
-################################################################################
 #!include "settings.opy"
 ################################################################################
 ##!excludeVariablesInCompilation
 #!include "definitions.opy"
+################################################################################
+#$$ TODO proper multi-hero support
+#!define importHero(Hero) __script__('mechanics/fwHero.js')
+importHero(["GENJI" /*, "HANZO", "HAZARD", "KIRIKO"*/][0])
 ################################################################################
 #!disableInspector
 #!globalvarInitRuleName "OverPy | Global Init"
@@ -56,8 +58,7 @@ macro overrideLanguage = -1 # Auto=-1 TLErr=0 EN=1 ZH=2 KO=3
 ################################################################################
 #!include "parkour.opy"
 ################################################################################
-#$$ TODO proper multi-hero support
-importHero(["GENJI" /*, "HANZO", "HAZARD", "KIRIKO"*/][0])
+MechanicsHero()
 ################################################################################
 #!include "editor.opy"
 ##!include "editor2.opy"
