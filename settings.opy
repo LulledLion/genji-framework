@@ -32,7 +32,6 @@ settings {
         "skirmish": {
             "enabled": true,
             "enablePerks": usePerks,
-             #"workshopChamber"
             "enabledMaps": skirmishMap
         },
         "tdm": {
@@ -41,50 +40,50 @@ settings {
             "enabledMaps": tdmMap,
             "enableSelfInitiatedRespawn": false
         },
-        /*"assault": {
+        "assault": {
             "enabled": false,
-            "enablePerks": usePerks
-        },*/
+            #"enablePerks": usePerks
+        },
         "bountyHunter": {
             "enabled": false,
             "enablePerks": usePerks
         },
-        /*"clash": {
+        "clash": {
             "enabled": false,
-            "enablePerks": usePerks
-        },*/
+            #"enablePerks": usePerks
+        },
         "ctf": {
             "enabled": false,
             "enablePerks": usePerks
         },
-        /*"control": {
+        "control": {
             "enabled": false,
-            "enablePerks": usePerks
-        },*/
-        /*"escort": {
+            #"enablePerks": usePerks
+        },
+        "escort": {
             "enabled": false,
-            "enablePerks": usePerks
-        },*/
+            #"enablePerks": usePerks
+        },
         "elimination": {
             "enabled": false,
             "enablePerks": usePerks
         },
-        /*"flashpoint": {
+        "flashpoint": {
             "enabled": false,
             "enablePerks": usePerks
-        },*/
-        /*"hybrid": {
+        },
+        "hybrid": {
             "enabled": false,
-            "enablePerks": usePerks
-        },*/
+            #"enablePerks": usePerks
+        },
         "practiceRange": {
             "enabled": false,
             "enablePerks": usePerks
         },
-        /*"push": {
+        "push": {
             "enabled": false,
-            "enablePerks": usePerks
-        },*/
+            #"enablePerks": usePerks
+        }
     },
     "heroes": {
         "allTeams": {
