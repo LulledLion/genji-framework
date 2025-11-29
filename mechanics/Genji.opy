@@ -19,6 +19,7 @@ macro FwMechanicsHero():
 
     rule "Mechanic | Genji | Dash":
         @Event eachPlayer
+        @Hero genji
         @Condition eventPlayer.isUsingAbility1()
         if eventPlayer.toggle_invincible or (EditorOn and eventPlayer == hostPlayer) or not eventPlayer.checkpoint_notLast: return
         eventPlayer.setAbility1Enabled(false)
@@ -28,6 +29,7 @@ macro FwMechanicsHero():
 
     rule "Mechanic | Genji | Ultimate":
         @Event eachPlayer
+        @Hero genji
         # Total Duration: 218 ticks, 3.488s
         # Casting: 76 ticks, 1.216s
         # Blade: 125 ticks, 2s
@@ -49,6 +51,7 @@ macro FwMechanicsHero():
 
     rule "Mechanic | Genji | Double Jump":
         @Event eachPlayer
+        @Hero genji
         @Condition eventPlayer.isAlive()
         @Condition eventPlayer.isInAir()
         @Condition eventPlayer.ban_djump or eventPlayer.ban_savedouble or eventPlayer.addon_enableDoubleChecks
@@ -69,6 +72,7 @@ macro FwMechanicsHero():
 
     rule "Mechanic | Genji | Ban Save Double - 封禁二段跳":
         @Event eachPlayer
+        @Hero genji
         @Condition eventPlayer.ban_savedouble
         @Condition eventPlayer.toggle_invincible == false
         @Condition eventPlayer.isInAir()
