@@ -4,9 +4,9 @@
 
 #!include "climbers.opy"
 
-macro MechanicsHero():
-    MechanicsAll()
-    MechanicsClimber()
+macro FwMechanicsHero():
+    FwMechanicsAll()
+    FwMechanicsClimber()
     def ResetAbilities():
         @Name "Mechanic | Genji | SUB Reset Abilities"
         if eventPlayer.toggle_invincible or (eventPlayer == hostPlayer and EditorOn):

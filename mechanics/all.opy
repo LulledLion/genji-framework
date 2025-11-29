@@ -2,7 +2,7 @@
 /*
 Generalized mechanics for all heroes here
 */
-macro MechanicsAll():
+macro FwMechanicsAll():
     rule "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Mechanics | Checks ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒":
         @Delimiter
 

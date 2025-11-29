@@ -4,7 +4,7 @@
 #!suppressWarnings w_lone_else
 #!suppressWarnings w_enum_constant
 ################################################################################
-#!define versionhere "1.10.4F♨"
+#!define versionhere "1.10.4F"
 #♨ Dev Build Icon
 ################################################################################
 #!define editortoggle(x) __script__("test-maps/togglescript.js")
@@ -58,7 +58,7 @@ macro overrideLanguage = -1 # Auto=-1 TLErr=0 EN=1 ZH=2 KO=3
 ################################################################################
 #!include "parkour.opy"
 ################################################################################
-MechanicsHero()
+FwMechanicsHero()
 ################################################################################
 #!include "editor.opy"
 ##!include "editor2.opy"

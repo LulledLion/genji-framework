@@ -2,7 +2,7 @@
 /*
 Generalized mechanics for climber heroes here
 */
-macro MechanicsClimber():
+macro FwMechanicsClimber():
     rule "Mechanic | Climbers | On Wall":
         @Event eachPlayer
         #This rule is also linked to the determination of wall climbing, please do not close/delete

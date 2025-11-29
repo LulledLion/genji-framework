@@ -139,7 +139,7 @@ rule "Parkour | Player Initialize":
     eventPlayer.enableDeathSpectateAllPlayers()
     eventPlayer.enableDeathSpectateTargetHud()
     eventPlayer.disableRespawn()
-    eventPlayer.preloadHero(Hero.GENJI)
+    eventPlayer.preloadHero(FwHero)
     eventPlayer.editor_lock = true
     eventPlayer.toggle_guide = true
     #eventPlayer.toggle_quickRestart = true
@@ -317,7 +317,7 @@ rule "Parkour | Bounce Ball / Orb":
             eventPlayer.setUltEnabled(true)
             eventPlayer.setUltCharge(100)
             #"终极技能已就绪" checkCN "Ultimate is ready"
-            smallMessage(eventPlayer, f"   {abilityIconString(Hero.GENJI, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
+            smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
 
         if BounceToggleDash[eventPlayer.cache_bounceTouched]:
             if eventPlayer.isUsingAbility1():
@@ -325,7 +325,7 @@ rule "Parkour | Bounce Ball / Orb":
                 wait()
             eventPlayer.setAbility1Enabled(true)
             #"技能1影已就绪" checkCN "Dash is ready"
-            smallMessage(eventPlayer, f"   {abilityIconString(Hero.GENJI, Button.ABILITY_1)} {t'Dash Is Ready'}")
+            smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ABILITY_1)} {t'Dash Is Ready'}")
 
         playEffect(eventPlayer, DynamicEffect.BUFF_EXPLOSION_SOUND, null, eventPlayer, 75)
     wait(0.24)
@@ -380,9 +380,9 @@ def UpdateCache():
     eventPlayer.banString = []
     wait()
     if eventPlayer.cache_startUlt:
-        smallMessage(eventPlayer, f"   {abilityIconString(Hero.GENJI, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
+        smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
     if eventPlayer.cache_startAbility1:
-        smallMessage(eventPlayer, f"   {abilityIconString(Hero.GENJI, Button.ABILITY_1)} {t'Dash Is Ready'}")
+        smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ABILITY_1)} {t'Dash Is Ready'}")
     if eventPlayer.checkpoint_notLast:
         eventPlayer.ban_multi = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanMultiClimb, false, 1) or eventPlayer.checkpoint_current in BanMulti
         if eventPlayer.ban_multi:
