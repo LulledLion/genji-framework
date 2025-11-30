@@ -5,7 +5,7 @@
 settings {
     "main": {
         "modeName": f"Genji Parkour - 源氏跑酷 - v{versionhere}",
-        "description": f"◀ Genji Parkour - 源氏跑酷 ▶\nCode: XXXXX\nMade By: \n\n◀ Official Genji Parkour Editor ▶\nCode: 54CRY\nAdapted by: LulledLion, FishoFire, Nebula\nv{versionhere}"
+        "description": f"◀ Genji Parkour - 源氏跑酷 ▶\nCode: XXXXX\nMade By: \n\n◀ Official Genji Parkour Editor ▶\nCode: 54CRY\nDiscord: dsc.gg/genjiparkour\nAdapted By: LulledLion, FishoFire, Nebula\nv{versionhere}"
         #"description": "  ~ The Official Genji Parkour Editor ~\nCode: 54CRY\nAdapted by: LulledLion#1133 FishoFire#2431 nebula#11571",
     },
     "lobby": {
