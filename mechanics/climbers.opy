@@ -47,7 +47,7 @@ macro FwMechanicsClimber():
         @Condition eventPlayer.isOnWall()
         @Condition eventPlayer.isHoldingButton(Button.JUMP) == false
         @Condition eventPlayer.skill_usedClimb == false
-        wait(false)
+        wait(0)
         if eventPlayer.isOnWall() and not eventPlayer.isHoldingButton(Button.JUMP):
             #AutoClimb used
             eventPlayer.skill_usedClimb = true

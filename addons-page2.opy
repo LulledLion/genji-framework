@@ -305,7 +305,7 @@ rule "Addon | Fake Triple Jump - 假三段跳":
     @Condition eventPlayer.skill_usedDouble == false #Double cannot be used already
     @Condition eventPlayer.isHoldingButton(Button.RELOAD) == false #Don't activate on reset
     eventPlayer.addon_enableDoubleChecks = true #Enable checking double jump
-    wait(false)
+    wait(0)
     if RULE_CONDITION: goto RULE_START
     if eventPlayer.skill_usedDouble or eventPlayer.isHoldingButton(Button.RELOAD):
         return
@@ -349,7 +349,7 @@ rule "Fake Ledge Dash - 超级跳":
             eventPlayer.addon_ledgeDash[0] ++
         if eventPlayer.addon_ledgeDash[0] == 12: # stop storing, we keep this speed/direction
             waitUntil(eventPlayer.getSpeed() < 40, 0.4) # wait for dash to finish to execute
-        wait(false)
+        wait(0)
     # dash after ledge grab
     if eventPlayer.addon_ledgeDash[0] >= 5: #and eventPlayer.addon_ledgeDash[0] <= 12: # ledge dash execute
         # stores speed and launches you after dash if you done it during climb
@@ -373,11 +373,11 @@ rule "Addon | Ledge Grab Patch v1.5":
 
     #Directly after Double Jumping
     eventPlayer.stopForcingButton(Button.JUMP)
-    wait(false)
+    wait(0)
     eventPlayer.startForcingButton(Button.JUMP)
-    wait(false)
+    wait(0)
     eventPlayer.stopForcingButton(Button.JUMP)
-    wait(false)
+    wait(0)
     eventPlayer.startForcingButton(Button.JUMP)
     waitUntil(eventPlayer.isOnGround() or not eventPlayer.isHoldingButton(Button.JUMP), Math.INFINITY)
     eventPlayer.stopForcingButton(Button.JUMP)
@@ -385,10 +385,10 @@ rule "Addon | Ledge Grab Patch v1.5":
     while not eventPlayer.isOnGround():
         #Multi-Climb
         if eventPlayer.isOnWall():
-            wait(false)
+            wait(0)
         else:
             eventPlayer.startForcingButton(Button.JUMP)
-            wait(false)
+            wait(0)
             eventPlayer.stopForcingButton(Button.JUMP)
         waitUntil(not eventPlayer.isInAir() or eventPlayer.isHoldingButton(Button.JUMP), Math.INFINITY)
         waitUntil(not (eventPlayer.isInAir() and eventPlayer.isHoldingButton(Button.JUMP)), Math.INFINITY)

@@ -98,15 +98,15 @@ rule "Parkour | Setup & Variables":
 
 rule "Parkour | Match time":
     if getCurrentGamemode() != Gamemode.SKIRMISH:
-        wait(false)
+        wait(0)
         setMatchTime(false)
-        wait(false)
+        wait(0)
         setMatchTime(false)
-        wait(false)
+        wait(0)
 
     setMatchTime(70)
     pauseMatchTime()
-    wait(false)
+    wait(0)
     LobbyID = "v"
     TimeRemaining = 265
     while TimeRemaining:
@@ -176,7 +176,7 @@ rule "Parkour | Player Initialize":
             kill(eventPlayer,null)
             eventPlayer.setDamageReceived(0)
             return
-    wait(false)
+    wait(0)
     StartGame()  # initialization of the game
     eventPlayer.lockState = false
 
@@ -256,7 +256,7 @@ rule "Parkour | Ground: Traces, Arrive, & Reset":
                             CompAtmpSaveCount[CompAtmpSaveNames.index(eventPlayer[0].split([]))] = eventPlayer.comp_countAttempts + 1
                     #"已通关! 用时" checkCN "Mission Complete! Time"
                     bigMessage(true[0], f"{eventPlayer} {t'Mission Complete! Time'} {eventPlayer.timer_normal} Sec")
-                    wait(false)
+                    wait(0)
                 else: # update save
                     MakeSave()
                 UpdateTitle()
@@ -266,7 +266,7 @@ rule "Parkour | Ground: Traces, Arrive, & Reset":
             else:
                 ResetAbilities()
                 AddonCustomLoadAndReset()
-            wait(false)
+            wait(0)
             playEffect(eventPlayer, DynamicEffect.RING_EXPLOSION_SOUND, null, eventPlayer, 100)
             playEffect(eventPlayer if CompMode or eventPlayer.toggle_invisible else true, DynamicEffect.RING_EXPLOSION, Color.SKY_BLUE, eventPlayer.getPosition(), 4)
     elif distance(eventPlayer,CheckpointPositions[eventPlayer.checkpoint_current].last()) > cpCircleRadius:
@@ -322,7 +322,7 @@ rule "Parkour | Bounce Ball / Orb":
         if BounceToggleDash[eventPlayer.cache_bounceTouched]:
             if eventPlayer.isUsingAbility1():
                 waitUntil(not eventPlayer.isUsingAbility1(), true)
-                wait(false)
+                wait(0)
             eventPlayer.setAbility1Enabled(true)
             #"技能1影已就绪" checkCN "Dash is ready"
             smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ABILITY_1)} {t'Dash Is Ready'}")
@@ -378,7 +378,7 @@ def UpdateCache():
     eventPlayer.cache_startAbility1 = eventPlayer.checkpoint_current in DashEnabledCheckpoints or not eventPlayer.checkpoint_notLast
     eventPlayer.toggle_hints = false
     eventPlayer.banString = []
-    wait(false)
+    wait(0)
     if eventPlayer.cache_startUlt:
         smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
     if eventPlayer.cache_startAbility1:
@@ -421,7 +421,7 @@ def UpdateCache():
         eventPlayer.ban_savedouble = false
         eventPlayer.ban_bhop = false
         eventPlayer.ban_djump = false
-    wait(false)
+    wait(0)
     if not EditorOn or eventPlayer != hostPlayer: return
     EditUpdateSelectedIds()
     destroyEffect(hostPlayer.editor_hitboxEffect)
@@ -495,7 +495,7 @@ def CheckpointFailReset():
         if eventPlayer.isUsingAbility1():
             eventPlayer.startForcingPosition(eventPlayer, false)
             waitUntil(not eventPlayer.isUsingAbility1(), true)
-            wait(false)
+            wait(0)
             eventPlayer.stopForcingPosition()
         eventPlayer.teleport(CheckpointPositions[eventPlayer.checkpoint_current].last())
         #After teleport incase stopForcingPosition launches the player
@@ -514,7 +514,7 @@ def CheckpointFailReset():
             eventPlayer.setDamageReceived(100)
             kill(eventPlayer, null)
             eventPlayer.setDamageReceived(0)
-            wait(false)
+            wait(0)
 
     ResetAbilities()
     AddonCustomLoadAndReset()
