@@ -93,7 +93,6 @@ settings {
                 "ability1Cooldown%": 1,
                 "ultDuration%": 25,
                 "passiveUltGen%": 0,
-                "ultGen%": 10
             },
             "enabledHeroes": [
                 "genji"
