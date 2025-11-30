@@ -42,7 +42,7 @@ macro FwMechanicsAll():
             if eventPlayer.toggle_invincible: return
             #"   表情留小 ♥ 已禁用!" checkCN "   Emote Savehop ♥ is banned!"
             smallMessage(eventPlayer, t"   Emote Savehop ♥ Is Banned!")
-            wait()
+            wait(false)
             CheckpointFailReset()
 
     rule "Mechanic | All | Ground Reset":

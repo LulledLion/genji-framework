@@ -9,13 +9,13 @@ globalvar debug_ult_on
 
 rule "Editor | Menu - HUD":
     @Condition EditorOn
-    #!disableOptimizations
+    ##!disableOptimizations
     hudText(hostPlayer if hostPlayer.MenuIsVisible() else false,
         hostPlayer.MenuText_Translated_Vertical(),
         #hostPlayer.MenuText_Translated(),#backMsg = t" ▶ 0. Back"),
         hostPlayer.MenuPreview_Translated(),
         LeftAlign128, HudPosition.LEFT, null, Color.WHITE, Color.WHITE, null, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
-    #!enableOptimizations
+    #!optimizeForSize
     #createInWorldText(hostPlayer if hostPlayer.MenuIsVisible() else false, hostPlayer.MenuText_Translated(), worldVector(100 * Vector.FORWARD, hostPlayer, Transform.ROTATION_AND_TRANSLATION), 2)
 
 rule "Editor | Menu - Visibility":

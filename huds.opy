@@ -224,7 +224,7 @@ rule "Huds | Global Localplayer":
 rule "Huds | Leaderboard": # for global instead of tied to player
     @Condition LeaderBoardRemake
     @Condition LeaderBoardFull != []
-    wait() # account for delay in completion
+    wait(false) # account for delay in completion
     while len(LeaderBoardHuds):
         destroyHudText(LeaderBoardHuds[0])
         del LeaderBoardHuds[0]
@@ -270,7 +270,7 @@ rule "Huds | Leaderboard": # for global instead of tied to player
         HudPosition.TOP, HO.board_display1, Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
     LeaderBoardHuds.append(getLastCreatedText())
     LeaderBoardRemake = null
-    wait()
+    wait(false)
 
 rule "Huds | Each Player":
     @Event playerJoined
@@ -402,7 +402,7 @@ def UpdateTitle():
 rule "Huds | Addons":
     wait(LoadOrder.hudsGlobal)
     waitUntil(entityExists(getAllPlayers()), Math.INFINITY)
-    wait()
+    wait(false)
     if getAllPlayers().addon_toggle3rdPov <= true:
         hudSubtext(localPlayer.toggle_guide,
             f"{t'Hold'} {buttonString(Button.CROUCH)} + {buttonString(Button.JUMP)} | {t'3rd Person'}{t' | On' if localPlayer.addon_toggle3rdPov else []}",

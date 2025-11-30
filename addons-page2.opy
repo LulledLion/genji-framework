@@ -23,7 +23,7 @@ rule "Addon | Comp Mode Instruction Message - 竞赛模式指引消息 <---- INS
         "Change Comp Mode Instruction Message Hud 2",
         "Change Comp Mode Instruction Message Hud 3",
         "Change Comp Mode Instruction Message Hud 4"]
-    #!enableOptimizations
+    #!optimizeForSize
 
 rule "Addon | Custom Difficulty Hud - 自定义难度hud <---- INSERT HERE / 在这输入":
     @Disabled
@@ -65,7 +65,7 @@ rule "Addon | Title Data - 标题数据 <---- EDIT ME / 在此处编辑":
         "Pro",
         "Expert",
         "Master"]
-    #!enableOptimizations
+    #!optimizeForSize
     # color
     # 颜色
     TitleData[2] = [
@@ -109,7 +109,7 @@ rule "Addon | HUD Text For Certain Checkpoints - 特定关卡显示的HUD文本 
     # in CpHudText fill in text
     # 修改字符串 “CpHudText” 为顶部显示 的hud文本
     CpHudText = ["Text CP 1", "Text CP 3"]
-    #!enableOptimizations
+    #!optimizeForSize
     # in CpHudCp fill in the at wich to display
     # 修改数组 “CpHudCp” 为hud文本 显示的关卡
     CpHudCp = [1, 3]
@@ -123,7 +123,7 @@ rule "Addon | In-World Text For Certain Checkpoints - 特定关卡显示的地�
     # in CpIwtText fill in text
     # 修改字符串 “CpIwtText” 为关卡显示 的地图文本
     CpIwtText = ["Text CP 1", "Text CP 3"]
-    #!enableOptimizations
+    #!optimizeForSize
     # in CpIwtCp fill in cp at wich to display
     # 修改数组 “CpIwtCp” 为显示地图 文本的关卡
     CpIwtCp = [1, 3]
@@ -143,7 +143,7 @@ rule "Addon | Hint Text For Certain Checkpoints - 特定关卡的提示文本 <-
     # in HintText fill in text
     # 修改字符串 “HintText” 为关卡显示 的提示文本
     HintText = ["Text CP 1", "Text CP 3"]
-    #!enableOptimizations
+    #!optimizeForSize
     # in HintCp fill in the at wich to display
     # 修改数组 “HintCp” 为提示文本 显示的关卡
     HintCp = [1, 3]
@@ -305,7 +305,7 @@ rule "Addon | Fake Triple Jump - 假三段跳":
     @Condition eventPlayer.skill_usedDouble == false #Double cannot be used already
     @Condition eventPlayer.isHoldingButton(Button.RELOAD) == false #Don't activate on reset
     eventPlayer.addon_enableDoubleChecks = true #Enable checking double jump
-    wait()
+    wait(false)
     if RULE_CONDITION: goto RULE_START
     if eventPlayer.skill_usedDouble or eventPlayer.isHoldingButton(Button.RELOAD):
         return
@@ -349,7 +349,7 @@ rule "Fake Ledge Dash - 超级跳":
             eventPlayer.addon_ledgeDash[0] ++
         if eventPlayer.addon_ledgeDash[0] == 12: # stop storing, we keep this speed/direction
             waitUntil(eventPlayer.getSpeed() < 40, 0.4) # wait for dash to finish to execute
-        wait()
+        wait(false)
     # dash after ledge grab
     if eventPlayer.addon_ledgeDash[0] >= 5: #and eventPlayer.addon_ledgeDash[0] <= 12: # ledge dash execute
         # stores speed and launches you after dash if you done it during climb

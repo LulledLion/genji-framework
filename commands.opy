@@ -61,7 +61,7 @@ rule "Command | Preview Orbs & Portals (Hold Primary + Secondary)":
             eventPlayer.preview_array1.append([eventPlayer.cache_portalStart[eventPlayer.preview_i],eventPlayer.cache_portalEnd[eventPlayer.preview_i]])
             eventPlayer.preview_array2.append([[eventPlayer.preview_i, false],[eventPlayer.preview_i, true]])
 
-    wait()
+    wait(false)
     eventPlayer.preview_i = 0
     if eventPlayer.addon_toggle3rdPov:
         eventPlayer.addon_toggle3rdPov = false
@@ -80,7 +80,7 @@ rule "Command | Preview Orbs & Portals (Hold Primary + Secondary)":
             eventPlayer.preview_i += len(eventPlayer.preview_array1) - true
         eventPlayer.preview_i %= len(eventPlayer.preview_array1)
         waitUntil(abs(eventPlayer.getThrottle().x) < 0.5, true)
-        wait()
+        wait(false)
     eventPlayer.setPrimaryFireEnabled(true)
     eventPlayer.setSecondaryFireEnabled(true)
     eventPlayer.allowButton(Button.ABILITY_1)
