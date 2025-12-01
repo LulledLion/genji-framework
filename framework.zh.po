@@ -155,10 +155,6 @@ msgstr "爬墙"
 msgid "Collect Orbs First"
 msgstr "先收集橙球"
 
-#. file huds.opy, rule "Huds | Each Player"
-msgid "Come Here"
-msgstr "到这里来"
-
 #. file huds.opy, rule "Huds | Global Localplayer"
 msgid "Made By"
 msgstr "作者"

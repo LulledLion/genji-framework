@@ -362,7 +362,7 @@ rule "Huds | Each Player":
         eventPlayer if eventPlayer.checkpoint_notLast and eventPlayer.toggle_guide else null,
         f"{iconString(Icon.WARNING)}{t'Collect Orbs First'}"
         if eventPlayer.cache_bounceMaxLocks and len(eventPlayer.cache_collectedLocks) < eventPlayer.cache_bounceMaxLocks else
-        t"Come Here",
+        l"Come Here",
         #"{0} {1}".format(
         #    iconString(Icon.WARNING),
         #    "先收集橙球" checkCN "collect orbs first"

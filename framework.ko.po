@@ -155,10 +155,6 @@ msgstr "벽타기"
 msgid "Collect Orbs First"
 msgstr "먼저 오브를 수집하세요"
 
-#. file huds.opy, rule "Huds | Each Player"
-msgid "Come Here"
-msgstr "다음 단계"
-
 #. file huds.opy, rule "Huds | Global Localplayer"
 msgid "Made By"
 msgstr "제작자"
