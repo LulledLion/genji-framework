@@ -4,6 +4,17 @@
 
 #!include "climbers.opy"
 
+/* JSON Concept
+[{
+    name: "MultiClimb",  //Remove?
+    icon: "∞",
+    settings : "SettingsText.BanMultiClimb",
+    levelCache : `eventPlayer.checkpoint_current in BanMulti`,
+    order: 1,
+    deferedReset: false
+}]
+*/
+
 macro FwMechanicsHero():
     FwMechanicsAll()
     FwMechanicsClimber()
