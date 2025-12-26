@@ -31,10 +31,9 @@ macro bounceOffset = 0.7
 macro usePerks = false
 # non-practice cheat mode: false
 macro cpCheat = false
-# defaults: off, attempt:5, 120 min, restart:false
+# defaults: off, attempt:5, restart:false
 macro compModeToggle = false
 macro attemptCount = 5
-macro compTimeLimit = 120
 macro compRestartLimit = false
 ################################################################################
 #!include "settings.opy"

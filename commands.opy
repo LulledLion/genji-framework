@@ -101,13 +101,12 @@ rule "Command | Restart Run (Crouch + Interact + Deflect)":
 
     eventPlayer.lockState = true
     if CompMode:
-        if CompTime < 1:
-            smallMessage(eventPlayer, "   比赛结束" checkCN "   Competition Is Over")
-        elif CompRestartLimit and eventPlayer.checkpoint_notLast:
+        #if CompTime < 1: smallMessage(eventPlayer, "   比赛结束" checkCN "   Competition Is Over")
+        if CompRestartLimit and eventPlayer.checkpoint_notLast:
             smallMessage(eventPlayer, "   禁止在此比赛中运行期间重新启动" checkCN "   Restart During Run Is Disabled For This Competition")
         elif CompAtmpNum:
             if eventPlayer.comp_countAttempts == CompAtmpNum:
-                smallMessage(eventPlayer, "   最后一次尝试" checkCN "   You Are On Your Final Attempt")
+                smallMessage(eventPlayer, "   最后一次尝试" checkCN "   This is Your Final Attempt")
             elif eventPlayer.comp_countAttempts < 0:
                 smallMessage(eventPlayer, "   你没有尝试过" checkCN "   You Are Out Of Attempts")
             else:

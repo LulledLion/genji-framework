@@ -170,17 +170,9 @@ rule "Huds | Global Localplayer":
             2, Clip.SURFACES, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, CpIwtColor, SpecVisibility.DEFAULT)
 
     if CompMode:
-        hudHeader([i for i in getAllPlayers() if i.comp_instructionHud],"                                                                                                                           ",
-            HudPosition.TOP, HO.comp_instructtop, Color.WHITE, HudReeval.VISIBILITY,SpecVisibility.DEFAULT)
-        if InstructionText[0]:
-            hudSubtext([i for i in getAllPlayers() if i.comp_instructionHud], InstructionText[0], HudPosition.TOP, HO.comp_instruct1, Color.WHITE, HudReeval.VISIBILITY, SpecVisibility.DEFAULT)
-        if InstructionText[1]:
-            hudSubtext([i for i in getAllPlayers() if i.comp_instructionHud], InstructionText[1], HudPosition.TOP, HO.comp_instruct2, Color.WHITE, HudReeval.VISIBILITY, SpecVisibility.DEFAULT)
-        if InstructionText[2]:
-            hudSubtext([i for i in getAllPlayers() if i.comp_instructionHud], InstructionText[2], HudPosition.TOP, HO.comp_instruct3, Color.WHITE, HudReeval.VISIBILITY, SpecVisibility.DEFAULT)
-        if InstructionText[3]:
-            hudSubtext([i for i in getAllPlayers() if i.comp_instructionHud], InstructionText[3], HudPosition.TOP, HO.comp_instruct4, Color.WHITE, HudReeval.VISIBILITY, SpecVisibility.DEFAULT)
-        hudHeader([i for i in getAllPlayers() if i.comp_instructionHud],"                                   Press {0} to start                                ".format(buttonString(Button.INTERACT)),
+        if InstructionText:
+            hudSubtext(localPlayer.comp_instructionHud, InstructionText, HudPosition.TOP, HO.comp_instruct1, Color.WHITE, HudReeval.VISIBILITY, SpecVisibility.DEFAULT)
+        hudHeader(localPlayer.comp_instructionHud,"　　　　　Press {0} To Start　　　　　".format(buttonString(Button.INTERACT)),
             HudPosition.TOP, HO.comp_instructbottom, Color.WHITE, HudReeval.VISIBILITY_AND_STRING,SpecVisibility.DEFAULT)
     elif not EditorOn:
         hudSubtext(localPlayer.toggle_guide,
@@ -263,8 +255,7 @@ rule "Huds | Leaderboard": # for global instead of tied to player
                     hudText(true[0], heroIcon(Hero.GENJI), LeaderBoardFull[4][0], LeaderBoardFull[4].last(), HudPosition.RIGHT, HO.board_top5+5,
                         Color.GREEN, Color.GREEN, Color.GREEN, HudReeval.VISIBILITY, SpecVisibility.ALWAYS)
                     LeaderBoardHuds.append(getLastCreatedText())
-
-    hudHeader(true if evalOnce(CompMode and not CompTime) else localPlayer.toggle_leaderboard,
+    hudHeader(localPlayer.toggle_leaderboard,
         "　　　　 {0} {1} {0} 　　　　\n　　　　　　　　　　　　　　　　　　{2}".format(iconString(Icon.FLAG), t"Leaderboard", evalOnce(LeaderBoardRemake)),
         #"　　　　 {0} {1} {0} 　　　　\n　　　　　　　　　　　　　　　　　　{2}".format(iconString(Icon.FLAG), "成绩排名" checkCN "Leaderboard", evalOnce(LeaderBoardRemake)),
         HudPosition.TOP, HO.board_display1, Color.WHITE, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
@@ -371,23 +362,17 @@ rule "Huds | Each Player":
         CheckpointPositions[eventPlayer.checkpoint_current + 1],
         1.5, Clip.NONE, WorldTextReeval.VISIBILITY_POSITION_AND_STRING,  ColorConfig[Customize.cometext], SpecVisibility.DEFAULT)
 
-    wait(2.5)
+    wait(0)
     if CompMode:
         hudText(eventPlayer, null,
-            ("! 比赛结束 !" if not CompTime else
-            "剩余时间: {0} 分钟{1}".format(
-                CompTime,
-                "\n你没有尝试过" if eventPlayer.comp_countAttempts < 0 else
-                "\n尝试 {0} / {1}".format(eventPlayer.comp_countAttempts, CompAtmpNum) if CompAtmpNum else [])
-            ) checkCN (
-            "! Competition Is Over !" if not CompTime else
-            "Time Left: {0} Min{1}".format(
-                CompTime,
-                "\nYou Are Out Of Attempts" if eventPlayer.comp_countAttempts < 0 else
-                "\nAttempt {0} / {1}".format(eventPlayer.comp_countAttempts, CompAtmpNum) if CompAtmpNum else [])),
-            ("竞赛模式" if CompTime else "竞赛模式\n\n\n")
+            (#"! 比赛结束 !" if not CompTime else "剩余时间: {0} 分钟{1}".format(CompTime,
+                ("你没有尝试过" if eventPlayer.comp_countAttempts < 0 else
+                "尝试 {0} / {1}".format(eventPlayer.comp_countAttempts, CompAtmpNum) if CompAtmpNum else []))
             checkCN
-            ("Tournament Mode" if CompTime else "Tournament Mode\n\n\n"),
+            (#"! Competition Is Over !" if not CompTime else "Time Left: {0} Min{1}".format(CompTime,
+                ("You Are Out Of Attempts" if eventPlayer.comp_countAttempts < 0 else
+                "Attempt {0} / {1}".format(eventPlayer.comp_countAttempts, CompAtmpNum) if CompAtmpNum else [])),
+            ("竞赛模式") checkCN ("Tournament Mode"),
             HudPosition.TOP, HO.comp_info, null, Color.YELLOW, Color.YELLOW, HudReeval.STRING, SpecVisibility.DEFAULT)
 
 def UpdateTitle():

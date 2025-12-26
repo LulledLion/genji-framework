@@ -8,22 +8,16 @@ this should be parts of addons that get toggled by turning on rules
 rule "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Addons Settings & Data - 附加组件 ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒":
     @Delimiter
 
-rule "Addon | Comp Mode Instruction Message - 竞赛模式指引消息 <---- INSERT HERE / 在这输入":
-    # Instructions that show when you start comp mode.
-    # Due to the hud text limit, you there is 4 huds available.
-    # If you dont need a field just empty the textfield.
-    wait(0.4)
-    #!disableOptimizeForSize
+rule "Addon | Tournament Instruction Message - 竞赛模式指引消息 <---- INSERT HERE / 在这输入":
+    @Disabled
+    # Instructions that show when you start tournament mode.
     # 竞赛模式 指引消息
     # 指引消息将 会在竞赛模 式开始时 显示
     # 由于 hud 文本限制，你有 4 个hud可用
     # 如果你不需 要一个字段 只是空文 本字段
-    InstructionText = [
-        "Change Comp Mode Instruction Message Hud 1",
-        "Change Comp Mode Instruction Message Hud 2",
-        "Change Comp Mode Instruction Message Hud 3",
-        "Change Comp Mode Instruction Message Hud 4"]
-    #!optimizeForSize
+    InstructionText = ("Change Tournament Instruction Message Hud 1\n"
+        "Change Tournament Instruction Message Hud 2\n"
+        "Change Tournament Instruction Message Hud 3")
 
 rule "Addon | Custom Difficulty Hud - 自定义难度hud <---- INSERT HERE / 在这输入":
     @Disabled

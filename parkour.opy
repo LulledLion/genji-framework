@@ -26,14 +26,12 @@ rule "Parkour | Setup & Variables":
     startForcingSpawn(Team.ALL, 1)
     startForcingSpawn(Team.ALL, 2)
     wait(LoadOrder.setup)
-
     EditorOn = createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.MapEditor, editorDefaultOn, 0)
     #if createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.MapValidator, true, 3):
     #    async(AddonCheckMap, AsyncBehavior.NOOP)
     CompMode = not EditorOn and createWorkshopSettingBool(SettingsText.TournamentCategory, SettingsText.TournamentMode, compModeToggle, 100)
     if CompMode:
-        CompTime = createWorkshopSettingInt(SettingsText.TournamentCategory, SettingsText.TournamentTime, 1, 240, compTimeLimit, 101)
-        CompAtmpNum = createWorkshopSettingInt(SettingsText.TournamentCategory, SettingsText.TournamentAttempts, 0, 500, attemptCount, 102)
+        CompAtmpNum = createWorkshopSettingInt(SettingsText.TournamentCategory, SettingsText.TournamentAttempts, attemptCount, 0, 500, 102)
         CompRestartLimit = createWorkshopSettingBool(SettingsText.TournamentCategory, SettingsText.TournamentRestart, compRestartLimit, 103)
     else:
         InstructionText = null
@@ -166,10 +164,10 @@ rule "Parkour | Player Initialize":
             eventPlayer.setAbility1Enabled(false)
             eventPlayer.setUltEnabled(false)
             waitUntil(not eventPlayer.isHoldingButton(Button.INTERACT), true)
-            waitUntil(eventPlayer.isHoldingButton(Button.INTERACT) or CompTime < 1, Math.INFINITY)
+            waitUntil(eventPlayer.isHoldingButton(Button.INTERACT), Math.INFINITY)
             eventPlayer.setMoveSpeed(100)
             eventPlayer.comp_instructionHud = false
-        if CompTime < 1 or eventPlayer.comp_countAttempts < 0:
+        if eventPlayer.comp_countAttempts < 0:
             eventPlayer.toggle_leaderboard = true
             eventPlayer.comp_countAttempts = -1
             eventPlayer.setDamageReceived(100)
@@ -211,7 +209,7 @@ rule "Parkour | Ground: Traces, Arrive, & Reset":
             wait(0.048)
             playEffect(true[0], DynamicEffect.RING_EXPLOSION, eventPlayer.cache_rainbow, eventPlayer.getPosition(), 1.4)
             wait(0.048)
-    elif eventPlayer.toggle_invincible or eventPlayer.toggle_spectate or (CompMode and not CompTime):# or eventPlayer.lockState:
+    elif eventPlayer.toggle_invincible or eventPlayer.toggle_spectate:# or eventPlayer.lockState:
         # Do nothing
     elif distance(eventPlayer, CheckpointPositions[eventPlayer.checkpoint_current + 1]) <= cpCircleRadius:
         # arrived ----------------------------------------------------------------------------------------------------
