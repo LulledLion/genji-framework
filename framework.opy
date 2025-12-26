@@ -15,6 +15,8 @@ macro COMPILE_FOR_CHINESE = false
 # Debug force CN mode on (No longers works)
 ##!define checkCN if true else
 ################################################################################
+# Default lobby duration, Max:270
+macro lobbyTime = 260
 # Max orbs can be made
 macro fxLimit = 193
 # Portal distance: 1.3

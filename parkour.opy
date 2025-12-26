@@ -106,19 +106,9 @@ rule "Parkour | Match time":
     pauseMatchTime()
     wait(0)
     LobbyID = "v"
-    TimeRemaining = 265
-    while TimeRemaining:
-        wait(60)
-        TimeRemaining--
-        if CompMode:
-            CompTime--
-            if not CompTime:
-                bigMessage(true[0], "时间到了" checkCN "Time's Up")
-                stopChasingVariable(getAllPlayers().timer_normal)
-                getAllPlayers().setDamageReceived(100)
-                kill(getAllPlayers(), null)
-                #wait(0.032)
-                #LeaderBoardRemake = true #async(CreateLeaderboard(), AsyncBehavior.RESTART)
+    TimeRemaining = createWorkshopSettingInt(SettingsText.MapCategory, "Max Lobby Time", lobbyTime, 5, 265, 4)
+    while 60 * TimeRemaining - getTotalTimeElapsed() > 0:
+        wait(60 * TimeRemaining - getTotalTimeElapsed())
     #"房间已达最大持续时间, 即将重启" checkCN "Maximum Lobby Time Reached, Restarting"
     bigMessage(true[0], t"Maximum Lobby Time Reached, Restarting")
     wait(5)

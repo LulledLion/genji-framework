@@ -693,3 +693,13 @@ fixed:
  - Removed unused Map Checker feature.
  - Removed overly optimized text arrays
    * Reported by `@n1troh` +5xp
+
+# 1.10.4F
+### General
+ - Added max lobby duration slider
+ - Removed Antarctica Peninsula portals
+   * Will readd back later whenever Blizzard feels like it
+### Tournament Mode
+ - Fixed setting sliders
+ - Fixed permanent invincibility
+ - Removed timer for an adjustable lobby duration
