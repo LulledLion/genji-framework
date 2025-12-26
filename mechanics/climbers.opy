@@ -36,7 +36,8 @@ macro FwMechanicsClimber():
         @Condition eventPlayer.isJumping()
         @Condition eventPlayer.ban_standcreate
         eventPlayer.skill_countBhops++
-        if eventPlayer.skill_countBhops > 1 and not eventPlayer.toggle_invincible:
+        if eventPlayer.toggle_invincible: return
+        if eventPlayer.skill_countBhops > 1:
             #"   站卡 ♠ 已禁用!" checkCN "   Stand createBhop ♠ is banned!"
             smallMessage(eventPlayer, t"   Stand Createbhop ♠ Is Banned!")
             CheckpointFailReset()
