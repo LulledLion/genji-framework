@@ -47,7 +47,7 @@ rule "Addon | Custom Portals":
     wait(0.512)
 
 rule "Addon | Preset Control Map Portal - Toggle Via Workshop Settings":
-    @Condition createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.MapPortals, true, 4)
+    @Condition createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.MapPortals, true, 3)
     #wait(LoadOrder.portal) # overwrite pasta
     if getCurrentMap() == Map.BUSAN:
         #"down > sanc","down > meka","sanc > down","sanc > meka","meka > sanc","meka > down"
