@@ -3,12 +3,33 @@
 Generalized mechanics for climber heroes here
 */
 macro FwMechanicsClimber():
+    rule "Mechanic | Climbers | Climb":
+        @Event eachPlayer
+        @Condition eventPlayer.isOnWall()
+        if eventPlayer.isHoldingButton(Button.JUMP): goto climb
+        wait(0)
+        if eventPlayer.isOnWall() and not eventPlayer.isHoldingButton(Button.JUMP): #Auto Climb
+            climb:
+            eventPlayer.skill_usedClimb = true
+            if eventPlayer.toggle_invincible: return
+            if not eventPlayer.ban_climb: return
+            #CheckpointFailReset()
+            #"   爬墙 ↑ 已禁用!" checkCN "   Climb ↑ is banned!"
+            smallMessage(eventPlayer, t"   Climb ↑ Is Banned!")
+        elif eventPlayer.ban_multi and eventPlayer.checkpoint_notLast and not eventPlayer.toggle_invincible:
+            CheckpointFailReset() 
+            #"   蹭留 ∞ 已禁用!" checkCN "   Multiclimb ∞ is banned!"
+            smallMessage(eventPlayer, t"   Multiclimb ∞ Is Banned!")
+        else:
+            eventPlayer.skill_countMulti += 1
+    /*
     rule "Mechanic | Climbers | On Wall":
         @Event eachPlayer
         #This rule is also linked to the determination of wall climbing, please do not close/delete
         @Condition eventPlayer.isOnWall()
         @Condition eventPlayer.isHoldingButton(Button.JUMP)
         eventPlayer.skill_usedClimb = true
+    */
 
     rule "Mechanic | Climbers | Bhop count for stand ban":
         @Event eachPlayer
@@ -42,6 +63,7 @@ macro FwMechanicsClimber():
             #"   success!" checkCN "   Bhop has been created!"
             smallMessage(eventPlayer, t"   Bhop Created!")
 
+/*
     rule "Mechanic | Climbers | Multiclimb":
         @Event eachPlayer
         @Condition eventPlayer.isOnWall()
@@ -51,13 +73,12 @@ macro FwMechanicsClimber():
         if eventPlayer.isOnWall() and not eventPlayer.isHoldingButton(Button.JUMP):
             #AutoClimb used
             eventPlayer.skill_usedClimb = true
+        elif eventPlayer.ban_multi and eventPlayer.checkpoint_notLast and not eventPlayer.toggle_invincible:
+            #"   蹭留 ∞ 已禁用!" checkCN "   Multiclimb ∞ is banned!"
+            smallMessage(eventPlayer, t"   Multiclimb ∞ Is Banned!")
+            CheckpointFailReset() 
         else:
-            if eventPlayer.ban_multi and eventPlayer.checkpoint_notLast and not eventPlayer.toggle_invincible:
-                #"   蹭留 ∞ 已禁用!" checkCN "   Multiclimb ∞ is banned!"
-                smallMessage(eventPlayer, t"   Multiclimb ∞ Is Banned!")
-                CheckpointFailReset() 
-            else:
-                eventPlayer.skill_countMulti += 1
+            eventPlayer.skill_countMulti += 1
 
     rule "Mechanic | Climbers | Ban Wallclimb - Message":
         # Credit: TITANXPASCAL#5554
@@ -68,3 +89,4 @@ macro FwMechanicsClimber():
         #CheckpointFailReset()
         #"   爬墙 ↑ 已禁用!" checkCN "   Climb ↑ is banned!"
         smallMessage(eventPlayer, t"   Climb ↑ Is Banned!")
+*/

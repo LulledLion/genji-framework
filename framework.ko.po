@@ -16,17 +16,21 @@ msgstr "감콩 ♥ 금지!"
 msgid "Bhop"
 msgstr "콩콩이"
 
+#. file climbers.opy, rule "Mechanic | Climbers | Bhop count for stand ban"
+msgid "Stand Createbhop ♠ Is Banned!"
+msgstr "서콩 ♠ 금지!"
+
 # TODO: check if all occurrences have the same translation
 #. 2 occurrences:
-#.  - file climbers.opy, rule "Mechanic | Climbers | Ban Wallclimb - Message"
+#.  - file climbers.opy, rule "Mechanic | Climbers | Climb"
 #.  - file parkour.opy, rule "Parkour | Ground: Traces, Arrive, & Reset"
 #, hasMultipleOccurrencesNotification
 msgid "Climb ↑ Is Banned!"
 msgstr "벽타기 ↑ 금지!"
 
-#. file climbers.opy, rule "Mechanic | Climbers | Bhop count for stand ban"
-msgid "Stand Createbhop ♠ Is Banned!"
-msgstr "서콩 ♠ 금지!"
+#. file climbers.opy, rule "Mechanic | Climbers | Climb"
+msgid "Multiclimb ∞ Is Banned!"
+msgstr "벽캔 ∞ 금지!"
 
 #. file climbers.opy, rule "Mechanic | Climbers | Create Bhop"
 msgid "Create Bhop ♂ Is Banned!"
@@ -35,10 +39,6 @@ msgstr "앉콩 ♂ 금지!"
 #. file climbers.opy, rule "Mechanic | Climbers | Create Bhop"
 msgid "Bhop Created!"
 msgstr "앉콩"
-
-#. file climbers.opy, rule "Mechanic | Climbers | Multiclimb"
-msgid "Multiclimb ∞ Is Banned!"
-msgstr "벽캔 ∞ 금지!"
 
 #. file commands.opy, rule "Command | Quick Reset (Reload | Hold Reload to Enable)"
 msgid "Quick Reset Is Enabled"
