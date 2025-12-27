@@ -699,6 +699,8 @@ fixed:
  - Added max lobby duration slider
  - Removed Antarctica Peninsula portals
    * Will readd back later whenever Blizzard feels like it
+ - Fixed leaderboard with more than 25 completions
+   * Reported by `@zxzpkcxcc` +5xp
 ### Tournament Mode
  - Fixed setting sliders
  - Fixed permanent invincibility

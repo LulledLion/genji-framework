@@ -458,7 +458,7 @@ def LeaderboardUpdate():
         if eventPlayer.timer_normal >= [e for e in LeaderBoardFull if e[0] == eventPlayer[0].split([])][0][1]:
             return #Time too slow
         LeaderBoardFull = [e for e in LeaderBoardFull if e[0] != eventPlayer[0].split([])]
-    elif len(LeaderBoardFull) < 25 or eventPlayer.timer_normal < LeaderBoardFull[19].last():
+    elif len(LeaderBoardFull) < 25 or eventPlayer.timer_normal < LeaderBoardFull[24][1]:
         # you are not in list yet
         # board has room for more
         # your time lower then last entry
