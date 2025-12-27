@@ -106,7 +106,7 @@ rule "Parkour | Match time":
     pauseMatchTime()
     wait(0)
     LobbyID = "v"
-    TimeRemaining = createWorkshopSettingInt(SettingsText.MapCategory, "Max Lobby Time", lobbyTime, 5, 265, 4)
+    TimeRemaining = createWorkshopSettingInt(SettingsText.MapCategory, SettingsText.MapTime, lobbyTime, 5, 265, 4)
     while 60 * TimeRemaining - getTotalTimeElapsed() > 0:
         wait(60 * TimeRemaining - getTotalTimeElapsed())
     #"房间已达最大持续时间, 即将重启" checkCN "Maximum Lobby Time Reached, Restarting"
