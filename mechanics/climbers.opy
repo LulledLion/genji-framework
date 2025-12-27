@@ -13,6 +13,7 @@ macro FwMechanicsClimber():
             eventPlayer.skill_usedClimb = true
             if eventPlayer.toggle_invincible: return
             if not eventPlayer.ban_climb: return
+            if not eventPlayer.checkpoint_notLast: return
             #CheckpointFailReset()
             #"   爬墙 ↑ 已禁用!" checkCN "   Climb ↑ is banned!"
             smallMessage(eventPlayer, t"   Climb ↑ Is Banned!")
@@ -29,6 +30,7 @@ macro FwMechanicsClimber():
         @Condition eventPlayer.ban_standcreate
         eventPlayer.skill_countBhops++
         if eventPlayer.toggle_invincible: return
+        if not eventPlayer.checkpoint_notLast: return
         if eventPlayer.skill_countBhops > 1:
             #"   站卡 ♠ 已禁用!" checkCN "   Stand createBhop ♠ is banned!"
             smallMessage(eventPlayer, t"   Stand Createbhop ♠ Is Banned!")
@@ -37,15 +39,15 @@ macro FwMechanicsClimber():
     rule "Mechanic | Climbers | Create Bhop":
         # Credit: Githuboy#5249
         @Event eachPlayer
-        @Condition eventPlayer.isHoldingButton(Button.CROUCH)
-        @Condition eventPlayer.isCrouching()
         @Condition eventPlayer.isInAir()
-        @Condition eventPlayer.isHoldingButton(Button.JUMP) == false
+        @Condition eventPlayer.isCrouching()
         @Condition eventPlayer.isJumping() == false
+        @Condition eventPlayer.isHoldingButton(Button.CROUCH)
+        @Condition eventPlayer.isHoldingButton(Button.JUMP) == false
         eventPlayer.skill_usedBhop = false
         if eventPlayer.lockState: return # prevent restart from giving messsage, but stil allow it to become green
 
-        if eventPlayer.ban_create and not eventPlayer.toggle_invincible:
+        if eventPlayer.ban_create and eventPlayer.checkpoint_notLast and not eventPlayer.toggle_invincible:
             #"   卡小 ♂ 已禁用!" checkCN "   Create Bhop ♂ is banned!"
             smallMessage(eventPlayer, t"   Create Bhop ♂ Is Banned!")
             CheckpointFailReset()
