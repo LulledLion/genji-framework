@@ -105,7 +105,7 @@ enum SettingsText:
     BanCategory = "Ban (All Levels)    ◆ 封禁(应用于所有关卡)    ◆ 금지 (모든 단계에 적용)",
         BanMultiClimb = "Ban MultiClimb        ◆ 封禁蹭留      ◆ 벽캔 금지",
         BanCreateBhop = "Ban Create Bhop         ◆ 封禁卡小      ◆ 앉콩 금지",
-        BanAutoCreate = "Ban Auto Create Bhop ◆ 封禁自动卡小 ◆ 자동앉콩 금지",
+        BanAutoCreate = "Ban Auto Create Bhop      ◆ 封禁自动卡小    ◆ 자동앉콩 금지",
         BanStandCreate = "Ban StandCreate        ◆ 封禁站卡      ◆ 서콩 금지",
         BanDeathHop = "Ban Death Hop        ◆ 封禁死小      ◆ 죽음콩 금지",
         BanEmote = "Ban Emote Save Hop     ◆ 封禁表情留小    ◆ 감콩 금지",
@@ -140,7 +140,7 @@ enum SettingsText:
         MapPlaytest = "Playtest Display        ◆ 游戏测试      ◆ 플레이테스트 디스플레이",
         MapValidator = "Basic Map Validator       ◆ 验证地图      ◆ 맵 가능 여부 확인기",
         MapPortals = "Portals (Control Maps)    ◆ 启用传送门 (占点地图) ◆ 순간이동 활성화 (쟁탈 맵)",
-        MapTime = "Lobby Duration ◆ 房间持续时间 ◆ 경기 지속 시간",
+        MapTime = "Lobby Duration        ◆ 房间持续时间    ◆ 경기 지속 시간",
     
     TournamentCategory = "Tournament Mode   ◆ 竞赛模式    ◆ 토너먼트 모드",
         TournamentMode = "Tournament Mode        ◆ 开启竞赛模式    ◆ 토너먼트 모드 활성화",
