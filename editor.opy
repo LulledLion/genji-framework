@@ -834,7 +834,7 @@ rule "Editor | Delete Cp/Orb/Portal":
         BanSaveDouble.removeAndShift(hostPlayer.checkpoint_current)
         BanBhop.removeAndShift(hostPlayer.checkpoint_current)
         BanDjump.removeAndShift(hostPlayer.checkpoint_current)
-
+        wait(0)
         # Remove specified checkpoint =====================
         del CheckpointPositions[hostPlayer.checkpoint_current]
         hostPlayer.checkpoint_current = max(hostPlayer.checkpoint_current - 1, 0 - not len(CheckpointPositions))
