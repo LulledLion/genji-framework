@@ -70,14 +70,15 @@ rule "Parkour | Setup & Variables":
 
     # clean out -1's after the ban has loaded
     #BanTriple = [i for i in BanTriple if i + false >= 0] if len(BanTriple) else [] # legacy code, now auto sets it to null to save space
-    BanBhop = [i for i in BanBhop if i + false >= 0] if len(BanBhop) else []
-    BanEmote = [i for i in BanEmote if i + false >= 0] if len(BanEmote) else []
-    BanClimb = [i for i in BanClimb if i + false >= 0] if len(BanClimb) else []
-    BanDead = [i for i in BanDead if i + false >= 0] if len(BanDead) else []
-    BanCreate = [i for i in BanCreate if i + false >= 0] if len(BanCreate) else []
     BanMulti = [i for i in BanMulti if i + false >= 0] if len(BanMulti) else []
+    BanCreate = [i for i in BanCreate if i + false >= 0] if len(BanCreate) else []
+    BanAutoCreate = BanAutoCreate if len(BanAutoCreate) else []
     BanStand = [i for i in BanStand if i + false >= 0] if len(BanStand) else []
+    BanDead = [i for i in BanDead if i + false >= 0] if len(BanDead) else []
+    BanEmote = [i for i in BanEmote if i + false >= 0] if len(BanEmote) else []
     BanSaveDouble = BanSaveDouble if len(BanSaveDouble) else []
+    BanClimb = [i for i in BanClimb if i + false >= 0] if len(BanClimb) else []
+    BanBhop = [i for i in BanBhop if i + false >= 0] if len(BanBhop) else []
     BanDjump = BanDjump if len(BanDjump) else []
 
     # fix team because of naming
@@ -378,25 +379,28 @@ def UpdateCache():
         eventPlayer.ban_create = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanCreateBhop, false, 2) or eventPlayer.checkpoint_current in BanCreate
         if eventPlayer.ban_create:
             eventPlayer.banString = "♂ {}".format(eventPlayer.banString)
-        eventPlayer.ban_standcreate = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanStandCreate, false, 3) or eventPlayer.checkpoint_current in BanStand
+        eventPlayer.ban_autocreate = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanAutoCreate, false, 3) or eventPlayer.checkpoint_current in BanAutoCreate
+        if eventPlayer.ban_autocreate:
+            eventPlayer.banString = "∀ {}".format(eventPlayer.banString)
+        eventPlayer.ban_standcreate = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanStandCreate, false, 4) or eventPlayer.checkpoint_current in BanStand
         if eventPlayer.ban_standcreate:
             eventPlayer.banString = "♠ {}".format(eventPlayer.banString) # ≥  √ ▼ ↓
-        eventPlayer.ban_dead = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanDeathHop, false, 4) or eventPlayer.checkpoint_current in BanDead
+        eventPlayer.ban_dead = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanDeathHop, false, 5) or eventPlayer.checkpoint_current in BanDead
         if eventPlayer.ban_dead:
             eventPlayer.banString = "X {}".format(eventPlayer.banString)
-        eventPlayer.ban_emote = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanEmote, false, 5) or eventPlayer.checkpoint_current in BanEmote
+        eventPlayer.ban_emote = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanEmote, false, 6) or eventPlayer.checkpoint_current in BanEmote
         if eventPlayer.ban_emote:
             eventPlayer.banString = "♥ {}".format(eventPlayer.banString)
-        eventPlayer.ban_savedouble = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanSaveDouble, false, 6) or eventPlayer.checkpoint_current in BanSaveDouble
+        eventPlayer.ban_savedouble = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanSaveDouble, false, 7) or eventPlayer.checkpoint_current in BanSaveDouble
         if eventPlayer.ban_savedouble:
             eventPlayer.banString = "△ {}".format(eventPlayer.banString)
-        eventPlayer.ban_climb = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanWallClimb, false, 7) or eventPlayer.checkpoint_current in BanClimb
+        eventPlayer.ban_climb = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanWallClimb, false, 8) or eventPlayer.checkpoint_current in BanClimb
         if eventPlayer.ban_climb:
             eventPlayer.banString = "↑ {}".format(eventPlayer.banString)
-        eventPlayer.ban_bhop = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.RequireBhop, false, 8) or eventPlayer.checkpoint_current in BanBhop
+        eventPlayer.ban_bhop = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.RequireBhop, false, 9) or eventPlayer.checkpoint_current in BanBhop
         if eventPlayer.ban_bhop:
             eventPlayer.banString = "≥ {}".format(eventPlayer.banString) # ≥  √ ▼ ↓
-        eventPlayer.ban_djump = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.RequireDjump, false, 9) or eventPlayer.checkpoint_current in BanDjump
+        eventPlayer.ban_djump = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.RequireDjump, false, 10) or eventPlayer.checkpoint_current in BanDjump
         if eventPlayer.ban_djump:
             eventPlayer.banString = "» {}".format(eventPlayer.banString) # ≥  √ ▼ ↓ ︽
     else:

@@ -105,6 +105,7 @@ enum SettingsText:
     BanCategory = "Ban (All Levels)    ◆ 封禁(应用于所有关卡)    ◆ 금지 (모든 단계에 적용)",
         BanMultiClimb = "Ban MultiClimb        ◆ 封禁蹭留      ◆ 벽캔 금지",
         BanCreateBhop = "Ban Create Bhop         ◆ 封禁卡小      ◆ 앉콩 금지",
+        BanAutoCreate = "Ban Auto Create Bhop ◆ 封禁自动卡小 ◆ 자동앉콩 금지",
         BanStandCreate = "Ban StandCreate        ◆ 封禁站卡      ◆ 서콩 금지",
         BanDeathHop = "Ban Death Hop        ◆ 封禁死小      ◆ 죽음콩 금지",
         BanEmote = "Ban Emote Save Hop     ◆ 封禁表情留小    ◆ 감콩 금지",

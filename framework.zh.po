@@ -16,6 +16,10 @@ msgstr "表情留小 ♥ 已禁用!"
 msgid "Bhop"
 msgstr "小跳"
 
+#. file climbers.opy, rule "Mechanic | Climbers | Auto Create Bhop"
+msgid "Auto Create Bhop ∀ Is Banned!"
+msgstr "自动卡小 ∀ 已禁用!"
+
 #. file climbers.opy, rule "Mechanic | Climbers | Bhop count for stand ban"
 msgid "Stand Createbhop ♠ Is Banned!"
 msgstr "站卡 ♠ 已禁用!"

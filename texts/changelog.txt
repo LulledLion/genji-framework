@@ -696,12 +696,16 @@ fixed:
 
 # 1.10.4F
 ### General
- - Added max lobby duration slider
+ - Added max lobby duration slider setting
  - Removed Antarctica Peninsula portals
    * Will readd back later whenever Blizzard feels like it
- - Fixed leaderboard with more than 25 completions
+ - Fixed leaderboard rankings with more than 25 completions
    * Reported by `@zxzpkcxcc` +5xp
+### Skill Bans
+ - Added a 'Auto Create Bhop' ban option
+   * Code derived from `@zxzpkcxcc` +25xp
 ### Tournament Mode
  - Fixed setting sliders
  - Fixed permanent invincibility
  - Removed timer for an adjustable lobby duration
+ - Disabled placeholder instructions as default

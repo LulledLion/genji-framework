@@ -16,6 +16,10 @@ msgstr "감콩 ♥ 금지!"
 msgid "Bhop"
 msgstr "콩콩이"
 
+#. file climbers.opy, rule "Mechanic | Climbers | Auto Create Bhop"
+msgid "Auto Create Bhop ∀ Is Banned!"
+msgstr "자동 앉콩 ∀ 금지!"
+
 #. file climbers.opy, rule "Mechanic | Climbers | Bhop count for stand ban"
 msgid "Stand Createbhop ♠ Is Banned!"
 msgstr "서콩 ♠ 금지!"

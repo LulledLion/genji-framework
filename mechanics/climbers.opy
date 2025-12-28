@@ -57,3 +57,17 @@ macro FwMechanicsClimber():
             eventPlayer.skill_countCreates++
             #"   success!" checkCN "   Bhop has been created!"
             smallMessage(eventPlayer, t"   Bhop Created!")
+
+    rule "Mechanic | Climbers | Auto Create Bhop":
+        @Event eachPlayer
+        @Condition eventPlayer.ban_autocreate
+        @Condition eventPlayer.toggle_invincible == false
+        @Condition eventPlayer.checkpoint_notLast
+        @Condition eventPlayer.isHoldingButton(Button.JUMP) == false
+        wait(0)
+        if not ruleCondition: return
+        wait(0)
+        waitUntil(eventPlayer.isHoldingButton(Button.JUMP) or (eventPlayer.isInAir() and eventPlayer.isCrouching()), Math.INFINITY)
+        if not ruleCondition: return
+        smallMessage(eventPlayer, t"   Auto Create Bhop ∀ Is Banned!") #"自动卡小 ∀ 已禁用!"
+        CheckpointFailReset()

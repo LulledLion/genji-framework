@@ -112,6 +112,7 @@ globalvar BanBhop 86
 globalvar BanStand 87                       # bans on second hop
 globalvar BanDjump 88
 globalvar BanSaveDouble 89
+globalvar BanAutoCreate 90
 globalvar MapVectorArray 91
 
 ######################################## Player Variables #####################
@@ -161,13 +162,14 @@ playervar banString                         # str                       --- disp
 #playervar ban_dashStart
 playervar ban_multi
 playervar ban_create
+playervar ban_autocreate
+playervar ban_standcreate                   # bans on second hop
 playervar ban_dead
 playervar ban_emote
+playervar ban_savedouble
 playervar ban_climb
 playervar ban_bhop
-playervar ban_standcreate                   # bans on second hop
 playervar ban_djump
-playervar ban_savedouble
 
 playervar cache_startUlt
 playervar cache_startAbility1
