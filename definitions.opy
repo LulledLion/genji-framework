@@ -160,10 +160,10 @@ playervar skill_usedDouble                        # bool
 playervar banString                         # str                       --- displayed bans
 #playervar ban_triple
 #playervar ban_dashStart
-playervar ban_multi
 playervar ban_create
 playervar ban_autocreate
 playervar ban_standcreate                   # bans on second hop
+playervar ban_multi
 playervar ban_dead
 playervar ban_emote
 playervar ban_savedouble

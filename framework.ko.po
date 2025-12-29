@@ -21,7 +21,7 @@ msgid "Auto Create Bhop ∀ Is Banned!"
 msgstr "자동 앉콩 ∀ 금지!"
 
 #. file climbers.opy, rule "Mechanic | Climbers | Bhop count for stand ban"
-msgid "Stand Createbhop ♠ Is Banned!"
+msgid "Stand Create Bhop ♠ Is Banned!"
 msgstr "서콩 ♠ 금지!"
 
 # TODO: check if all occurrences have the same translation

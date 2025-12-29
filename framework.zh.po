@@ -21,7 +21,7 @@ msgid "Auto Create Bhop ∀ Is Banned!"
 msgstr "自动卡小 ∀ 已禁用!"
 
 #. file climbers.opy, rule "Mechanic | Climbers | Bhop count for stand ban"
-msgid "Stand Createbhop ♠ Is Banned!"
+msgid "Stand Create Bhop ♠ Is Banned!"
 msgstr "站卡 ♠ 已禁用!"
 
 # TODO: check if all occurrences have the same translation

@@ -33,7 +33,7 @@ macro FwMechanicsClimber():
         if not eventPlayer.checkpoint_notLast: return
         if eventPlayer.skill_countBhops > 1:
             #"   站卡 ♠ 已禁用!" checkCN "   Stand createBhop ♠ is banned!"
-            smallMessage(eventPlayer, t"   Stand Createbhop ♠ Is Banned!")
+            smallMessage(eventPlayer, t"   Stand Create Bhop ♠ Is Banned!")
             CheckpointFailReset()
 
     rule "Mechanic | Climbers | Create Bhop":
