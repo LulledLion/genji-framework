@@ -4,12 +4,18 @@
 
 macro FwMechanicsHero():
     FwMechanicsAll()
+
     def ResetAbilities():
         @Name "Mechanic | TEMPLATE | SUB Reset Abilities"
         if eventPlayer.toggle_invincible or (eventPlayer == hostPlayer and EditorOn):
-            pass
+            eventPlayer.setUltEnabled(true)
+            eventPlayer.setAbility1Enabled(true)
+            eventPlayer.setAbility2Enabled(true)
         else:
-            pass
+            eventPlayer.setUltEnabled(eventPlayer.cache_startUlt)
+            eventPlayer.setAbility1Enabled(eventPlayer.cache_startAbility1)
+            #eventPlayer.setAbility2Enabled(eventPlayer.cache_startAbility2) # Not implemented yet.
+        eventPlayer.setUltCharge(100)
 
     rule "Mechanic | TEMPLATE | Ability 1":
         @Event eachPlayer
