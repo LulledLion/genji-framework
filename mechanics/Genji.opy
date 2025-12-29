@@ -8,7 +8,7 @@
 [{
     // "MultiClimb"
     "icon": "∞",
-    "settings": "SettingsText.BanMultiClimb",
+    "settings": `SettingsText.BanMultiClimb`,
     "levelCache": `eventPlayer.checkpoint_current in BanMulti`,
     "order": 1,
     "deferedReset": false
@@ -18,6 +18,7 @@
 macro FwMechanicsHero():
     FwMechanicsAll()
     FwMechanicsClimber()
+
     def ResetAbilities():
         @Name "Mechanic | Genji | SUB Reset Abilities"
         if eventPlayer.toggle_invincible or (eventPlayer == hostPlayer and EditorOn):
