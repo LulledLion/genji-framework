@@ -107,6 +107,22 @@ msgstr "| 켜짐"
 msgid "| Off"
 msgstr "| 꺼짐"
 
+# TODO: check if all occurrences have the same translation
+#. 2 occurrences:
+#.  - file GENJI.opy, rule "Mechanic | Climbers | Auto Create Bhop"
+#.  - file parkour.opy, rule "Parkour | Bounce Ball / Orb"
+#, hasMultipleOccurrencesNotification
+msgid "Ultimate Is Ready"
+msgstr "궁극기 준비"
+
+# TODO: check if all occurrences have the same translation
+#. 2 occurrences:
+#.  - file GENJI.opy, rule "Mechanic | Climbers | Auto Create Bhop"
+#.  - file parkour.opy, rule "Parkour | Bounce Ball / Orb"
+#, hasMultipleOccurrencesNotification
+msgid "Dash Is Ready"
+msgstr "질풍참 준비"
+
 #. file GENJI.opy, rule "Mechanic | Genji | Ban Save Double - 封禁二段跳"
 msgid "Save Double Banned!"
 msgstr "더블 세이브 금지!"
@@ -291,22 +307,6 @@ msgstr "오브가 수집되었습니다"
 #. file parkour.opy, rule "Parkour | Bounce Ball / Orb"
 msgid "» Double Jump Is Ready"
 msgstr "» 2단 점프 준비"
-
-# TODO: check if all occurrences have the same translation
-#. 2 occurrences:
-#.  - file parkour.opy, rule "Parkour | Bounce Ball / Orb"
-#.  - file parkour.opy, rule "Subroutine UpdateCache"
-#, hasMultipleOccurrencesNotification
-msgid "Ultimate Is Ready"
-msgstr "궁극기 준비"
-
-# TODO: check if all occurrences have the same translation
-#. 2 occurrences:
-#.  - file parkour.opy, rule "Parkour | Bounce Ball / Orb"
-#.  - file parkour.opy, rule "Subroutine UpdateCache"
-#, hasMultipleOccurrencesNotification
-msgid "Dash Is Ready"
-msgstr "질풍참 준비"
 
 #. file parkour.opy, rule "Parkour | Ground: Traces, Arrive, & Reset"
 msgid "! Collect All Lock Orbs To Complete !"

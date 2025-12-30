@@ -366,56 +366,7 @@ def UpdateCache():
     eventPlayer.toggle_hints = false
     eventPlayer.banString = []
     wait(0)
-    if eventPlayer.checkpoint_notLast:
-        eventPlayer.cache_startUlt = eventPlayer.checkpoint_current in BladeEnabledCheckpoints
-        if eventPlayer.cache_startUlt:
-            smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
-        eventPlayer.cache_startAbility1 = eventPlayer.checkpoint_current in DashEnabledCheckpoints
-        if eventPlayer.cache_startAbility1:
-            smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ABILITY_1)} {t'Dash Is Ready'}")
-        eventPlayer.ban_create = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanCreateBhop, false, 1) or eventPlayer.checkpoint_current in BanCreate
-        if eventPlayer.ban_create:
-            eventPlayer.banString = f"♂ {eventPlayer.banString}"
-        eventPlayer.ban_autocreate = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanAutoCreate, false, 2) or eventPlayer.checkpoint_current in BanAutoCreate
-        if eventPlayer.ban_autocreate:
-            eventPlayer.banString = f"∀ {eventPlayer.banString}"
-        eventPlayer.ban_standcreate = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanStandCreate, false, 3) or eventPlayer.checkpoint_current in BanStand
-        if eventPlayer.ban_standcreate:
-            eventPlayer.banString = f"♠ {eventPlayer.banString}" # ≥  √ ▼ ↓
-        eventPlayer.ban_multi = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanMultiClimb, false, 4) or eventPlayer.checkpoint_current in BanMulti
-        if eventPlayer.ban_multi:
-            eventPlayer.banString = f"∞ {eventPlayer.banString}"
-        eventPlayer.ban_dead = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanDeathHop, false, 5) or eventPlayer.checkpoint_current in BanDead
-        if eventPlayer.ban_dead:
-            eventPlayer.banString = f"X {eventPlayer.banString}"
-        eventPlayer.ban_emote = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanEmote, false, 6) or eventPlayer.checkpoint_current in BanEmote
-        if eventPlayer.ban_emote:
-            eventPlayer.banString = f"♥ {eventPlayer.banString}"
-        eventPlayer.ban_savedouble = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanSaveDouble, false, 7) or eventPlayer.checkpoint_current in BanSaveDouble
-        if eventPlayer.ban_savedouble:
-            eventPlayer.banString = f"△ {eventPlayer.banString}"
-        eventPlayer.ban_climb = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanWallClimb, false, 8) or eventPlayer.checkpoint_current in BanClimb
-        if eventPlayer.ban_climb:
-            eventPlayer.banString = f"↑ {eventPlayer.banString}"
-        eventPlayer.ban_bhop = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.RequireBhop, false, 9) or eventPlayer.checkpoint_current in BanBhop
-        if eventPlayer.ban_bhop:
-            eventPlayer.banString = f"≥ {eventPlayer.banString}" # ≥  √ ▼ ↓
-        eventPlayer.ban_djump = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.RequireDjump, false, 10) or eventPlayer.checkpoint_current in BanDjump
-        if eventPlayer.ban_djump:
-            eventPlayer.banString = f"» {eventPlayer.banString}" # ≥  √ ▼ ↓ ︽
-    else:
-        eventPlayer.cache_startUlt = true
-        eventPlayer.cache_startAbility1 = true
-        eventPlayer.ban_create = false
-        eventPlayer.ban_autocreate = false
-        eventPlayer.ban_standcreate = false
-        eventPlayer.ban_multi = false
-        eventPlayer.ban_dead = false
-        eventPlayer.ban_emote = false
-        eventPlayer.ban_savedouble = false
-        eventPlayer.ban_climb = false
-        eventPlayer.ban_bhop = false
-        eventPlayer.ban_djump = false
+    Fw_Parkour_UpdateCache_Hero()
     wait(0)
     if not EditorOn or eventPlayer != hostPlayer: return
     EditUpdateSelectedIds()
