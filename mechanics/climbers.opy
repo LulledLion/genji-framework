@@ -2,7 +2,7 @@
 /*
 Generalized mechanics for climber heroes here
 */
-macro FwMechanicsClimber():
+macro Fw_Mechanics_Climber():
     rule "Mechanic | Climbers | Climb":
         @Event eachPlayer
         @Condition eventPlayer.isOnWall()
