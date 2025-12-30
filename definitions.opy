@@ -25,8 +25,8 @@ globalvar KillBallEffects 10                # list[effect]              --- Arra
 #11
 #!define UltEnabledCheckpoints Dao
 globalvar UltEnabledCheckpoints 12        # int                       --- blade enabled, should be bool.
-#!define DashEnabledCheckpoints SHIFT
-globalvar DashEnabledCheckpoints 13         # int                       --- dash enabled, should be bool.
+#!define Ability1EnabledCheckpoints SHIFT
+globalvar Ability1EnabledCheckpoints 13         # int                       --- dash enabled, should be bool.
 globalvar EditSelected 14
 globalvar EditSelectIdArray 15
 globalvar EditorOn 16                        # bool                      --- editor rules enabled?

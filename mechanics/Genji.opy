@@ -6,7 +6,7 @@
 
 macro Fw_Parkour_Setup_Hero():
     UltEnabledCheckpoints = [i for i in UltEnabledCheckpoints if i + false >= 0] if len(UltEnabledCheckpoints) else []
-    DashEnabledCheckpoints = [i for i in DashEnabledCheckpoints if i + false >= 0] if len(DashEnabledCheckpoints) else []
+    Ability1EnabledCheckpoints = [i for i in Ability1EnabledCheckpoints if i + false >= 0] if len(Ability1EnabledCheckpoints) else []
     # clean out -1's after the ban has loaded
     #BanTriple = [i for i in BanTriple if i + false >= 0] if len(BanTriple) else [] # legacy code, now auto sets it to null to save space
     BanCreate = [i for i in BanCreate if i + false >= 0] if len(BanCreate) else []
@@ -25,7 +25,7 @@ macro Fw_Parkour_UpdateCache_Hero():
         eventPlayer.cache_startUlt = eventPlayer.checkpoint_current in UltEnabledCheckpoints
         if eventPlayer.cache_startUlt:
             smallMessage(eventPlayer, f"   {abilityIconString(Hero.GENJI, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
-        eventPlayer.cache_startAbility1 = eventPlayer.checkpoint_current in DashEnabledCheckpoints
+        eventPlayer.cache_startAbility1 = eventPlayer.checkpoint_current in Ability1EnabledCheckpoints
         if eventPlayer.cache_startAbility1:
             smallMessage(eventPlayer, f"   {abilityIconString(Hero.GENJI, Button.ABILITY_1)} {t'Dash Is Ready'}")
         eventPlayer.ban_create = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanCreateBhop, false, 1) or eventPlayer.checkpoint_current in BanCreate
