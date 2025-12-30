@@ -47,6 +47,14 @@ rule "Editor | Export Map":
     Name = null
     Code = null
 
+    enableInspector()
+    disableInspector()
+
+    EditorOn = true
+    TimeRemaining = hostPlayer.editor_saveCache[0]
+    ColorConfig = hostPlayer.editor_saveCache[1]
+    __overpyTranslationHelper__ = "\uec480White0白色0흰색".split(null[0])
+
     hudText(hostPlayer,
         "­",
         null,
@@ -103,24 +111,16 @@ rule "Editor | Export Map":
         " Esc → Show Lobby → Settings → Share Code →\n"
         " Upload To Existing Code → Paste The Code You Created In Step 4",
        HudPosition.TOP, HO.edit_clearec1, null, null, Color.LIME_GREEN, HudReeval.STRING, SpecVisibility.DEFAULT)
-    hostPlayer.editor_saveCache[2] = getLastCreatedText()
-
-    enableInspector()
-    disableInspector()
-
-    EditorOn = true
-    TimeRemaining = hostPlayer.editor_saveCache[0]
-    ColorConfig = hostPlayer.editor_saveCache[1]
-    __overpyTranslationHelper__ = "\uec480White0白色0흰색".split(null[0])
+    hostPlayer.editor_saveCache[0] = getLastCreatedText()
 
     hudHeader(hostPlayer, "    > 按互动键关闭当前窗口 <    " checkCN "    > Press Interact To Close This Window <    ",
         HudPosition.TOP, HO.edit_clearec3, Color.LIME_GREEN, HudReeval.STRING)
-    hostPlayer.editor_saveCache[0] = getLastCreatedText()
+    hostPlayer.editor_saveCache[1] = getLastCreatedText()
 
     waitUntil(not hostPlayer.isHoldingButton(Button.INTERACT), Math.INFINITY)
     waitUntil(hostPlayer.isHoldingButton(Button.INTERACT), Math.INFINITY)
-    destroyHudText(hostPlayer.editor_saveCache[0]) # Close Window
-    destroyHudText(hostPlayer.editor_saveCache.last()) #Instructions
+    destroyHudText(hostPlayer.editor_saveCache[0]) #Instructions
+    destroyHudText(hostPlayer.editor_saveCache.last()) # Close Window
     hostPlayer.editor_saveCache = null
     hostPlayer.editor_lock = false
 
