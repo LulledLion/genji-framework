@@ -363,16 +363,16 @@ def UpdateCache():
     eventPlayer.cache_portalStart = [_ for _, i in CustomPortalStart if CustomPortalCP[i] == eventPlayer.checkpoint_current or CustomPortalCP[i] < 0]
     eventPlayer.cache_portalEnd = [_ for _, i in CustomPortalEndpoint if CustomPortalCP[i] == eventPlayer.checkpoint_current or CustomPortalCP[i] < 0]
     eventPlayer.checkpoint_notLast = (eventPlayer.checkpoint_current < len(CheckpointPositions) - 1 and len(CheckpointPositions) > 1)
-    eventPlayer.cache_startUlt = eventPlayer.checkpoint_current in BladeEnabledCheckpoints or not eventPlayer.checkpoint_notLast
-    eventPlayer.cache_startAbility1 = eventPlayer.checkpoint_current in DashEnabledCheckpoints or not eventPlayer.checkpoint_notLast
     eventPlayer.toggle_hints = false
     eventPlayer.banString = []
     wait(0)
-    if eventPlayer.cache_startUlt:
-        smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
-    if eventPlayer.cache_startAbility1:
-        smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ABILITY_1)} {t'Dash Is Ready'}")
     if eventPlayer.checkpoint_notLast:
+        eventPlayer.cache_startUlt = eventPlayer.checkpoint_current in BladeEnabledCheckpoints
+        if eventPlayer.cache_startUlt:
+            smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
+        eventPlayer.cache_startAbility1 = eventPlayer.checkpoint_current in DashEnabledCheckpoints
+        if eventPlayer.cache_startAbility1:
+            smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ABILITY_1)} {t'Dash Is Ready'}")
         eventPlayer.ban_create = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanCreateBhop, false, 1) or eventPlayer.checkpoint_current in BanCreate
         if eventPlayer.ban_create:
             eventPlayer.banString = f"♂ {eventPlayer.banString}"
@@ -404,13 +404,16 @@ def UpdateCache():
         if eventPlayer.ban_djump:
             eventPlayer.banString = f"» {eventPlayer.banString}" # ≥  √ ▼ ↓ ︽
     else:
-        eventPlayer.ban_multi = false
+        eventPlayer.cache_startUlt = true
+        eventPlayer.cache_startAbility1 = true
         eventPlayer.ban_create = false
+        eventPlayer.ban_autocreate = false
         eventPlayer.ban_standcreate = false
+        eventPlayer.ban_multi = false
         eventPlayer.ban_dead = false
         eventPlayer.ban_emote = false
-        eventPlayer.ban_climb = false
         eventPlayer.ban_savedouble = false
+        eventPlayer.ban_climb = false
         eventPlayer.ban_bhop = false
         eventPlayer.ban_djump = false
     wait(0)
@@ -457,15 +460,12 @@ def TimerResume():
 
 def LeaderboardUpdate():
     @Name "Parkour | SUB Leaderboard Update"
-    # [[name, seconds, prettytime]]
+    # [[nameEntity, secondsFloat, timeString]]
     if eventPlayer[0].split([]) in [e[0] for e in LeaderBoardFull]: # you already have a time
         if eventPlayer.timer_normal >= [e for e in LeaderBoardFull if e[0] == eventPlayer[0].split([])][0][1]:
             return #Time too slow
         LeaderBoardFull = [e for e in LeaderBoardFull if e[0] != eventPlayer[0].split([])]
     elif len(LeaderBoardFull) < 25 or eventPlayer.timer_normal < LeaderBoardFull[24][1]:
-        # you are not in list yet
-        # board has room for more
-        # your time lower then last entry
         del LeaderBoardFull[24]
     else:
         return #Full and time too slow
