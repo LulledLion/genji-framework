@@ -396,7 +396,7 @@ rule "Editor | Hud & Effects":
                 buttonString(Button.ULTIMATE),
                 buttonString(Button.PRIMARY_FIRE),
                 (BounceToggleUlt[EditSelected]) if EditorMode.functionOrb else
-                (hostPlayer.checkpoint_current in BladeEnabledCheckpoints),
+                (hostPlayer.checkpoint_current in UltEnabledCheckpoints),
                 abilityIconString(Hero.GENJI, Button.ULTIMATE),
                 "检查点给刀"  if EditorMode.checkpoint else "弹球给刀"
             )
@@ -405,12 +405,12 @@ rule "Editor | Hud & Effects":
                 buttonString(Button.ULTIMATE),
                 buttonString(Button.PRIMARY_FIRE),
                 (BounceToggleUlt[EditSelected]) if EditorMode.functionOrb else
-                (hostPlayer.checkpoint_current in BladeEnabledCheckpoints),
+                (hostPlayer.checkpoint_current in UltEnabledCheckpoints),
                 abilityIconString(Hero.GENJI, Button.ULTIMATE),
                 "Level" if EditorMode.checkpoint  else "Orb"),
             HudPosition.LEFT, HO.edit_orb_ult,
             Color.GREEN if BounceToggleUlt[EditSelected] and EditorMode.functionOrb else
-            Color.GREEN if hostPlayer.checkpoint_current in BladeEnabledCheckpoints and EditorMode.checkpoint else Color.ORANGE,
+            Color.GREEN if hostPlayer.checkpoint_current in UltEnabledCheckpoints and EditorMode.checkpoint else Color.ORANGE,
             HudReeval.VISIBILITY_STRING_AND_COLOR, SpecVisibility.DEFAULT)
 
         hudSubtext(hostPlayer if hostPlayer.toggle_guide and (EditorMode.checkpoint or EditorMode.functionOrb and len(hostPlayer.editor_bounceIndex)) else null, #if EditorMode.checkpoint or EditorMode.functionOrb and hostPlayer.toggle_guide and len(hostPlayer.editor_bounceIndex) else null,
@@ -680,7 +680,7 @@ rule "Editor | Create Cp/Orb":
                 KillballCheckpoints.shiftAt(hostPlayer.checkpoint_current)
                 BouncePadCheckpoints.shiftAt(hostPlayer.checkpoint_current)
                 CustomPortalCP.shiftAt(hostPlayer.checkpoint_current)
-                BladeEnabledCheckpoints.shiftAt(hostPlayer.checkpoint_current)
+                UltEnabledCheckpoints.shiftAt(hostPlayer.checkpoint_current)
                 DashEnabledCheckpoints.shiftAt(hostPlayer.checkpoint_current)
 
                 BanMulti.shiftAt(hostPlayer.checkpoint_current)
@@ -823,7 +823,7 @@ rule "Editor | Delete Cp/Orb/Portal":
         hostPlayer.editor_temp = null
 
         # ult/dash/ban remove and lower the cp number of rest
-        BladeEnabledCheckpoints.removeAndShift(hostPlayer.checkpoint_current)
+        UltEnabledCheckpoints.removeAndShift(hostPlayer.checkpoint_current)
         DashEnabledCheckpoints.removeAndShift(hostPlayer.checkpoint_current)
         BanMulti.removeAndShift(hostPlayer.checkpoint_current)
         BanCreate.removeAndShift(hostPlayer.checkpoint_current)
@@ -1026,7 +1026,7 @@ rule "Editor | Toggle Ult/Dash":
     @Condition hostPlayer.isHoldingButton(Button.ULTIMATE)
 
     if hostPlayer.isHoldingButton(Button.PRIMARY_FIRE):
-        BladeEnabledCheckpoints.toggleItem(hostPlayer.checkpoint_current)
+        UltEnabledCheckpoints.toggleItem(hostPlayer.checkpoint_current)
     else:
         DashEnabledCheckpoints.toggleItem(hostPlayer.checkpoint_current)
     wait(0)

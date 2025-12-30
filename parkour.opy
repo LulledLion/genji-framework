@@ -42,7 +42,7 @@ rule "Parkour | Setup & Variables":
     SaveEnt = []
     SaveElapsed = []
 
-    BladeEnabledCheckpoints = [i for i in BladeEnabledCheckpoints if i + false >= 0] if len(BladeEnabledCheckpoints) else []
+    UltEnabledCheckpoints = [i for i in UltEnabledCheckpoints if i + false >= 0] if len(UltEnabledCheckpoints) else []
     DashEnabledCheckpoints = [i for i in DashEnabledCheckpoints if i + false >= 0] if len(DashEnabledCheckpoints) else []
 
     BouncePadCheckpoints = BouncePadCheckpoints if len(BouncePadCheckpoints) else []

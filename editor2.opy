@@ -92,7 +92,7 @@ MenuCreate(menu = {
         CheckpointPositions.insertAt(eventPlayer.checkpoint_current, eventPlayer.getPosition())
         eventPlayer.checkpoint_current++
         #Abilities
-        BladeEnabledCheckpoints.shiftAt(hostPlayer.checkpoint_current)
+        UltEnabledCheckpoints.shiftAt(hostPlayer.checkpoint_current)
         DashEnabledCheckpoints.shiftAt(hostPlayer.checkpoint_current)
         #Bans
         BanMulti.shiftAt(eventPlayer.checkpoint_current)
@@ -112,7 +112,7 @@ MenuCreate(menu = {
                 {
                     code: `
     #Abilities
-    BladeEnabledCheckpoints.removeAndShift(hostPlayer.checkpoint_current)
+    UltEnabledCheckpoints.removeAndShift(hostPlayer.checkpoint_current)
     DashEnabledCheckpoints.removeAndShift(hostPlayer.checkpoint_current)
     #Bans
     BanMulti.removeAndShift(hostPlayer.checkpoint_current)
@@ -163,11 +163,11 @@ MenuCreate(menu = {
     `,
             pages: [
                 {
-                    text: `ft"Ultimate: {eventPlayer.checkpoint_current in BladeEnabledCheckpoints}\n 1. On\n 2. Off\n 0. ← Back"`,
+                    text: `ft"Ultimate: {eventPlayer.checkpoint_current in UltEnabledCheckpoints}\n 1. On\n 2. Off\n 0. ← Back"`,
                     update: true,
                     pages: [
-                        {code: `BladeEnabledCheckpoints.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `BladeEnabledCheckpoints.remove(eventPlayer.checkpoint_current)`}
+                        {code: `UltEnabledCheckpoints.addUnique(eventPlayer.checkpoint_current)`},
+                        {code: `UltEnabledCheckpoints.remove(eventPlayer.checkpoint_current)`}
                     ]
                 },
                 {
