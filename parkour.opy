@@ -27,23 +27,16 @@ rule "Parkour | Setup & Variables":
     startForcingSpawn(Team.ALL, 2)
     wait(LoadOrder.setup)
     EditorOn = createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.MapEditor, editorDefaultOn, 0)
-    #if createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.MapValidator, true, 3):
-    #    async(AddonCheckMap, AsyncBehavior.NOOP)
     CompMode = not EditorOn and createWorkshopSettingBool(SettingsText.TournamentCategory, SettingsText.TournamentMode, compModeToggle, 100)
     if CompMode:
         CompAtmpNum = createWorkshopSettingInt(SettingsText.TournamentCategory, SettingsText.TournamentAttempts, attemptCount, 0, 500, 102)
         CompRestartLimit = createWorkshopSettingBool(SettingsText.TournamentCategory, SettingsText.TournamentRestart, compRestartLimit, 103)
-    else:
-        InstructionText = null
 
     SaveName = []
     SaveCp = []
     SaveTimer = []
     SaveEnt = []
     SaveElapsed = []
-
-    UltEnabledCheckpoints = [i for i in UltEnabledCheckpoints if i + false >= 0] if len(UltEnabledCheckpoints) else []
-    DashEnabledCheckpoints = [i for i in DashEnabledCheckpoints if i + false >= 0] if len(DashEnabledCheckpoints) else []
 
     BouncePadCheckpoints = BouncePadCheckpoints if len(BouncePadCheckpoints) else []
     CheckpointPositions = CheckpointPositions if len(CheckpointPositions) else []
@@ -63,23 +56,12 @@ rule "Parkour | Setup & Variables":
     CustomPortalEndpoint = CustomPortalEndpoint if len(CustomPortalEndpoint) else []
     CustomPortalCP = CustomPortalCP if len(CustomPortalCP) else []
 
+    Fw_Parkour_Setup_Hero()
+
     LeaderBoardFull = []
     TitleData = null
     HintCp = []
     HintText = []
-
-    # clean out -1's after the ban has loaded
-    #BanTriple = [i for i in BanTriple if i + false >= 0] if len(BanTriple) else [] # legacy code, now auto sets it to null to save space
-    BanCreate = [i for i in BanCreate if i + false >= 0] if len(BanCreate) else []
-    BanAutoCreate = BanAutoCreate if len(BanAutoCreate) else []
-    BanStand = [i for i in BanStand if i + false >= 0] if len(BanStand) else []
-    BanMulti = [i for i in BanMulti if i + false >= 0] if len(BanMulti) else []
-    BanDead = [i for i in BanDead if i + false >= 0] if len(BanDead) else []
-    BanEmote = [i for i in BanEmote if i + false >= 0] if len(BanEmote) else []
-    BanSaveDouble = BanSaveDouble if len(BanSaveDouble) else []
-    BanClimb = [i for i in BanClimb if i + false >= 0] if len(BanClimb) else []
-    BanBhop = [i for i in BanBhop if i + false >= 0] if len(BanBhop) else []
-    BanDjump = BanDjump if len(BanDjump) else []
 
     # fix team because of naming
     if ColorConfig[Customize.orb_lock] == Color.TEAM_1:
