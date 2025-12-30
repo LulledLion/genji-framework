@@ -40,7 +40,6 @@ macro FwMechanicsAll():
         if eventPlayer.ban_emote:
             waitUntil(not eventPlayer.isCommunicatingEmote(), Math.INFINITY)
             if eventPlayer.toggle_invincible: return
-            if not eventPlayer.checkpoint_notLast: return
             #"   表情留小 ♥ 已禁用!" checkCN "   Emote Savehop ♥ is banned!"
             smallMessage(eventPlayer, t"   Emote Savehop ♥ Is Banned!")
             wait(0)
