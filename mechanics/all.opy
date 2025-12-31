@@ -2,7 +2,7 @@
 /*
 Generalized mechanics for all heroes here
 */
-macro Fw_Mechanics_All():
+macro Fw_Mechanics_All(heroGroundReset=pass):
     rule "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ Mechanics | Checks ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒":
         @Delimiter
 
@@ -14,7 +14,6 @@ macro Fw_Mechanics_All():
             smallMessage(eventPlayer, t"   Bhop") #"   小跳已用" checkCN "   Bhop"
             if eventPlayer.getVerticalSpeed() > 5.722:
                 LobbyID = []
-                /* hudText(hostPlayer, text=evalOnce(eventPlayer.getVerticalSpeed()) * 1000000, subheader=evalOnce(eventPlayer.checkpoint_current),textColor=Color.GREEN,sortOrder = HO.add_custommsg3) #*/
         else:
             eventPlayer.skill_usedHop = true
 
@@ -48,12 +47,6 @@ macro Fw_Mechanics_All():
     rule "Mechanic | All | Ground Reset":
         @Event eachPlayer
         @Condition eventPlayer.isOnGround()
-        #All
         eventPlayer.skill_usedHop = null
         eventPlayer.skill_countBhops = null
-        #$$ Climb
-        eventPlayer.skill_usedClimb = false
-        eventPlayer.skill_countMulti = null
-        eventPlayer.skill_countCreates = null
-        #$$ Genji
-        eventPlayer.skill_usedDouble = null
+        heroGroundReset

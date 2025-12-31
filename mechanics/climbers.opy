@@ -68,3 +68,9 @@ macro Fw_Mechanics_Climber():
         if not ruleCondition: return
         smallMessage(eventPlayer, t"   Auto Create Bhop ∀ Is Banned!") #"自动卡小 ∀ 已禁用!"
         CheckpointFailReset()
+
+macro Fw_Mechanics_GroundReset_Climbers(heroReset=pass):
+    eventPlayer.skill_usedClimb = false
+    eventPlayer.skill_countMulti = null
+    eventPlayer.skill_countCreates = null
+    heroReset

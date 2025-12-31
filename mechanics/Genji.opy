@@ -72,11 +72,11 @@ macro Fw_Parkour_UpdateCache_Hero():
         eventPlayer.ban_bhop = false
         eventPlayer.ban_djump = false
 
-macro Fw_Parkour_GroundReset():
-    pass
+macro Fw_Mechanics_GroundReset_Hero():
+    eventPlayer.skill_usedDouble = null
 
 macro Fw_Mechanics_Hero():
-    Fw_Mechanics_All()
+    Fw_Mechanics_All(Fw_Mechanics_GroundReset_Climbers(Fw_Mechanics_GroundReset_Hero()))
     Fw_Mechanics_Climber()
 
     def ResetAbilities():
