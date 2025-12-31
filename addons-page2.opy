@@ -281,7 +281,7 @@ rule "Addon | Custom Orb Script":
     if eventPlayer.cache_bounceTouched in [3, 4]:
        # example canceling primary makes double jump recover
        eventPlayer.cancelPrimaryAction()
-       eventPlayer.skill_usedDouble = null
+       (eventPlayer.skill_usedDouble = null) if FwHero == Hero.GENJI else (pass)
        smallMessage(eventPlayer," Double Jump Recovered")
     if eventPlayer.cache_bounceTouched in [5, 6]:
         # example move speed

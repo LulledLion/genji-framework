@@ -280,7 +280,7 @@ rule "Parkour | Bounce Ball / Orb":
             eventPlayer.applyImpulse(Vector.UP, BounceStrength[eventPlayer.cache_bounceTouched], Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION_XYZ)
         elif BounceStrength[eventPlayer.cache_bounceTouched] < 0:
             eventPlayer.cancelPrimaryAction()
-            eventPlayer.skill_usedDouble = null
+            (eventPlayer.skill_usedDouble = null) if FwHero == Hero.GENJI else (pass)
             #"   二段跳已就绪" checkCN "   » Double Jump is ready"
             smallMessage(eventPlayer, t"   » Double Jump Is Ready")
 
@@ -407,15 +407,14 @@ def LeaderboardUpdate():
 
 def CheckpointFailReset():
     @Name "Parkour | SUB Checkpoint Fail"
-    eventPlayer.timer_split = eventPlayer.timer_practice if eventPlayer.toggle_practice else eventPlayer.timer_normal
     eventPlayer.cache_collectedLocks = []
-    eventPlayer.cancelPrimaryAction()
-    eventPlayer.skill_usedDouble = null
-
+    eventPlayer.timer_split = eventPlayer.timer_practice if eventPlayer.toggle_practice else eventPlayer.timer_normal
     if not (eventPlayer.checkpoint_current or eventPlayer.toggle_practice):
         eventPlayer.timer_normal = 0
         eventPlayer.timer_split = 0
 
+    eventPlayer.cancelPrimaryAction()
+    (eventPlayer.skill_usedDouble = null) if FwHero == Hero.GENJI else (pass)
     if len(CheckpointPositions):
         if eventPlayer.isUsingAbility1():
             eventPlayer.startForcingPosition(eventPlayer, false)
