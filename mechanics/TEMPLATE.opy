@@ -2,11 +2,17 @@
 
 #!include "all.opy"
 
+macro Fw_Parkour_Setup_Hero():
+    pass
+
+macro Fw_Parkour_UpdateCache_Hero():
+    pass
+
 macro Fw_Mechanics_GroundReset_Hero():
     pass
 
-macro FwMechanicsHero():
-    FwMechanicsAll(Fw_Mechanics_GroundReset_Hero())
+macro Fw_Mechanics_Hero():
+    Fw_Mechanics_All(Fw_Mechanics_GroundReset_Hero())
 
     def ResetAbilities():
         @Name "Mechanic | TEMPLATE | SUB Reset Abilities"
