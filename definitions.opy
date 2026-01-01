@@ -6,9 +6,8 @@
 # Current Named Unused Variables: 1,2,9,11,17,19,28,29,30,31,36,37,39,43,48,49,51,58,59,65,66,72,80,89
 #!define CheckpointPositions A
 globalvar CheckpointPositions 0             # list[vect | list[vect]]   --- sometimes nested - 0 original end, 1 teleported
-#1
 #!define DestructoIter B
-#!define MapVectorArray B
+#!define MapVectorArray C
 globalvar MapVectorArray 2
 #!define MapChecker MsDestructo
 globalvar MsDestructo 3                     # Player
