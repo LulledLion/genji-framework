@@ -3,6 +3,7 @@
 #!extension playMoreEffects
 
 settings {
+    #$$ Figure out how to rename the framework for multiple heroes
     "main": {
         "modeName": f"Genji Parkour - 源氏跑酷 - v{versionhere}",
         "description": f"◀ Genji Parkour - 源氏跑酷 ▶\nCode: XXXXX\nMade By: \n\n◀ Official Genji Parkour Editor ▶\nCode: 54CRY\nDiscord: dsc.gg/genjiparkour\nAdapted By: LulledLion, FishoFire, Nebula\nv{versionhere}"
@@ -146,4 +147,4 @@ enum SettingsText:
         TournamentMode = "Tournament Mode        ◆ 开启竞赛模式    ◆ 토너먼트 모드 활성화",
         TournamentTime = "Time Limit (Global)      ◆ 时间限制      ◆ 시간 제한 (전체)",
         TournamentAttempts = "Attempt Count         ◆ 尝试次数      ◆ 시도 수 확인",
-        TournamentRestart = "Disable Restart During Run ◆ 竞赛中禁用重新开始 ◆ 시도 중 재시작 비활성화",
+        TournamentRestart = "Disable Restart During Run ◆ 竞赛中禁用重新开始 ◆ 시도 중 재시작 비활성화", #$$ Rename to Marathon Mode
