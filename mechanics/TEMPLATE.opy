@@ -22,21 +22,21 @@ macro FwMechanicsHero():
 
     rule "Mechanic | TEMPLATE | Ability 1":
         @Event eachPlayer
-        @Hero TEMPLATE
+        @Hero template
         @Condition eventPlayer.isUsingAbility1()
         if eventPlayer.toggle_invincible or (EditorOn and eventPlayer == hostPlayer) or not eventPlayer.checkpoint_notLast: return
         pass
 
     rule "Mechanic | TEMPLATE | Ability 2":
         @Event eachPlayer
-        @Hero TEMPLATE
+        @Hero template
         @Condition eventPlayer.isUsingAbility2()
         if eventPlayer.toggle_invincible or (EditorOn and eventPlayer == hostPlayer) or not eventPlayer.checkpoint_notLast: return
         pass
 
     rule "Mechanic | TEMPLATE | Ultimate":
         @Event eachPlayer
-        @Hero TEMPLATE
+        @Hero template
         @Condition eventPlayer.isUsingUltimate()
         if eventPlayer.toggle_invincible or (EditorOn and eventPlayer == hostPlayer) or not eventPlayer.checkpoint_notLast: return
         pass
