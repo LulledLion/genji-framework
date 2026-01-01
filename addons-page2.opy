@@ -314,7 +314,7 @@ rule "Addon | Fake Triple Jump - 假三段跳":
 
 rule "Addon | Fisho CP Cheat With Overpy Toggle":
     @Event eachPlayer
-    @Condition cpCheat
+    @Condition teleCheat
     @Condition eventPlayer.isHoldingButton(Button.CROUCH)
     @Condition (eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) and eventPlayer.checkpoint_notLast) or (eventPlayer.isHoldingButton(Button.SECONDARY_FIRE) and eventPlayer.checkpoint_current)
     @Condition EditorOn == false
