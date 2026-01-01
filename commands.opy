@@ -30,7 +30,8 @@ rule "Command | Toggle Invisible (Hold Deflect)":
     @Condition CompMode == false
     wait(1, Wait.ABORT_WHEN_FALSE)
     eventPlayer.toggle_invisible = not eventPlayer.toggle_invisible
-    eventPlayer.setInvisibility(INVIS)
+    # Enable Invis Command (Invis Command cant be pasted in CN client die to null and none translating to same symbol)
+    (eventPlayer.setInvisibility(Invis.NONE)) if overrideLanguage != Languages.ZH else (eventPlayer.setInvisibility(Invis.ENEMIES))
     if eventPlayer.toggle_invisible:
         eventPlayer.setInvisibility(Invis.ALL)
     smallMessage(eventPlayer, f"  {t'Invisible'}{t' | On' if eventPlayer.toggle_invisible else t' | Off'}")

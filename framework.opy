@@ -10,11 +10,6 @@
 #!define editortoggle(x) __script__("test-maps/togglescript.js")
 editortoggle(0) # 0 is editor, rest is numbers
 ################################################################################
-macro COMPILE_FOR_CHINESE = false
-# Enable Invis Command (Invis Command cant be pasted in CN client die to null and none translating to same symbol)
-# Debug force CN mode on (No longers works)
-##!define checkCN if true else
-################################################################################
 # Lobby duration: 260
 macro lobbyTime = 260
 # Max orbs can be made
@@ -55,7 +50,7 @@ importHero(["GENJI" /*, "HANZO", "HAZARD", "KIRIKO"*/][0])
 #!disableTranslationSourceLines
 #!translateWithPlayerVar noDetectionRule
 ##!keepUnusedTranslations
-macro overrideLanguage = -1 # Auto=-1 TLErr=0 EN=1 ZH=2 KO=3
+macro overrideLanguage = Languages.Automatic
 ################################################################################
 #!include "parkour.opy"
 ################################################################################

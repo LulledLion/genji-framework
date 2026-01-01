@@ -236,6 +236,13 @@ subroutine RebuildPortals
 subroutine RebuildBounceOrbs
 
 ######################################## Enums ################################
+enum Languages:
+    Automatic = -1,
+    TLErr = 0,
+    EN = 1,
+    ZH = 2,
+    KO = 3,
+
 enum HO:
     # Left #####################
     data_name = -200,
@@ -362,8 +369,6 @@ enum LoadOrder:
 #!define LeftAlign100 "                                                                                                    "
 #!define LeftAlign128 "                                                                                                                                "
 #!define checkCN if l"Oof" == "噢" else
-
-macro INVIS = Invis.ENEMIES if COMPILE_FOR_CHINESE else Invis.NONE
 
 macro Array.insertAt(index, item):
     self.append(null)
