@@ -50,7 +50,7 @@ macro overrideLanguage = Languages.Automatic
 ################################################################################
 #$$ TODO proper multi-hero support
 #!define importHero(Hero) __script__('mechanics/fwHero.js')
-importHero(["GENJI" /*, "HANZO", "HAZARD", "KIRIKO"*/][0])
+importHero(["GENJI", "HANZO", "HAZARD", "KIRIKO", "DOOMFIST"][0])
 ################################################################################
 #!include "parkour.opy"
 ################################################################################
