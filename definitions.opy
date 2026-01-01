@@ -76,7 +76,8 @@ globalvar CompMode 50                       # bool                      --- Tour
 globalvar CompAtmpNum 52                    # int                       --- compt mode attempt limit
 globalvar CompAtmpSaveNames 53              # [strings]                 --- comp name list
 globalvar CompAtmpSaveCount 54              # [int]                      --- compt attempt list
-globalvar CompRestartLimit 55               # bool                      --- resest limiter
+#!define CompMarathon CompRestartLimit
+globalvar CompMarathon 55               # bool                      --- Disallow restarts during runs
 #!define InstructionText instructiontext
 globalvar InstructionText 56                # [text]                    --- array of instructions
 globalvar TitleData 57                      # [[cp, [title], [color]]    --- title addon

@@ -29,8 +29,8 @@ rule "Parkour | Setup & Variables":
     EditorOn = createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.MapEditor, editorDefaultOn, 0)
     CompMode = not EditorOn and createWorkshopSettingBool(SettingsText.TournamentCategory, SettingsText.TournamentMode, compModeToggle, 100)
     if CompMode:
-        CompAtmpNum = createWorkshopSettingInt(SettingsText.TournamentCategory, SettingsText.TournamentAttempts, attemptCount, 0, 500, 102)
-        CompRestartLimit = createWorkshopSettingBool(SettingsText.TournamentCategory, SettingsText.TournamentRestart, compRestartLimit, 103)
+        CompAtmpNum = createWorkshopSettingInt(SettingsText.TournamentCategory, SettingsText.TournamentAttempts, attemptCount, 1, 500, 102)
+        CompMarathon = createWorkshopSettingBool(SettingsText.TournamentCategory, SettingsText.TournamentRestart, compMarathon, 103)
 
     SaveName = []
     SaveCp = []
