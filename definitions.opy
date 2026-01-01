@@ -3,12 +3,13 @@
 ######################################## Global Variables #####################
 # Warning do not change global variable indices.
 # Will result in variable mismatch upon exporting mapdata to newer versions
-# Current Named Unused Variables: 1,2,9,11,17,19,28,29,30,31,36,37,39,43,48,49,51,58,59,65,66,72,80,89,90
+# Current Named Unused Variables: 1,2,9,11,17,19,28,29,30,31,36,37,39,43,48,49,51,58,59,65,66,72,80,89
 #!define CheckpointPositions A
 globalvar CheckpointPositions 0             # list[vect | list[vect]]   --- sometimes nested - 0 original end, 1 teleported
 #1
 #!define DestructoIter B
-#2
+#!define MapVectorArray B
+globalvar MapVectorArray 2
 #!define MapChecker MsDestructo
 globalvar MsDestructo 3                     # Player
 globalvar TimeRemaining 4
@@ -114,7 +115,6 @@ globalvar BanStand 87                       # bans on second hop
 globalvar BanDjump 88
 globalvar BanSaveDouble 89
 globalvar BanAutoCreate 90
-globalvar MapVectorArray 91
 
 ######################################## Player Variables #####################
 #PlayerEffects data
