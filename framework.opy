@@ -38,19 +38,19 @@ macro compRestartLimit = false
 ##!excludeVariablesInCompilation
 #!include "definitions.opy"
 ################################################################################
-#$$ TODO proper multi-hero support
-#!define importHero(Hero) __script__('mechanics/fwHero.js')
-importHero(["GENJI" /*, "HANZO", "HAZARD", "KIRIKO"*/][0])
-################################################################################
-#!disableInspector
-#!globalvarInitRuleName "OverPy | Global Init"
-#!playervarInitRuleName "OverPy | Player Init"
-################################################################################
 #!translations en zh ko
 #!disableTranslationSourceLines
 #!translateWithPlayerVar noDetectionRule
 ##!keepUnusedTranslations
 macro overrideLanguage = Languages.Automatic
+################################################################################
+#!disableInspector
+#!globalvarInitRuleName "OverPy | Global Init"
+#!playervarInitRuleName "OverPy | Player Init"
+################################################################################
+#$$ TODO proper multi-hero support
+#!define importHero(Hero) __script__('mechanics/fwHero.js')
+importHero(["GENJI" /*, "HANZO", "HAZARD", "KIRIKO"*/][0])
 ################################################################################
 #!include "parkour.opy"
 ################################################################################
