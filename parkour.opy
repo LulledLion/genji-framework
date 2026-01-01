@@ -142,7 +142,7 @@ rule "Parkour | Player Initialize":
             eventPlayer.comp_instructionHud = false
         if eventPlayer.comp_countAttempts < 0:
             eventPlayer.toggle_leaderboard = true
-            eventPlayer.comp_countAttempts = -1
+            #eventPlayer.comp_countAttempts = -1
             eventPlayer.setDamageReceived(100)
             kill(eventPlayer,null)
             eventPlayer.setDamageReceived(0)
