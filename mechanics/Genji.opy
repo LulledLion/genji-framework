@@ -163,5 +163,5 @@ macro Fw_Mechanics_Hero():
             #This can give a false negative, but advantage is small
             if eventPlayer.skill_usedBhop: return
         #"   延二段跳已禁用!" checkCN "   save double banned!"
-        smallMessage(eventPlayer, t"   Save Double Banned!")
+        smallMessage(eventPlayer, t"   Save Double » Is Banned!")
         CheckpointFailReset()

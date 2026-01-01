@@ -124,8 +124,8 @@ msgid "Dash Is Ready"
 msgstr "질풍참 준비"
 
 #. file GENJI.opy, rule "Mechanic | Genji | Ban Save Double - 封禁二段跳"
-msgid "Save Double Banned!"
-msgstr "더블 세이브 금지!"
+msgid "Save Double » Is Banned!"
+msgstr "더블 세이브 » 금지!"
 
 #. file huds.opy, rule "Huds | Addons"
 msgid "3rd Person"
