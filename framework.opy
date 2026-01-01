@@ -10,28 +10,18 @@
 #!define editortoggle(x) __script__("test-maps/togglescript.js")
 editortoggle(0) # 0 is editor, rest is numbers
 ################################################################################
-# Lobby duration: 260
-macro lobbyTime = 260
-# Max orbs can be made
-macro fxLimit = 193
-# Portal distance: 1.3
-macro portalDistance = 1.3
-# Circle radius: 1.4
-macro cpCircleRadius = 1.4
-# Default fx: 1
-macro cpCirkleFx = 1
-# Orb range for player: 1.4
-macro bounceOrbDistance = 1.4
-# Height added to player for orb detection: 0.7
-macro bounceOffset = 0.7
-# Enable perks: false
-macro usePerks = false
-# non-practice cheat mode: false
-macro cpCheat = false
-# defaults: off, attempt:5, restart:false
-macro compModeToggle = false
-macro attemptCount = 5
-macro compRestartLimit = false
+macro lobbyTime = 260 # Default lobby duration: 260
+macro fxLimit = 193 # Max orbs can be made
+macro portalDistance = 1.3 # Portal distance: 1.3
+macro cpCircleRadius = 1.4 # Sphere radius: 1.4
+macro cpCirkleFx = 1 # Ring radius fx: 1
+macro bounceOrbDistance = 1.4 # Orb range for player: 1.4
+macro bounceOffset = 0.7 # Height added to player for orb detection: 0.7
+macro usePerks = false # Enable perks: false (Requires some manual overriding)
+macro cpCheat = false # Teleport cheats: false
+macro compModeToggle = false # Enable Tournament Mode: false
+macro attemptCount = 5 # Allowed Restart(s) limit
+macro compMarathon = false # Enforce Marathon: false
 ################################################################################
 #!include "settings.opy"
 ################################################################################
