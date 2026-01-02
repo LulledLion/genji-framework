@@ -28,21 +28,21 @@ macro Fw_Mechanics_Hero():
 
     rule "Mechanic | Doomfist | Ability 1":
         @Event eachPlayer
-        @Hero Doomfist
+        @Hero doomfist
         @Condition eventPlayer.isUsingAbility1()
         if eventPlayer.toggle_invincible or (EditorOn and eventPlayer == hostPlayer) or not eventPlayer.checkpoint_notLast: return
         pass
 
     rule "Mechanic | Doomfist | Ability 2":
         @Event eachPlayer
-        @Hero Doomfist
+        @Hero doomfist
         @Condition eventPlayer.isUsingAbility2()
         if eventPlayer.toggle_invincible or (EditorOn and eventPlayer == hostPlayer) or not eventPlayer.checkpoint_notLast: return
         pass
 
     rule "Mechanic | Doomfist | Ultimate":
         @Event eachPlayer
-        @Hero Doomfist
+        @Hero doomfist
         @Condition eventPlayer.isUsingUltimate()
         if eventPlayer.toggle_invincible or (EditorOn and eventPlayer == hostPlayer) or not eventPlayer.checkpoint_notLast: return
         pass
