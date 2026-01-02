@@ -371,7 +371,7 @@ rule "Editor | Hud & Effects":
                     ["Checkpoints", "Boundary Spheres","Function Orbs","Skill Bans","Portals"][EditorMode.current],
                     [iconString(Icon.FLAG), iconString(Icon.SKULL), iconString(Icon.MOON), iconString(Icon.STOP),iconString(Icon.SPIRAL)][EditorMode.current])
             if localPlayer == hostPlayer else
-                " {0} Genji Editor {0} ".format(iconString(Icon.BOLT)),
+                f" {iconString(Icon.BOLT)} {FwHero.Name} Editor {iconString(Icon.BOLT)} ",
             null,
             null,
             HudPosition.TOP, HO.edit_host_mode, Color.BLUE, null, null, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
@@ -397,7 +397,7 @@ rule "Editor | Hud & Effects":
                 buttonString(Button.PRIMARY_FIRE),
                 (BounceToggleUlt[EditSelected]) if EditorMode.functionOrb else
                 (hostPlayer.checkpoint_current in UltEnabledCheckpoints),
-                abilityIconString(Hero.GENJI, Button.ULTIMATE),
+                abilityIconString(FwHero.Hero, Button.ULTIMATE),
                 "检查点给刀"  if EditorMode.checkpoint else "弹球给刀"
             )
             checkCN
@@ -406,7 +406,7 @@ rule "Editor | Hud & Effects":
                 buttonString(Button.PRIMARY_FIRE),
                 (BounceToggleUlt[EditSelected]) if EditorMode.functionOrb else
                 (hostPlayer.checkpoint_current in UltEnabledCheckpoints),
-                abilityIconString(Hero.GENJI, Button.ULTIMATE),
+                abilityIconString(FwHero.Hero, Button.ULTIMATE),
                 "Level" if EditorMode.checkpoint  else "Orb"),
             HudPosition.LEFT, HO.edit_orb_ult,
             Color.GREEN if BounceToggleUlt[EditSelected] and EditorMode.functionOrb else
@@ -419,7 +419,7 @@ rule "Editor | Hud & Effects":
                 buttonString(Button.SECONDARY_FIRE),
                 BounceToggleDash[EditSelected] if EditorMode.functionOrb else
                 hostPlayer.checkpoint_current in Ability1EnabledCheckpoints,
-                abilityIconString(Hero.GENJI, Button.ABILITY_1),
+                abilityIconString(FwHero.Hero, Button.ABILITY_1),
             "检查点给Shift" if EditorMode.checkpoint else "弹球给Shift")
             checkCN
             "{0} + {1} | {4} Give Dash {3} | {2}" LeftAlign100.format(
@@ -427,7 +427,7 @@ rule "Editor | Hud & Effects":
                 buttonString(Button.SECONDARY_FIRE),
                 BounceToggleDash[EditSelected] if EditorMode.functionOrb else
                 hostPlayer.checkpoint_current in Ability1EnabledCheckpoints,
-                abilityIconString(Hero.GENJI, Button.ABILITY_1),
+                abilityIconString(FwHero.Hero, Button.ABILITY_1),
                 "Level" if EditorMode.checkpoint else "Orb"),
             HudPosition.LEFT, HO.edit_orb_dash,
             Color.GREEN if BounceToggleDash[EditSelected] and EditorMode.functionOrb else

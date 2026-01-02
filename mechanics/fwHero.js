@@ -4,6 +4,11 @@ if (Array.isArray(Hero)){
     Result = Hero.map(i => '#!include "mechanics/' + i).join('.opy"\n');
 }
 else{
-    Result ='macro FwHero = Hero.' + Hero + '\n#!include "mechanics/' + Hero + '.opy"\n';
+    Result =
+'enum FwHero:\n' +
+    '\tHero = Hero.' + Hero.toUpperCase() + '\n' +
+    '\tName = "' + Hero.toUpperCase() + '"\n' +
+'#!define FwHero@Hero @Hero ' + Hero.toLowerCase() + '\n' +
+'#!include "mechanics/' + Hero + '.opy"\n';
 }
 Hero = Result

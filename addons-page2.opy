@@ -206,7 +206,7 @@ rule "Addon | Group up - Map Data":
     createInWorldText(
         [i for i in getAllPlayers() if i.checkpoint_current == 777],
         "{0} {1} {0}".format(
-            abilityIconString(Hero.GENJI, Button.ULTIMATE),
+            abilityIconString(FwHero.Hero, Button.ULTIMATE),
             "待在这里" checkCN "Group Up"),
         vect(1,1,1), 1.5, Clip.NONE, WorldTextReeval.VISIBILITY_AND_STRING, Color.ORANGE, SpecVisibility.DEFAULT)
     # replace 777 with checkpoint number
@@ -281,7 +281,7 @@ rule "Addon | Custom Orb Script":
     if eventPlayer.cache_bounceTouched in [3, 4]:
        # example canceling primary makes double jump recover
        eventPlayer.cancelPrimaryAction()
-       (eventPlayer.skill_usedDouble = null) if FwHero == Hero.GENJI else (pass)
+       (eventPlayer.skill_usedDouble = null) if FwHero.Hero == Hero.GENJI else (pass)
        smallMessage(eventPlayer," Double Jump Recovered")
     if eventPlayer.cache_bounceTouched in [5, 6]:
         # example move speed

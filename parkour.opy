@@ -110,7 +110,7 @@ rule "Parkour | Player Initialize":
     eventPlayer.enableDeathSpectateAllPlayers()
     eventPlayer.enableDeathSpectateTargetHud()
     eventPlayer.disableRespawn()
-    eventPlayer.preloadHero(FwHero)
+    eventPlayer.preloadHero(FwHero.Hero)
     eventPlayer.editor_lock = true
     eventPlayer.toggle_guide = true
     #eventPlayer.toggle_quickRestart = true
@@ -280,7 +280,7 @@ rule "Parkour | Bounce Ball / Orb":
             eventPlayer.applyImpulse(Vector.UP, BounceStrength[eventPlayer.cache_bounceTouched], Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION_XYZ)
         elif BounceStrength[eventPlayer.cache_bounceTouched] < 0:
             eventPlayer.cancelPrimaryAction()
-            (eventPlayer.skill_usedDouble = null) if FwHero == Hero.GENJI else (pass)
+            (eventPlayer.skill_usedDouble = null) if Hero.FwHero == Hero.GENJI else (pass)
             #"   二段跳已就绪" checkCN "   » Double Jump is ready"
             smallMessage(eventPlayer, t"   » Double Jump Is Ready")
 
@@ -288,7 +288,7 @@ rule "Parkour | Bounce Ball / Orb":
             eventPlayer.setUltEnabled(true)
             eventPlayer.setUltCharge(100)
             #"终极技能已就绪" checkCN "Ultimate is ready"
-            smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
+            smallMessage(eventPlayer, f"   {abilityIconString(FwHero.Hero, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
 
         if BounceToggleDash[eventPlayer.cache_bounceTouched]:
             if eventPlayer.isUsingAbility1():
@@ -296,7 +296,7 @@ rule "Parkour | Bounce Ball / Orb":
                 wait(0)
             eventPlayer.setAbility1Enabled(true)
             #"技能1影已就绪" checkCN "Dash is ready"
-            smallMessage(eventPlayer, f"   {abilityIconString(FwHero, Button.ABILITY_1)} {t'Dash Is Ready'}")
+            smallMessage(eventPlayer, f"   {abilityIconString(FwHero.Hero, Button.ABILITY_1)} {t'Dash Is Ready'}")
 
         playEffect(eventPlayer, DynamicEffect.BUFF_EXPLOSION_SOUND, null, eventPlayer, 75)
     wait(0.24)
@@ -414,7 +414,7 @@ def CheckpointFailReset():
         eventPlayer.timer_split = 0
 
     eventPlayer.cancelPrimaryAction()
-    (eventPlayer.skill_usedDouble = null) if FwHero == Hero.GENJI else (pass)
+    (eventPlayer.skill_usedDouble = null) if Hero.FwHero == Hero.GENJI else (pass)
     if len(CheckpointPositions):
         if eventPlayer.isUsingAbility1():
             eventPlayer.startForcingPosition(eventPlayer, false)
