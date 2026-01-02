@@ -1,7 +1,7 @@
 var Hero;
 var Result;
 if (Array.isArray(Hero)){
-    Result = Hero.map(i => '#!include "mechanics/' + i).join('.opy"\n');
+    Result = Hero.map(i => '#!include "FwHero/' + i).join('.opy"\n');
 }
 else{
     Result =
@@ -9,6 +9,6 @@ else{
     '\tHero = Hero.' + Hero.toUpperCase() + '\n' +
     '\tName = "' + Hero.toUpperCase() + '"\n' +
 '#!define FwHero@Hero @Hero ' + Hero.toLowerCase() + '\n' +
-'#!include "mechanics/' + Hero + '.opy"\n';
+'#!define Fw_Include_Hero #!include "FwHero/' + Hero + '.opy"\n';
 }
 Hero = Result

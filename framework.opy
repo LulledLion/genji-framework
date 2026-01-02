@@ -10,6 +10,10 @@
 #!define editortoggle(x) __script__("test-maps/togglescript.js")
 editortoggle(0) # 0 is editor, rest is numbers
 ################################################################################
+#$$ TODO proper multi-hero support
+#!define importHero(Hero) __script__('FwHero/fwHero.js')
+importHero(["GENJI", "HANZO", "HAZARD", "KIRIKO", "DOOMFIST"][0])
+################################################################################
 macro lobbyTime = 260 # Default lobby duration: 260
 macro fxLimit = 193 # Max orbs can be made
 macro portalDistance = 1.3 # Portal distance: 1.3
@@ -39,10 +43,7 @@ macro overrideLanguage = Languages.Automatic
 #!globalvarInitRuleName "OverPy | Global Init"
 #!playervarInitRuleName "OverPy | Player Init"
 ################################################################################
-#$$ TODO proper multi-hero support
-#!define importHero(Hero) __script__('mechanics/fwHero.js')
-importHero(["GENJI", "HANZO", "HAZARD", "KIRIKO", "DOOMFIST"][0])
-################################################################################
+Fw_Include_Hero
 #!include "parkour.opy"
 ################################################################################
 Fw_Mechanics_Hero()
