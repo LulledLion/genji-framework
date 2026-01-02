@@ -371,7 +371,7 @@ rule "Editor | Hud & Effects":
                     ["Checkpoints", "Boundary Spheres","Function Orbs","Skill Bans","Portals"][EditorMode.current],
                     [iconString(Icon.FLAG), iconString(Icon.SKULL), iconString(Icon.MOON), iconString(Icon.STOP),iconString(Icon.SPIRAL)][EditorMode.current])
             if localPlayer == hostPlayer else
-                f" {iconString(Icon.BOLT)} {FwHero.Name} Editor {iconString(Icon.BOLT)} ",
+                f" {iconString(Icon.BOLT)} {FwHero.String} Editor {iconString(Icon.BOLT)} ",
             null,
             null,
             HudPosition.TOP, HO.edit_host_mode, Color.BLUE, null, null, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)

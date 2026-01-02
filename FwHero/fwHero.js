@@ -7,8 +7,8 @@ else{
     Result =
 'enum FwHero:\n' +
     '\tHero = Hero.' + Hero.toUpperCase() + '\n' +
-    '\tName = "' + Hero.toUpperCase() + '"\n' +
-'#!define FwHero@Hero @Hero ' + Hero.toLowerCase() + '\n' +
+    '\tString = "' + Hero.toLowerCase() + '"\n' +
+//'#!define FwHero@Hero ' + Hero.toLowerCase() + '\n' +
 '#!define Fw_Include_Hero #!include "FwHero/' + Hero + '.opy"\n';
 }
 Hero = Result

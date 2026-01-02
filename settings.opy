@@ -88,15 +88,17 @@ settings {
     },
     "heroes": {
         "allTeams": {
+            "general": {
+                "enableInfiniteAmmo": true,
+                "passiveUltGen%": 0,
+                "ultDuration%": 25,
+            },
             "genji": {
                 "enableAbility2": false,
-                "enableInfiniteAmmo": true,
                 "ability1Cooldown%": 1,
-                "ultDuration%": 25,
-                "passiveUltGen%": 0,
             },
             "enabledHeroes": [
-                "genji"
+                FwHero.String
             ]
         }
     }
