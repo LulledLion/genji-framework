@@ -12,7 +12,7 @@ editortoggle(0) # 0 is editor, rest is numbers
 ################################################################################
 #$$ TODO proper multi-hero support
 #!define importHero(Hero) __script__('FwHero/fwHero.js')
-importHero(["GENJI", "HANZO", "HAZARD", "KIRIKO", "DOOMFIST"][0])
+importHero(["Genji", "Hanzo", "Hazard", "Kiriko", "Doomfist"][0])
 ################################################################################
 macro lobbyTime = 260 # Default lobby duration: 260
 macro fxLimit = 193 # Max orbs can be made

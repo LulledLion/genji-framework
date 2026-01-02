@@ -109,7 +109,7 @@ msgstr "| 꺼짐"
 
 # TODO: check if all occurrences have the same translation
 #. 2 occurrences:
-#.  - file GENJI.opy, rule "Mechanic | Climbers | Auto Create Bhop"
+#.  - file Genji.opy, rule "Mechanic | Climbers | Auto Create Bhop"
 #.  - file parkour.opy, rule "Parkour | Bounce Ball / Orb"
 #, hasMultipleOccurrencesNotification
 msgid "Ultimate Is Ready"
@@ -117,13 +117,13 @@ msgstr "궁극기 준비"
 
 # TODO: check if all occurrences have the same translation
 #. 2 occurrences:
-#.  - file GENJI.opy, rule "Mechanic | Climbers | Auto Create Bhop"
+#.  - file Genji.opy, rule "Mechanic | Climbers | Auto Create Bhop"
 #.  - file parkour.opy, rule "Parkour | Bounce Ball / Orb"
 #, hasMultipleOccurrencesNotification
 msgid "Dash Is Ready"
 msgstr "질풍참 준비"
 
-#. file GENJI.opy, rule "Mechanic | Genji | Ban Save Double - 封禁二段跳"
+#. file Genji.opy, rule "Mechanic | Genji | Ban Save Double - 封禁二段跳"
 msgid "Save Double » Is Banned!"
 msgstr "더블 세이브 » 금지!"
 
