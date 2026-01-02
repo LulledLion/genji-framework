@@ -88,7 +88,7 @@ rule "Parkour | Match time":
     setMatchTime(70)
     pauseMatchTime()
     wait(0)
-    LobbyID = "v"
+    (LobbyID = "v") if antiCheat else (pass)
     TimeRemaining = createWorkshopSettingInt(SettingsText.MapCategory, SettingsText.MapTime, lobbyTime, 5, 265, 4)
     while 60 * TimeRemaining - getTotalTimeElapsed() > 0:
         wait(60 * TimeRemaining - getTotalTimeElapsed())
