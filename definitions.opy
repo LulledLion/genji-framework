@@ -3,14 +3,15 @@
 ######################################## Global Variables #####################
 # Warning do not change global variable indices.
 # Will result in variable mismatch upon exporting mapdata to newer versions
-# Current Named Unused Variables: 1,2,9,11,17,19,28,29,30,31,36,37,39,43,48,49,51,58,59,65,66,72,80,89
+# Current Named Unused Variables: 1,3,9,11,17,19,28,29,30,31,36,37,39,43,48,49,51,58,59,65,66,72,80,89
 #!define CheckpointPositions A
 globalvar CheckpointPositions 0             # list[vect | list[vect]]   --- sometimes nested - 0 original end, 1 teleported
 #!define DestructoIter B
+#globalvar DestructoIter 1
 #!define MapVectorArray C
 globalvar MapVectorArray 2
-#!define MapChecker MsDestructo
-globalvar MsDestructo 3                     # Player
+#!define MsDestructo D
+#globalvar MsDestructo 3                     # Player
 globalvar TimeRemaining 4
 globalvar PortalEffects 5                   # list[effect]              --- Array holding custom portal effects
 #!define LobbyID G
@@ -19,21 +20,21 @@ globalvar LobbyID 6
 globalvar KillBallPositions 7               # list[vect]                --- KillBall position
 #!define KillBallRadii I
 globalvar KillBallRadii 8                   # list[float]               --- KillBall radius, default 5
-#9
+#globalvar J 9
 #!define KillBallEffects K
 globalvar KillBallEffects 10                # list[effect]              --- Array holding killball effects
-#11
+#globalvar L 11
 #!define UltCheckpoints Dao
-globalvar UltCheckpoints 12        # int                       --- blade enabled, should be bool.
+globalvar UltCheckpoints 12                 # int                       --- blade enabled, should be bool.
 #!define Ability1Checkpoints SHIFT
-globalvar Ability1Checkpoints 13         # int                       --- dash enabled, should be bool.
+globalvar Ability1Checkpoints 13            # int                       --- dash enabled, should be bool.
 globalvar EditSelected 14
 globalvar EditSelectIdArray 15
 globalvar EditorOn 16                        # bool                      --- editor rules enabled?
-#17
+#globalvar R 17
 #!define BouncePositions TQ
 globalvar BouncePositions 18                # list[vect]                --- list of bouncepad positions
-#19
+#globalvar T 19
 #!define BounceEffects TQ2
 globalvar BounceEffects 20                  # list[effects]             --- list of bounce pad effect entities
 globalvar EditorMoveItem 21                 # num                       --- used for moving a portal
@@ -48,16 +49,16 @@ globalvar BounceToggleLock 25               # list[bool]                --- lock
 globalvar KillballCheckpoints 26            # list[list[int]]           --- 2d list of checkpoints that havea kill ball [[0], [3]]
 #!define BouncePadCheckpoints pinballnumber
 globalvar BouncePadCheckpoints 27           # list[list[int]]           --- 2d list like killballnumber
-#28
-#29
-#30
-#31
+#globalvar AC 28
+#globalvar AD 29
+#globalvar AE 30
+#globalvar AF 31
 globalvar LeaderBoardFull 32                # [[name,seconds,prettytime]]--- sorted list of 0-19 leaderboard entries
 globalvar LeaderBoardHuds 33
 globalvar LeaderBoardRemake 34              # bool                      --- indicate board needs remaking
 #globalvar kaxiaotiao 35
-#36
-#37
+#globalvar AK 36
+#globalvar AL 37
 #!define TempIterator1 NANBA
 globalvar TempIterator1 38                  # int                       --- temp iterator
 #globalvar DashExploitToggle 39
@@ -69,20 +70,20 @@ globalvar Difficultyhud 44                  # number                    --- work
 globalvar CustomPortalStart 45              # [vect]                    --- custom portal start
 globalvar CustomPortalEndpoint 46           # [vect]                    --- custom portal end points
 globalvar CustomPortalCP 47                 # [int]                     --- custom portal checkpoints
-#48
-#49
+#globalvar AW 48
+#globalvar AX 49
 globalvar CompMode 50                       # bool                      --- Tournament mode toggle
 #globalvar CompTime 51                       # int                       --- compt mode time limit
 globalvar CompAtmpNum 52                    # int                       --- compt mode attempt limit
 globalvar CompAtmpSaveNames 53              # [strings]                 --- comp name list
 globalvar CompAtmpSaveCount 54              # [int]                      --- compt attempt list
 #!define CompMarathon CompRestartLimit
-globalvar CompMarathon 55               # bool                      --- Disallow restarts during runs
+globalvar CompMarathon 55                   # bool                      --- Disallow restarts during runs
 #!define InstructionText instructiontext
 globalvar InstructionText 56                # [text]                    --- array of instructions
-globalvar TitleData 57                      # [[cp, [title], [color]]    --- title addon
+globalvar TitleData 57                       # [[cp, [title], [color]]    --- title addon
 #globalvar HudStoreEdit 58                   # [textid]                  --- list of huds to delete if editormode is on
-#59
+#globalvar BH 59
 globalvar SaveName 60
 globalvar SaveCp 61
 globalvar SaveEnt 62
@@ -95,7 +96,7 @@ globalvar HintText 68
 globalvar ColorConfig 69                    # [colors]                  --- configured colors
 globalvar Name 70
 globalvar Code 71
-#72
+#globalvar BU 72
 globalvar Cachedcredits 73                  # [string, string]          --- Legacy
 globalvar CpHudText 74
 globalvar CpHudCp 75
