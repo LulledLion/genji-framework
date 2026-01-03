@@ -11,7 +11,7 @@ rule "Command | Toggle Leaderboard (Hold Melee)":
     wait(1, Wait.ABORT_WHEN_FALSE)
     eventPlayer.toggle_leaderboard = not eventPlayer.toggle_leaderboard
 
-rule "Command | Split hide (Hold Dash + Primary + Secondary)":
+rule "Command | Toggle Split (Hold Ability 1 + Primary + Secondary)":
     @Event eachPlayer
     @Condition eventPlayer.isHoldingButton(Button.ABILITY_1)
     @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
@@ -23,7 +23,7 @@ rule "Command | Split hide (Hold Dash + Primary + Secondary)":
     smallMessage(eventPlayer, "   Split Display Off" if eventPlayer.timer_splitDisplay <= -Math.INFINITY else "   Split Display On")
     wait(0.128)
 
-rule "Command | Toggle Invisible (Hold Deflect)":
+rule "Command | Toggle Invisible (Hold Ability 1)":
     @Event eachPlayer
     @Condition eventPlayer.isHoldingButton(Button.ABILITY_2)
     @Condition EditorOn == false
@@ -233,7 +233,7 @@ rule "Command | Toggle Practice Mode (Melee + Ultimate)":
     eventPlayer.lockState = false
     wait(0.128) #Anti spam
 
-rule "Command | Restart Practice (Hold Interact)":
+rule "Command | Practice Restart (Hold Interact)":
     @Event eachPlayer
     @Condition EditorOn == false
     @Condition eventPlayer.lockState == false
@@ -260,7 +260,7 @@ rule "Command | Restart Practice (Hold Interact)":
     UpdateCache()
     CheckpointFailReset()
 
-rule "Command | Skip (Crouch + Primary-Next | Secondary-Previous)":
+rule "Command | Practice Skip (Crouch + Primary-Next | Secondary-Previous)":
     @Event eachPlayer
     @Condition len(CheckpointPositions)
     @Condition EditorMoveItem == false

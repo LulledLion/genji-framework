@@ -86,7 +86,7 @@ msgstr "일반 모드"
 
 # TODO: check if all occurrences have the same translation
 #. 2 occurrences:
-#.  - file commands.opy, rule "Command | Toggle Invisible (Hold Deflect)"
+#.  - file commands.opy, rule "Command | Toggle Invisible (Hold Ability 1)"
 #.  - file huds.opy, rule "Huds | Global Localplayer"
 #, hasMultipleOccurrencesNotification
 msgid "Invisible"
@@ -94,7 +94,7 @@ msgstr "투명화"
 
 # TODO: check if all occurrences have the same translation
 #. 5 occurrences:
-#.  - file commands.opy, rule "Command | Toggle Invisible (Hold Deflect)"
+#.  - file commands.opy, rule "Command | Toggle Invisible (Hold Ability 1)"
 #.  - file huds.opy, rule "Huds | Global Localplayer"
 #.  - file huds.opy, rule "Huds | Global Localplayer"
 #.  - file huds.opy, rule "Huds | Global Localplayer"
@@ -103,7 +103,7 @@ msgstr "투명화"
 msgid "| On"
 msgstr "| 켜짐"
 
-#. file commands.opy, rule "Command | Toggle Invisible (Hold Deflect)"
+#. file commands.opy, rule "Command | Toggle Invisible (Hold Ability 1)"
 msgid "| Off"
 msgstr "| 꺼짐"
 
