@@ -7,6 +7,51 @@
 /* Include Shared Skill Macros*/
 #!include "all.opy"
 ################################################################################
+/* Bind Button Commands */
+
+macro Fw_Commands_Leaderboard():
+    pass
+
+macro Fw_Commands_Split():
+    pass
+
+macro Fw_Commands_Invisible():
+    pass
+
+macro Fw_Commands_Preview():
+    pass
+
+macro Fw_Commands_Restart():
+    pass
+
+macro Fw_Commands_Spectate():
+    pass
+
+macro Fw_Commands_Invincible():
+    pass
+
+macro Fw_Commands_Practice():
+    pass
+
+macro Fw_Commands_PracticeRestart():
+    pass
+
+macro Fw_Commands_PracticeSkip():
+    pass
+
+macro Fw_Commands_QuickReset():
+    pass
+
+macro Fw_Commands_Huds():
+    pass
+
+macro Fw_Commands_Hints():
+    pass
+
+macro Fw_Commands_3rdPerson():
+    pass
+
+################################################################################
 
 macro Fw_Parkour_Setup_Hero():
     pass
