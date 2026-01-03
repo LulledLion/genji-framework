@@ -93,14 +93,14 @@ rule "Huds | Global Localplayer":
             HudPosition.RIGHT, HO.com_restart_n_board, ColorConfig[Customize.command_normal], HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
 
         Difficultyhud = [
-            createWorkshopSettingEnum(SettingsText.MapCategory, SettingsText.MapDifficulty, 0, [
-                SettingsText.MapDiffOptions[0], SettingsText.MapDiffOptions[1], SettingsText.MapDiffOptions[2],
-                SettingsText.MapDiffOptions[3], SettingsText.MapDiffOptions[4], SettingsText.MapDiffOptions[5],
-                SettingsText.MapDiffOptions[6], SettingsText.MapDiffOptions[7], SettingsText.MapDiffOptions[8],
-                SettingsText.MapDiffOptions[9], SettingsText.MapDiffOptions[10], SettingsText.MapDiffOptions[11],
-                SettingsText.MapDiffOptions[12], SettingsText.MapDiffOptions[13], SettingsText.MapDiffOptions[14],
-                SettingsText.MapDiffOptions[15], SettingsText.MapDiffOptions[16], SettingsText.MapDiffOptions[17],], 1),
-            createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.MapPlaytest, false, 2)]
+            createWorkshopSettingEnum(SettingsText.MapCategory, SettingsText.Map_Difficulty, 0, [
+                SettingsText.Map_DiffOptions[0], SettingsText.Map_DiffOptions[1], SettingsText.Map_DiffOptions[2],
+                SettingsText.Map_DiffOptions[3], SettingsText.Map_DiffOptions[4], SettingsText.Map_DiffOptions[5],
+                SettingsText.Map_DiffOptions[6], SettingsText.Map_DiffOptions[7], SettingsText.Map_DiffOptions[8],
+                SettingsText.Map_DiffOptions[9], SettingsText.Map_DiffOptions[10], SettingsText.Map_DiffOptions[11],
+                SettingsText.Map_DiffOptions[12], SettingsText.Map_DiffOptions[13], SettingsText.Map_DiffOptions[14],
+                SettingsText.Map_DiffOptions[15], SettingsText.Map_DiffOptions[16], SettingsText.Map_DiffOptions[17],], 1),
+            createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.Map_Playtest, false, 2)]
         # display
         if Difficultyhud[0] != 17: # 17th entry is 'dont display'
             hudText((localPlayer.toggle_guide and not localPlayer.toggle_leaderboard)[0],

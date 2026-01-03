@@ -28,34 +28,34 @@ macro Fw_Parkour_UpdateCache_Hero():
         eventPlayer.cache_startAbility1 = eventPlayer.checkpoint_current in Ability1Checkpoints
         if eventPlayer.cache_startAbility1:
             smallMessage(eventPlayer, f"   {abilityIconString(Hero.GENJI, Button.ABILITY_1)} {t'Dash Is Ready'}")
-        eventPlayer.ban_create = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanCreateBhop, false, 1) or eventPlayer.checkpoint_current in BanCreate
+        eventPlayer.ban_create = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.Ban_CreateBhop, false, 1) or eventPlayer.checkpoint_current in BanCreate
         if eventPlayer.ban_create:
             eventPlayer.banString = f"♂ {eventPlayer.banString}"
-        eventPlayer.ban_autocreate = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanAutoCreate, false, 2) or eventPlayer.checkpoint_current in BanAutoCreate
+        eventPlayer.ban_autocreate = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.Ban_AutoCreate, false, 2) or eventPlayer.checkpoint_current in BanAutoCreate
         if eventPlayer.ban_autocreate:
             eventPlayer.banString = f"∀ {eventPlayer.banString}"
-        eventPlayer.ban_standcreate = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanStandCreate, false, 3) or eventPlayer.checkpoint_current in BanStand
+        eventPlayer.ban_standcreate = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.Ban_StandCreate, false, 3) or eventPlayer.checkpoint_current in BanStand
         if eventPlayer.ban_standcreate:
             eventPlayer.banString = f"♠ {eventPlayer.banString}" # ≥  √ ▼ ↓
-        eventPlayer.ban_multi = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanMultiClimb, false, 4) or eventPlayer.checkpoint_current in BanMulti
+        eventPlayer.ban_multi = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.Ban_MultiClimb, false, 4) or eventPlayer.checkpoint_current in BanMulti
         if eventPlayer.ban_multi:
             eventPlayer.banString = f"∞ {eventPlayer.banString}"
-        eventPlayer.ban_dead = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanDeathHop, false, 5) or eventPlayer.checkpoint_current in BanDead
+        eventPlayer.ban_dead = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.Ban_DeathHop, false, 5) or eventPlayer.checkpoint_current in BanDead
         if eventPlayer.ban_dead:
             eventPlayer.banString = f"X {eventPlayer.banString}"
-        eventPlayer.ban_emote = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanEmote, false, 6) or eventPlayer.checkpoint_current in BanEmote
+        eventPlayer.ban_emote = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.Ban_Emote, false, 6) or eventPlayer.checkpoint_current in BanEmote
         if eventPlayer.ban_emote:
             eventPlayer.banString = f"♥ {eventPlayer.banString}"
-        eventPlayer.ban_savedouble = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanSaveDouble, false, 7) or eventPlayer.checkpoint_current in BanSaveDouble
+        eventPlayer.ban_savedouble = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.Ban_SaveDouble, false, 7) or eventPlayer.checkpoint_current in BanSaveDouble
         if eventPlayer.ban_savedouble:
             eventPlayer.banString = f"△ {eventPlayer.banString}"
-        eventPlayer.ban_climb = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanWallClimb, false, 8) or eventPlayer.checkpoint_current in BanClimb
+        eventPlayer.ban_climb = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.Ban_WallClimb, false, 8) or eventPlayer.checkpoint_current in BanClimb
         if eventPlayer.ban_climb:
             eventPlayer.banString = f"↑ {eventPlayer.banString}"
-        eventPlayer.ban_bhop = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.RequireBhop, false, 9) or eventPlayer.checkpoint_current in BanBhop
+        eventPlayer.ban_bhop = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.Ban_RequireBhop, false, 9) or eventPlayer.checkpoint_current in BanBhop
         if eventPlayer.ban_bhop:
             eventPlayer.banString = f"≥ {eventPlayer.banString}" # ≥  √ ▼ ↓
-        eventPlayer.ban_djump = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.RequireDjump, false, 10) or eventPlayer.checkpoint_current in BanDjump
+        eventPlayer.ban_djump = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.Ban_RequireDjump, false, 10) or eventPlayer.checkpoint_current in BanDjump
         if eventPlayer.ban_djump:
             eventPlayer.banString = f"» {eventPlayer.banString}" # ≥  √ ▼ ↓ ︽
     else:

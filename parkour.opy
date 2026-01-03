@@ -26,11 +26,11 @@ rule "Parkour | Setup & Variables":
     startForcingSpawn(Team.ALL, 1)
     startForcingSpawn(Team.ALL, 2)
     wait(LoadOrder.setup)
-    EditorOn = createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.MapEditor, editorDefaultOn, 0)
-    CompMode = not EditorOn and createWorkshopSettingBool(SettingsText.TournamentCategory, SettingsText.TournamentMode, compModeToggle, 100)
+    EditorOn = createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.Map_Editor, editorDefaultOn, 0)
+    CompMode = not EditorOn and createWorkshopSettingBool(SettingsText.TournamentCategory, SettingsText.Tournament_Mode, compModeToggle, 100)
     if CompMode:
-        CompAtmpNum = createWorkshopSettingInt(SettingsText.TournamentCategory, SettingsText.TournamentAttempts, attemptCount, 1, 500, 102)
-        CompMarathon = createWorkshopSettingBool(SettingsText.TournamentCategory, SettingsText.TournamentRestart, compMarathon, 103)
+        CompAtmpNum = createWorkshopSettingInt(SettingsText.TournamentCategory, SettingsText.Tournament_Attempts, attemptCount, 1, 500, 102)
+        CompMarathon = createWorkshopSettingBool(SettingsText.TournamentCategory, SettingsText.Tournament_Marathon, compMarathon, 103)
 
     SaveName = []
     SaveCp = []
@@ -89,7 +89,7 @@ rule "Parkour | Match time":
     pauseMatchTime()
     wait(0)
     (LobbyID = "v") if antiCheat else (pass)
-    TimeRemaining = createWorkshopSettingInt(SettingsText.MapCategory, SettingsText.MapTime, lobbyTime, 5, 265, 4)
+    TimeRemaining = createWorkshopSettingInt(SettingsText.MapCategory, SettingsText.Map_Time, lobbyTime, 5, 265, 4)
     while 60 * TimeRemaining - getTotalTimeElapsed() > 0:
         wait(60 * TimeRemaining - getTotalTimeElapsed())
     #"房间已达最大持续时间, 即将重启" checkCN "Maximum Lobby Time Reached, Restarting"
