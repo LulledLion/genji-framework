@@ -1,4 +1,4 @@
-#!mainFile "../framework.opy
+#!mainFile "../framework.opy"
 
 ################################################################################
 /* Rename Global Variables */
