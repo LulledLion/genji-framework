@@ -3,7 +3,10 @@
 #!include "all.opy"
 
 macro Fw_Parkour_Setup_Hero():
-    pass
+    Ability1Checkpoints = Ability1Checkpoints if len(Ability1Checkpoints) else []
+    #Ability2Checkpoints = Ability2Checkpoints if len(Ability2Checkpoints) else []
+    #SecondaryCheckpoints = SecondaryCheckpoints if len(SecondaryCheckpoints) else []
+    UltCheckpoints = UltCheckpoints if len(UltCheckpoints) else []
 
 macro Fw_Parkour_UpdateCache_Hero():
     pass

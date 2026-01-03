@@ -92,8 +92,8 @@ MenuCreate(menu = {
         CheckpointPositions.insertAt(eventPlayer.checkpoint_current, eventPlayer.getPosition())
         eventPlayer.checkpoint_current++
         #Abilities
-        UltEnabledCheckpoints.shiftAt(hostPlayer.checkpoint_current)
-        Ability1EnabledCheckpoints.shiftAt(hostPlayer.checkpoint_current)
+        UltCheckpoints.shiftAt(hostPlayer.checkpoint_current)
+        Ability1Checkpoints.shiftAt(hostPlayer.checkpoint_current)
         #Bans
         BanMulti.shiftAt(eventPlayer.checkpoint_current)
         BanCreate.shiftAt(eventPlayer.checkpoint_current)
@@ -112,8 +112,8 @@ MenuCreate(menu = {
                 {
                     code: `
     #Abilities
-    UltEnabledCheckpoints.removeAndShift(hostPlayer.checkpoint_current)
-    Ability1EnabledCheckpoints.removeAndShift(hostPlayer.checkpoint_current)
+    UltCheckpoints.removeAndShift(hostPlayer.checkpoint_current)
+    Ability1Checkpoints.removeAndShift(hostPlayer.checkpoint_current)
     #Bans
     BanMulti.removeAndShift(hostPlayer.checkpoint_current)
     BanCreate.removeAndShift(hostPlayer.checkpoint_current)
@@ -163,19 +163,19 @@ MenuCreate(menu = {
     `,
             pages: [
                 {
-                    text: `ft"Ultimate: {eventPlayer.checkpoint_current in UltEnabledCheckpoints}\n 1. On\n 2. Off\n 0. ← Back"`,
+                    text: `ft"Ultimate: {eventPlayer.checkpoint_current in UltCheckpoints}\n 1. On\n 2. Off\n 0. ← Back"`,
                     update: true,
                     pages: [
-                        {code: `UltEnabledCheckpoints.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `UltEnabledCheckpoints.remove(eventPlayer.checkpoint_current)`}
+                        {code: `UltCheckpoints.addUnique(eventPlayer.checkpoint_current)`},
+                        {code: `UltCheckpoints.remove(eventPlayer.checkpoint_current)`}
                     ]
                 },
                 {
-                    text: `ft"Ability 1: {eventPlayer.checkpoint_current in Ability1EnabledCheckpoints}\n 1. On\n 2. Off\n 0. ← Back"`,
+                    text: `ft"Ability 1: {eventPlayer.checkpoint_current in Ability1Checkpoints}\n 1. On\n 2. Off\n 0. ← Back"`,
                     update: true,
                     pages: [
-                        {code: `Ability1EnabledCheckpoints.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `Ability1EnabledCheckpoints.remove(eventPlayer.checkpoint_current)`}
+                        {code: `Ability1Checkpoints.addUnique(eventPlayer.checkpoint_current)`},
+                        {code: `Ability1Checkpoints.remove(eventPlayer.checkpoint_current)`}
                     ]
                 }
             ]

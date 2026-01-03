@@ -5,8 +5,8 @@
 #!include "climbers.opy"
 
 macro Fw_Parkour_Setup_Hero():
-    UltEnabledCheckpoints = [i for i in UltEnabledCheckpoints if i + false >= 0] if len(UltEnabledCheckpoints) else []
-    Ability1EnabledCheckpoints = [i for i in Ability1EnabledCheckpoints if i + false >= 0] if len(Ability1EnabledCheckpoints) else []
+    UltCheckpoints = [i for i in UltCheckpoints if i + false >= 0] if len(UltCheckpoints) else []
+    Ability1Checkpoints = [i for i in Ability1Checkpoints if i + false >= 0] if len(Ability1Checkpoints) else []
     # clean out -1's after the ban has loaded
     #BanTriple = [i for i in BanTriple if i + false >= 0] if len(BanTriple) else [] # legacy code, now auto sets it to null to save space
     BanCreate = [i for i in BanCreate if i + false >= 0] if len(BanCreate) else []
@@ -22,10 +22,10 @@ macro Fw_Parkour_Setup_Hero():
 
 macro Fw_Parkour_UpdateCache_Hero():
     if eventPlayer.checkpoint_notLast:
-        eventPlayer.cache_startUlt = eventPlayer.checkpoint_current in UltEnabledCheckpoints
+        eventPlayer.cache_startUlt = eventPlayer.checkpoint_current in UltCheckpoints
         if eventPlayer.cache_startUlt:
             smallMessage(eventPlayer, f"   {abilityIconString(Hero.GENJI, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
-        eventPlayer.cache_startAbility1 = eventPlayer.checkpoint_current in Ability1EnabledCheckpoints
+        eventPlayer.cache_startAbility1 = eventPlayer.checkpoint_current in Ability1Checkpoints
         if eventPlayer.cache_startAbility1:
             smallMessage(eventPlayer, f"   {abilityIconString(Hero.GENJI, Button.ABILITY_1)} {t'Dash Is Ready'}")
         eventPlayer.ban_create = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.BanCreateBhop, false, 1) or eventPlayer.checkpoint_current in BanCreate
