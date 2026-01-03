@@ -220,51 +220,7 @@ rule "Addon | Caching Jump & Crouch Inputs For Spectators":
     wait(0)
     eventPlayer.cache_inputs = vect(eventPlayer.isHoldingButton(Button.JUMP), eventPlayer.isHoldingButton(Button.CROUCH), false)
     goto RULE_START
-/*
-def AddonCheckMap():
-    @Name "Addon | SUB Basic Map Validator"
-    if len(CheckpointPositions) <= 1: return
-    createDummy(Hero.ANA, Team.1 if getNumberOfSlots(Team.1) < getNumberOfSlots(Team.2) else Team.2, -1, CheckpointPositions[0], null)
-    MapChecker = getLastCreatedEntity()
-    MapChecker.disableEnvironmentCollision(false)
-    MapChecker.setStatusEffect(null, Status.PHASED_OUT, Math.INFINITY)
-    MapChecker.setInvisibility(Invis.ALL)
-    MapChecker.startScalingSize(cpCircleRadius / 0.45, false)
-    MapChecker.setGravity(Math.INFINITY)
-    waitUntil(MapChecker.hasSpawned(), 16) # Not infinity incase dummy does not spawn
 
-    for MapChecker.checkpoint_current in range(1, len(CheckpointPositions)):
-        if nearestWalkablePosition(CheckpointPositions[MapChecker.checkpoint_current]) and distance(CheckpointPositions[MapChecker.checkpoint_current], nearestWalkablePosition(CheckpointPositions[MapChecker.checkpoint_current])) > cpCircleRadius:
-            MapChecker.startForcingPosition(raycast(CheckpointPositions[MapChecker.checkpoint_current] + Vector.UP * cpCircleRadius, CheckpointPositions[MapChecker.checkpoint_current] +
-                Vector.DOWN * cpCircleRadius, [], [], false).getHitPosition(), true)
-            wait(7 * 0.016)
-            MapChecker.stopForcingPosition()
-            waitUntil(MapChecker.isOnGround(), true)
-            if MapChecker.isOnGround() and distance(MapChecker, CheckpointPositions[MapChecker.checkpoint_current]) <= cpCircleRadius:
-                goto lbl_MapChecker_nextCp
-
-            for MapChecker.checkpoint_practice in range(cpCircleRadius, cpCircleRadius - 0.2, -0.2):
-                MapChecker.startForcingPosition(CheckpointPositions[MapChecker.checkpoint_current] + Vector.UP * MapChecker.checkpoint_practice,true)
-                wait(7 * 0.016)
-                MapChecker.stopForcingPosition()
-                waitUntil(MapChecker.isOnGround(), true)
-                if MapChecker.isOnGround() and distance(MapChecker, CheckpointPositions[MapChecker.checkpoint_current]) <= cpCircleRadius:
-                    goto lbl_MapChecker_nextCp
-
-            enableInspector()
-            printLog("Fail {0}".format(MapChecker.checkpoint_current))
-            disableInspector()
-        lbl_MapChecker_nextCp:
-
-    MapChecker.editor_saveCache = EditorOn
-    EditorOn = null
-    enableInspector()
-    printLog("◆ Map Check Complete ◆")
-    disableInspector()
-    EditorOn = MapChecker.editor_saveCache
-    destroyDummy(MapChecker.getTeam(), MapChecker.getSlot())
-    MapChecker = null
-*/
 def Addon3rdPerson():
     @Name "Addon | SUB 3rd Person Camera"
     if eventPlayer.addon_toggle3rdPov:
@@ -274,3 +230,48 @@ def Addon3rdPerson():
             updateEveryTick(0.5 * Vector.UP + eventPlayer.getEyePosition()), false)
     else:
         eventPlayer.stopCamera()
+/*
+def AddonCheckMap():
+    @Name "Addon | SUB Basic Map Validator"
+    if len(CheckpointPositions) <= 1: return
+    createDummy(Hero.ANA, Team.1 if getNumberOfSlots(Team.1) < getNumberOfSlots(Team.2) else Team.2, -1, CheckpointPositions[0], null)
+    MsDestructo = getLastCreatedEntity()
+    MsDestructo.disableEnvironmentCollision(false)
+    MsDestructo.setStatusEffect(null, Status.PHASED_OUT, Math.INFINITY)
+    MsDestructo.setInvisibility(Invis.ALL)
+    MsDestructo.startScalingSize(cpCircleRadius / 0.45, false)
+    MsDestructo.setGravity(Math.INFINITY)
+    waitUntil(MsDestructo.hasSpawned(), 16) # Not infinity incase dummy does not spawn
+
+    for MsDestructo.checkpoint_current in range(1, len(CheckpointPositions)):
+        if nearestWalkablePosition(CheckpointPositions[MsDestructo.checkpoint_current]) and distance(CheckpointPositions[MsDestructo.checkpoint_current], nearestWalkablePosition(CheckpointPositions[MsDestructo.checkpoint_current])) > cpCircleRadius:
+            MsDestructo.startForcingPosition(raycast(CheckpointPositions[MsDestructo.checkpoint_current] + Vector.UP * cpCircleRadius, CheckpointPositions[MsDestructo.checkpoint_current] +
+                Vector.DOWN * cpCircleRadius, [], [], false).getHitPosition(), true)
+            wait(7 * 0.016)
+            MsDestructo.stopForcingPosition()
+            waitUntil(MsDestructo.isOnGround(), true)
+            if MsDestructo.isOnGround() and distance(MsDestructo, CheckpointPositions[MsDestructo.checkpoint_current]) <= cpCircleRadius:
+                goto lbl_MsDestructo_nextCp
+
+            for MsDestructo.checkpoint_practice in range(cpCircleRadius, cpCircleRadius - 0.2, -0.2):
+                MsDestructo.startForcingPosition(CheckpointPositions[MsDestructo.checkpoint_current] + Vector.UP * MsDestructo.checkpoint_practice,true)
+                wait(7 * 0.016)
+                MsDestructo.stopForcingPosition()
+                waitUntil(MsDestructo.isOnGround(), true)
+                if MsDestructo.isOnGround() and distance(MsDestructo, CheckpointPositions[MsDestructo.checkpoint_current]) <= cpCircleRadius:
+                    goto lbl_MsDestructo_nextCp
+
+            enableInspector()
+            printLog("Fail {0}".format(MsDestructo.checkpoint_current))
+            disableInspector()
+        lbl_MsDestructo_nextCp:
+
+    MsDestructo.editor_saveCache = EditorOn
+    EditorOn = null
+    enableInspector()
+    printLog("◆ Map Check Complete ◆")
+    disableInspector()
+    EditorOn = MsDestructo.editor_saveCache
+    destroyDummy(MsDestructo.getTeam(), MsDestructo.getSlot())
+    MsDestructo = null
+*/
