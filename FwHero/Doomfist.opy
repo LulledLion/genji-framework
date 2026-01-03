@@ -1,6 +1,11 @@
 #!mainFile "../framework.opy"
-
+################################################################################
+/* Rename Global Variables */
+##!define 
+################################################################################
+/* Include Shared Skill Macros*/
 #!include "all.opy"
+################################################################################
 
 macro Fw_Parkour_Setup_Hero():
     Ability1Checkpoints = Ability1Checkpoints if len(Ability1Checkpoints) else []
@@ -10,6 +15,8 @@ macro Fw_Parkour_Setup_Hero():
 
 macro Fw_Parkour_UpdateCache_Hero():
     pass
+
+################################################################################
 
 macro Fw_Mechanics_GroundReset_Hero():
     pass

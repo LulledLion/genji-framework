@@ -1,8 +1,13 @@
-#!mainFile "../framework.opy"
+#!mainFile "../framework.opy
 
+################################################################################
+/* Rename Global Variables */
+#!define BanAutoCreate CM
+################################################################################
+/* Include Shared Skill Macros*/
 #!include "all.opy"
-
 #!include "climbers.opy"
+################################################################################
 
 macro Fw_Parkour_Setup_Hero():
     UltCheckpoints = [i for i in UltCheckpoints if i + false >= 0] if len(UltCheckpoints) else []
@@ -71,6 +76,8 @@ macro Fw_Parkour_UpdateCache_Hero():
         eventPlayer.ban_climb = false
         eventPlayer.ban_bhop = false
         eventPlayer.ban_djump = false
+
+################################################################################
 
 macro Fw_Mechanics_GroundReset_Hero():
     eventPlayer.skill_usedDouble = null
