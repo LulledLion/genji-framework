@@ -114,7 +114,7 @@ globalvar BanBhop 86
 globalvar BanStand 87                       # bans on second hop
 globalvar BanDjump 88
 globalvar BanSaveDouble 89
-globalvar BanAutoCreate 90
+globalvar CM 90 #BanAutoCreate
 
 ######################################## Player Variables #####################
 #PlayerEffects data
@@ -140,6 +140,10 @@ playervar timer_normal                             # float                     -
 playervar timer_practice
 playervar timer_split                         # int                       --- stored time that the split compares to
 playervar timer_splitDisplay                      # int                       --- displayed split value
+
+playervar preview_array1                     # array                     --- store preview positions
+playervar preview_array2
+playervar preview_i                         # int                       --- preview itterator
 
 playervar toggle_invincible                  # bool                       --- invincible/normal mode toggle now a bool
 playervar toggle_spectate                    # bool                       --- turned into bool
@@ -186,10 +190,6 @@ playervar cache_bouncePosition
 playervar cache_inputs
 playervar cache_rainbow                     # color                     --- color of fx after finish the map
 playervar cache_titleHud                        # textid                    --- store curent  title textid
-
-playervar preview_array1                     # array                     --- store preview positions
-playervar preview_array2
-playervar preview_i                         # int                       --- preview itterator
 
 #playervar editor_on                          # bool                      --- on all players, but only gets checked from host player
 playervar editor_modeSelect                 # int                       --- EditMode - 1 checkpoint | 2 Killing sphere | 3 Bouncing ball
