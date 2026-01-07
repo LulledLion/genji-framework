@@ -59,6 +59,10 @@ rule "☞ Credits and Colors here - 作者代码HUD颜色 <---- INSERT HERE / �
     ColorConfig[Customize.orb_lock] = Color.ORANGE
     #portals   -   自定义 传送门
     ColorConfig[Customize.portal] = Color.WHITE
+    #Addon checkpoint Huds   -   应用于 所有地图文 本的颜色
+    ColorConfig[Customize.cp_huds] = Color.BLUE
+    #Addon checkpoint IWT   -   应用于 所有地图文 本的颜色
+    ColorConfig[Customize.cp_iwts] = Color.LIME_GREEN
 
 rule "Instructions for Depricated Rules (ban / portal / dash /ult) - 旧版编辑器中已弃用规则指引 (单关封禁 / 传送门 / 给刀给S)":
     @Delimiter

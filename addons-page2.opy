@@ -124,9 +124,6 @@ rule "Addon | In-World Text For Certain Checkpoints - 特定关卡显示的地�
     # in CpIwtPos fill in the vector
     # 修改数组 “CpIwtPos” 为地图文本 的矢量位置
     CpIwtPos = [vect(1,1,1), vect(1,1,1)]
-    # color applies to all
-    # 选择应用到 所有地图文 本的颜色
-    CpIwtColor = Color.LIME_GREEN
 
 rule "Addon | Hint Text For Certain Checkpoints - 特定关卡的提示文本 <---- EDIT ME / 在此处编辑":
     @Disabled

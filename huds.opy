@@ -161,13 +161,13 @@ rule "Huds | Global Localplayer":
         hudText((localPlayer.checkpoint_current in CpHudCp and localPlayer.toggle_guide)[0],
             CpHudText[CpHudCp.index(localPlayer.checkpoint_current)],
             null, null,
-            HudPosition.TOP, HO.add_custommsg1, Color.BLUE, null, null, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
+            HudPosition.TOP, HO.add_custommsg1, ColorConfig[Customize.cp_huds], null, null, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
 
     if len(CpIwtText):
         createInWorldText(localPlayer.checkpoint_current in CpIwtCp,
             CpIwtText[CpIwtCp.index(localPlayer.checkpoint_current)],
             CpIwtPos[CpIwtCp.index(localPlayer.checkpoint_current)],
-            2, Clip.SURFACES, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, CpIwtColor, SpecVisibility.DEFAULT)
+            2, Clip.SURFACES, WorldTextReeval.VISIBILITY_POSITION_AND_STRING, ColorConfig[Customize.cp_iwts], SpecVisibility.DEFAULT)
 
     if CompMode:
         if InstructionText:

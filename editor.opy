@@ -32,12 +32,11 @@ rule "Editor | Export Map":
     TitleData = null
     CpHudText = null
     CpHudCp = null
-    HintText = null
-    HintCp = null
     CpIwtText = null
     CpIwtCp = null
     CpIwtPos = null
-    CpIwtColor = null
+    HintText = null
+    HintCp = null
     PortalLoc = null
     PortalDest  = null
     PortalEffects = null

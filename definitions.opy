@@ -103,7 +103,7 @@ globalvar CpHudCp 75
 globalvar CpIwtText 76
 globalvar CpIwtCp 77
 globalvar CpIwtPos 78
-globalvar CpIwtColor 79
+#globalvar CpIwtColor 79
 #globalvar BanTriple 80                      # legacy
 globalvar BanMulti 81
 globalvar BanCreate 82
@@ -346,6 +346,8 @@ enum Customize: # always add new options on end so previously configured colors 
     orb_lock,
     portal,
     dsc,
+    cp_huds,
+    cp_iwts,
 
 enum EditorMode:
     current = (hostPlayer.editor_modeSelect),
