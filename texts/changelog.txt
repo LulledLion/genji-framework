@@ -704,6 +704,9 @@ fixed:
 ### Skill Bans
  - Added a 'Auto Create Bhop' ban option
    * Code derived from `@zxzpkcxcc` +25xp
+### Addons
+ - Color customization for checkpoint Huds and Iwts added to rule "Credits and Colors Here"
+   * Reported by `@CoralMage` +5xp
 ### Tournament Mode
  - Fixed setting sliders
  - Fixed permanent invincibility
