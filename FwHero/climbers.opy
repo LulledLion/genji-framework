@@ -60,6 +60,7 @@ macro Fw_Mechanics_Climber():
         @Event eachPlayer
         @Condition eventPlayer.ban_autocreate
         @Condition eventPlayer.toggle_invincible == false
+        @Condition eventPlayer.cache_bounceTouched <= 0 #Ignore if Orb Create
         @Condition eventPlayer.isHoldingButton(Button.JUMP) == false
         wait(0)
         if not ruleCondition: return

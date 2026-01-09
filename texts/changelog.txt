@@ -712,3 +712,8 @@ fixed:
  - Fixed permanent invincibility
  - Removed timer for an adjustable lobby duration
  - Disabled placeholder instructions as default
+
+# 1.10.4G
+### Skill Bans
+ - Added Auto Create ban exception for bounce orbs
+    *  Reported by `dooosaaa` + 5xp
