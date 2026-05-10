@@ -48,15 +48,10 @@ MenuCreate(menu = {
  2. Checkpoints
  3. Abilities
  4. Ban Skills
- 5. Collectibles
- 6. Lava Spheres
- 7. Portals
- 8. Targets
- 9. Group Up
- 10. Safe Zones
- 11. Dummies
- 12. Save
+ 5. Objects
+ 6. Save
  0. Close"`,
+    /* code: `smallMessage(true[0], "  Hello!") #eventPlayer.MenuToggleVisibility()`, */
     pages: [
         {
             text: `t"Editor Movement
@@ -280,78 +275,96 @@ MenuCreate(menu = {
             ]
         },
         {
-            text: `t"Collectable Orbs
+            text: `t"Objects
+ 1. Collectibles
+ 2. Lava Spheres
+ 3. Portals
+ 4. Targets
+ 5. Group Up
+ 6. Safe Zones
+ 7. Dummies
+ 0. Back"`,
+            code: `if not len(CheckpointPositions):
+        eventPlayer.MenuInvalidateSelect()`,
+            pages: [
+                {
+                    text: `t"Collectable Orbs
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-            pages: [0, 0, 0, 0, 0]
-        },
-        {
-            text: `t"Lava Spheres
+                    pages: [0, 0, 0, 0, 0]
+                },
+                {
+                    text: `t"Lava Spheres
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-            pages: [0, 0, 0, 0, 0]
-        },
-        {
-            text: `t"Portals
+                    pages: [0, 0, 0, 0, 0]
+                },
+                {
+                    text: `t"Portals
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-            pages: [0, 0, 0, 0, 0]
-        },
-        {
-            text: `t"Targets
+                    pages: [0, 0, 0, 0, 0]
+                },
+                {
+                    text: `t"Targets
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-            pages: [0, 0, 0, 0, 0]
-        },
-        {
-            text: `t"Group Up
+                    pages: [0, 0, 0, 0, 0]
+                },
+                {
+                    text: `t"Group Up
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-            pages: [0, 0, 0, 0, 0]
-        },
-        {
-            text: `t"Safe Zones
+                    pages: [0, 0, 0, 0, 0]
+                },
+                {
+                    text: `t"Safe Zones
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-            pages: [0, 0, 0, 0, 0]
-        },
-        {
-            text: `t"Dummies
+                    pages: [0, 0, 0, 0, 0]
+                },
+                {
+                    text: `t"Dummies
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-            pages: [0, 0, 0, 0, 0]
+                    pages: [0, 0, 0, 0, 0]
+                },
+            ]
         },
         {
             code: `#Export to Inspector
-    pass`
+    eventPlayer.MenuToggleVisibility()
+    enableInspector()
+    disableInspector()`,
+            pages: [0],
         }
     ]
 })
