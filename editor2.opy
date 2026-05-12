@@ -9,10 +9,10 @@ globalvar debug_ult_on
 
 rule "Editor | Menu - HUD":
     @Condition EditorOn
-    ##!disableOptimizations
+    #!disableOptimizations
     hudText(hostPlayer if hostPlayer.MenuIsVisible() else false,
         #hostPlayer.MenuText_Translated_Vertical(),
-        hostPlayer.MenuText_Translated(/* backMsg = t" ◀ 0. Back" */),
+        hostPlayer.MenuText_Translated(),
         hostPlayer.MenuPreview_Translated(),
         LeftAlign128, HudPosition.LEFT, null, Color.WHITE, Color.WHITE, null, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
     #!optimizeForSize
@@ -363,8 +363,7 @@ MenuCreate(menu = {
             code: `#Export to Inspector
     eventPlayer.MenuToggleVisibility()
     enableInspector()
-    disableInspector()`,
-            pages: [0],
+    disableInspector()`
         }
     ]
 })
