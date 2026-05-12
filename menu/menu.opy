@@ -48,10 +48,14 @@ macro Player.MenuSelect():
     # Activate selected menu option
     __MenuAction__()
     if self.__MenuSelection__ < null:
-        self.MenuInvalidateSelect()
-    elif  __MenuPointer__[self.__MenuCurrent__][self.__MenuSelection__]:
+        self.__MenuSelection__ *= -1 #MenuUninvalidateSelect()
+    elif  __MenuPointer__[self.__MenuCurrent__][self.__MenuSelection__]: # __MenuPointer__ != 0
         self.__MenuCurrent__ = __MenuPointer__[self.__MenuCurrent__][self.__MenuSelection__]
         self.__MenuSelection__ = 1
+    #/*
+    elif self.__MenuSelection__:
+    elif self.__MenuCurrent__ == 1:
+        self.MenuToggleVisibility() #*/
     __MenuText__()
 ################################################################################
 macro Player.MenuText_Translated_Vertical():
@@ -76,3 +80,4 @@ macro Player.MenuPreview_Translated():
     # with translations enabled
     # Requires optimizations disabled
     (_(__MenuString__[__MenuPointer__[self.__MenuCurrent__][self.__MenuSelection__]]) or [])
+################################################################################
