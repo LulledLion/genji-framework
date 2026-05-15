@@ -5,17 +5,17 @@ rule "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒�
 
 rule "Command | Toggle Leaderboard (Hold Melee)":
     @Event eachPlayer
-    @Condition len(LeaderBoardFull) > 0
     @Condition EditorOn == false
-    @Condition eventPlayer.isHoldingButton(Button.MELEE)
+    @Condition len(LeaderBoardFull) > 0
+    input@Fw_Commands_Leaderboard()
+
     wait(1, Wait.ABORT_WHEN_FALSE)
     eventPlayer.toggle_leaderboard = not eventPlayer.toggle_leaderboard
 
 rule "Command | Toggle Split (Hold Ability 1 + Primary + Secondary)":
     @Event eachPlayer
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_1)
-    @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
-    @Condition eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
+    input@Fw_Commands_Split()
+
     wait(1, Wait.ABORT_WHEN_FALSE)
     eventPlayer.timer_splitDisplay = 0 if eventPlayer.timer_splitDisplay <= -Math.INFINITY else -Math.INFINITY
     playEffect(eventPlayer, DynamicEffect.BUFF_IMPACT_SOUND, null, eventPlayer, 100)
@@ -25,9 +25,10 @@ rule "Command | Toggle Split (Hold Ability 1 + Primary + Secondary)":
 
 rule "Command | Toggle Invisible (Hold Ability 1)":
     @Event eachPlayer
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2)
     @Condition EditorOn == false
     @Condition CompMode == false
+    input@Fw_Commands_Invisible()
+
     wait(1, Wait.ABORT_WHEN_FALSE)
     eventPlayer.toggle_invisible = not eventPlayer.toggle_invisible
     # Enable Invis Command (Invis Command cant be pasted in CN client die to null and none translating to same symbol)
@@ -50,6 +51,7 @@ rule "Command | Preview Orbs & Portals (Hold Primary + Secondary)":
     @Condition eventPlayer.checkpoint_notLast
     @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
     @Condition eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
+
     wait(0.512, Wait.ABORT_WHEN_FALSE)
     eventPlayer.preview_array1 = [CheckpointPositions[eventPlayer.checkpoint_current + 1][0]]
     if len(BouncePadCheckpoints):
@@ -96,9 +98,7 @@ rule "Command | Restart Run (Crouch + Interact + Deflect)":
     @Event eachPlayer
     @Condition not eventPlayer.editor_lock or eventPlayer != hostPlayer
     @Condition eventPlayer.lockState == false
-    @Condition eventPlayer.isHoldingButton(Button.CROUCH)
-    @Condition eventPlayer.isHoldingButton(Button.INTERACT)
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2)
+    input@Fw_Commands_Restart()
 
     eventPlayer.lockState = true
     if CompMode:
@@ -134,12 +134,7 @@ rule "Command | Restart Run (Crouch + Interact + Deflect)":
 
 rule "Command | Spectate (Hold Interact)":
     @Event eachPlayer
-    @Condition eventPlayer.isHoldingButton(Button.INTERACT)
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2) == false
-    @Condition (EditorOn and (
-        eventPlayer.isHoldingButton(Button.MELEE) or
-        eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) or
-        eventPlayer.isHoldingButton(Button.SECONDARY_FIRE))) == false
+    input@Fw_Commands_Spectate()
 
     wait(1, Wait.ABORT_WHEN_FALSE)
     if EditorOn: # editor has interact combos
@@ -169,13 +164,10 @@ rule "Command | Toggle Invincible Mode (Melee + Reload)":
     @Condition (CompMode and eventPlayer.comp_countAttempts < 0) == false
     @Condition eventPlayer.lockState == false
     @Condition eventPlayer.isAlive()
-    @Condition eventPlayer.isHoldingButton(Button.MELEE)
-    @Condition eventPlayer.isHoldingButton(Button.RELOAD)
-    @Condition eventPlayer.isHoldingButton(Button.INTERACT) == false
+    input@Fw_Commands_Invincible()
 
     eventPlayer.lockState = true
     eventPlayer.toggle_invincible = not eventPlayer.toggle_invincible
-
     if eventPlayer.toggle_invincible:
         #"探点模式" checkCN "Invincible mode"
         bigMessage(eventPlayer, t"Invincible Mode")
@@ -201,9 +193,7 @@ rule "Command | Toggle Practice Mode (Melee + Ultimate)":
     @Condition CompMode == false
     @Condition eventPlayer.lockState == false
     @Condition eventPlayer.isAlive()
-    @Condition eventPlayer.isHoldingButton(Button.RELOAD) == false
-    @Condition eventPlayer.isHoldingButton(Button.MELEE)
-    @Condition eventPlayer.isHoldingButton(Button.ULTIMATE)
+    input@Fw_Commands_Practice()
 
     eventPlayer.lockState = true
     eventPlayer.toggle_practice = not eventPlayer.toggle_practice
@@ -292,9 +282,7 @@ rule "Command | Practice Skip (Crouch + Primary-Next | Secondary-Previous)":
 
 rule "Command | Quick Reset (Reload | Hold Reload to Enable)":
     @Event eachPlayer
-    @Condition eventPlayer.isHoldingButton(Button.RELOAD)
-    @Condition eventPlayer.isHoldingButton(Button.MELEE) == false
-    @Condition eventPlayer.isHoldingButton(Button.INTERACT) == false
+    input@Fw_Commands_QuickReset()
 
     if eventPlayer.toggle_quickRestart:
         if eventPlayer.editor_fly:
@@ -311,10 +299,7 @@ rule "Command | Quick Reset (Reload | Hold Reload to Enable)":
 rule "Command | Toggle Hud (Hold Secondary)":
     @Event eachPlayer
     @Condition EditorMoveItem == false
-    @Condition (EditorOn and eventPlayer == hostPlayer and eventPlayer.isHoldingButton(Button.MELEE)) == false
-    @Condition eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
-    @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) == false
-    @Condition eventPlayer.isHoldingButton(Button.CROUCH) == false # don't activate during skipping
+    input@Fw_Commands_Huds()
 
     wait(1.5, Wait.ABORT_WHEN_FALSE)
     eventPlayer.toggle_guide = not eventPlayer.toggle_guide
@@ -327,8 +312,8 @@ rule "Command | Toggle Hud (Hold Secondary)":
 rule "Command | Toggle Hints (Melee + Deflect)":
     @Event eachPlayer
     @Condition HintText != null
-    @Condition eventPlayer.isHoldingButton(Button.MELEE)
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2)
+    input@Fw_Commands_Hints()
+
     @Condition eventPlayer.toggle_hints or eventPlayer.checkpoint_current in HintCp
     eventPlayer.toggle_hints = not eventPlayer.toggle_hints
 
@@ -338,8 +323,8 @@ rule "Command | Toggle 3rd Person Camera (Hold Crouch + Jump)":
     @Condition eventPlayer.lockState == false
     @Condition eventPlayer.editor_lock == false
     @Condition eventPlayer.isOnGround()
-    @Condition eventPlayer.isHoldingButton(Button.CROUCH)
-    @Condition eventPlayer.isHoldingButton(Button.JUMP)
+    input@Fw_Commands_3rdPerson()
+
     wait(1, Wait.ABORT_WHEN_FALSE)
     eventPlayer.addon_toggle3rdPov = not eventPlayer.addon_toggle3rdPov
     Addon3rdPerson()
