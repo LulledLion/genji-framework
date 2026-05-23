@@ -1,4 +1,6 @@
 #!optimizeForSize
+#!optimizeForSizeAggressive
+#!allowMacroRedeclaration
 ##!suppressWarnings w_ow2_communicate_bug
 #!suppressWarnings w_tags
 #!suppressWarnings w_lone_else
