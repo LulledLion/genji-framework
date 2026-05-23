@@ -138,7 +138,7 @@ MenuCreate(menu = {
                     code: `
     if eventPlayer.checkpoint_current <= 0:
         smallMessage(eventPlayer, "   Teleport Unavailable For Level") # "   不能在第一个检查点设置传送门"
-    elif len(CheckpointPositions[eventPlayer.checkpoint_current]) >= 2:
+    elif len(CheckpointPositions[eventPlayer.checkpoint_current]) > 1:
         CheckpointPositions[eventPlayer.checkpoint_current] = CheckpointPositions[eventPlayer.checkpoint_current][0]
         smallMessage(eventPlayer, "   Teleport Removed For Level") # "   关卡{0}的传送点已移除"
     else:
@@ -151,10 +151,10 @@ MenuCreate(menu = {
             ]
         },
         {
-            text: `t"Abilities
- 1. Ultimate
- 2. Ability 1
- #. Ability 2
+            text: `tf"Abilities
+ 1. Ultimate {abilityIconString(FwHero.Hero, Button.ULTIMATE)}
+ 2. Ability 1 {abilityIconString(FwHero.Hero, Button.ABILITY_1)}
+ #. Ability 2 {abilityIconString(FwHero.Hero, Button.ABILITY_2)}
  #. Primary Fire
  #. Secondary Fire
  #. Crouch
