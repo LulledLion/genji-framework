@@ -10,50 +10,50 @@
 /* Hero Key Bind Override */
 
 enum Command_Leaderboard:
-    condition = true
+    #condition = true
 
 enum Command_Split:
-    condition = true
+    #condition = true
 
 enum Command_Invisible:
-    condition = true
+    #condition = true
 
 enum Command_Preview:
-    input = true
-    condition = Command_Preview.input
+    #input = true
+    #condition = Command_Preview.input
 
 enum Command_Restart:
-    condition = true
+    #condition = true
 
 enum Command_Spectate:
-    condition = true
+    #condition = true
 
 enum Command_Invincible:
-    condition = true
+    #condition = true
 
 enum Command_Practice:
-    condition = true
+    #condition = true
 
 enum Command_PracticeRestart:
-    input = true
-    condition = Command_Restart.input
+    #input = true
+    #condition = Command_Restart.input
 
 enum Command_PracticeSkip:
-    input1 = true
-    input2 = true
-    condition = Command_PracticeSkip.input1 != Command_PracticeSkip.input2
+    #input1 = true
+    #input2 = true
+    #condition = Command_PracticeSkip.input1 != Command_PracticeSkip.input2
 
 enum Command_QuickReset:
-    condition = true
+    #condition = true
 
 enum Command_Huds:
-    condition = true
+    #condition = true
 
 enum Command_Hints:
-    condition = true
+    #condition = true
 
 enum Command_3rdPerson:
-    condition = true
+    #condition = true
 
 ################################################################################
 
