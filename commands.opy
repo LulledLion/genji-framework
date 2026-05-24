@@ -7,15 +7,13 @@ rule "Command | Toggle Leaderboard (Hold Melee)":
     @Event eachPlayer
     @Condition EditorOn == false
     @Condition len(LeaderBoardFull) > 0
-    input@Fw_Commands_Leaderboard()
-
+    @Condition Command_Leaderboard.condition
     wait(1, Wait.ABORT_WHEN_FALSE)
     eventPlayer.toggle_leaderboard = not eventPlayer.toggle_leaderboard
 
 rule "Command | Toggle Split (Hold Ability 1 + Primary + Secondary)":
     @Event eachPlayer
-    input@Fw_Commands_Split()
-
+    @Condition Command_Split.condition
     wait(1, Wait.ABORT_WHEN_FALSE)
     eventPlayer.timer_splitDisplay = 0 if eventPlayer.timer_splitDisplay <= -Math.INFINITY else -Math.INFINITY
     playEffect(eventPlayer, DynamicEffect.BUFF_IMPACT_SOUND, null, eventPlayer, 100)
@@ -27,8 +25,7 @@ rule "Command | Toggle Invisible (Hold Ability 1)":
     @Event eachPlayer
     @Condition EditorOn == false
     @Condition CompMode == false
-    input@Fw_Commands_Invisible()
-
+    @Condition Command_Invisible.condition
     wait(1, Wait.ABORT_WHEN_FALSE)
     eventPlayer.toggle_invisible = not eventPlayer.toggle_invisible
     # Enable Invis Command (Invis Command cant be pasted in CN client die to null and none translating to same symbol)
@@ -49,21 +46,17 @@ rule "Command | Preview Orbs & Portals (Hold Primary + Secondary)":
     #@Condition EditorOn == false
     @Condition eventPlayer.lockState == false
     @Condition eventPlayer.checkpoint_notLast
-    @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
-    @Condition eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
-
+    @Condition Command_Preview.condition
     wait(0.512, Wait.ABORT_WHEN_FALSE)
     eventPlayer.preview_array1 = [CheckpointPositions[eventPlayer.checkpoint_current + 1][0]]
     if len(BouncePadCheckpoints):
         eventPlayer.preview_array1.append(BouncePositions.filter(tuple: BouncePadCheckpoints[CAI] == eventPlayer.checkpoint_current))
         eventPlayer.preview_array2.append(BouncePadCheckpoints.map(tuple: CAI).filter(tuple: BouncePadCheckpoints[CAE] == eventPlayer.checkpoint_current))
-
     if len(CustomPortalStart):
         #eventPlayer.preview_array1.append(CustomPortalStart.filter(tuple: CustomPortalCP[CustomPortalStart.index(CAE)] == eventPlayer.checkpoint_current))
         for eventPlayer.preview_i in range(len(eventPlayer.cache_portalStart)):
             eventPlayer.preview_array1.append([eventPlayer.cache_portalStart[eventPlayer.preview_i], eventPlayer.cache_portalEnd[eventPlayer.preview_i]])
             eventPlayer.preview_array2.append([[eventPlayer.preview_i, false], [eventPlayer.preview_i, true]])
-
     wait(0)
     eventPlayer.preview_i = 0
     if eventPlayer.addon_toggle3rdPov:
@@ -76,7 +69,7 @@ rule "Command | Preview Orbs & Portals (Hold Primary + Secondary)":
     eventPlayer.setSecondaryFireEnabled(false)
     eventPlayer.disallowButton(Button.ABILITY_1)
     eventPlayer.disallowButton(Button.JUMP)
-    while eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) and eventPlayer.isHoldingButton(Button.SECONDARY_FIRE) and eventPlayer.isAlive() and not eventPlayer.lockState:
+    while Command_Preview.input and eventPlayer.isAlive() and not eventPlayer.lockState:
         if eventPlayer.getThrottle().x < -0.5:
             eventPlayer.preview_i += 1
         elif eventPlayer.getThrottle().x > 0.5:
@@ -94,12 +87,11 @@ rule "Command | Preview Orbs & Portals (Hold Primary + Secondary)":
     eventPlayer.preview_array1 = null
     eventPlayer.preview_array2 = null
 
-rule "Command | Restart Run (Crouch + Interact + Deflect)":
+rule "Command | Restart Run (Crouch + Interact + Ability2)":
     @Event eachPlayer
     @Condition not eventPlayer.editor_lock or eventPlayer != hostPlayer
     @Condition eventPlayer.lockState == false
-    input@Fw_Commands_Restart()
-
+    @Condition Command_Restart.condition
     eventPlayer.lockState = true
     if CompMode:
         #if CompTime < 1: smallMessage(eventPlayer, "   比赛结束" checkCN "   Competition Is Over")
@@ -134,8 +126,7 @@ rule "Command | Restart Run (Crouch + Interact + Deflect)":
 
 rule "Command | Spectate (Hold Interact)":
     @Event eachPlayer
-    input@Fw_Commands_Spectate()
-
+    @Condition Command_Spectate.condition
     wait(1, Wait.ABORT_WHEN_FALSE)
     if EditorOn: # editor has interact combos
         wait(1, Wait.ABORT_WHEN_FALSE)
@@ -164,8 +155,7 @@ rule "Command | Toggle Invincible Mode (Melee + Reload)":
     @Condition (CompMode and eventPlayer.comp_countAttempts < 0) == false
     @Condition eventPlayer.lockState == false
     @Condition eventPlayer.isAlive()
-    input@Fw_Commands_Invincible()
-
+    @Condition Command_Invincible.condition
     eventPlayer.lockState = true
     eventPlayer.toggle_invincible = not eventPlayer.toggle_invincible
     if eventPlayer.toggle_invincible:
@@ -193,8 +183,7 @@ rule "Command | Toggle Practice Mode (Melee + Ultimate)":
     @Condition CompMode == false
     @Condition eventPlayer.lockState == false
     @Condition eventPlayer.isAlive()
-    input@Fw_Commands_Practice()
-
+    @Condition Command_Practice.condition
     eventPlayer.lockState = true
     eventPlayer.toggle_practice = not eventPlayer.toggle_practice
     if eventPlayer.toggle_practice:
@@ -229,21 +218,14 @@ rule "Command | Practice Restart (Hold Interact)":
     @Condition eventPlayer.lockState == false
     @Condition eventPlayer.toggle_practice
     @Condition eventPlayer.isAlive() or eventPlayer.toggle_spectate
-    @Condition eventPlayer.isHoldingButton(Button.INTERACT)
-    @Condition eventPlayer.isHoldingButton(Button.CROUCH) == false
-    @Condition eventPlayer.isHoldingButton(Button.ULTIMATE) == false
-    @Condition eventPlayer.isHoldingButton(Button.MELEE) == false
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2) == false
-
-    #  first 2 ifs prevent collide with spec
-    if eventPlayer.toggle_spectate:
+    @Condition Command_PracticeRestart.condition
+    if eventPlayer.toggle_spectate: # first 2 ifs prevent collide with spec
         waitUntil(eventPlayer.isAlive(), Math.INFINITY)
-        waitUntil(not eventPlayer.isHoldingButton(Button.INTERACT), 2)
+        waitUntil(not Command_PracticeRestart.input, 2)
         return
-    waitUntil(not eventPlayer.isHoldingButton(Button.INTERACT), 0.9)
-    if eventPlayer.isHoldingButton(Button.INTERACT):
+    waitUntil(not Command_PracticeRestart.input, 0.9)
+    if Command_PracticeRestart.input:
         return
-
     eventPlayer.timer_practice = 0
     eventPlayer.timer_split = 0
     eventPlayer.checkpoint_current = eventPlayer.checkpoint_practice
@@ -257,16 +239,14 @@ rule "Command | Practice Skip (Crouch + Primary-Next | Secondary-Previous)":
     @Condition eventPlayer.editor_lock == false
     @Condition EditorOn or eventPlayer.toggle_practice
     @Condition eventPlayer.lockState == eventPlayer.checkpoint_skip
-    @Condition eventPlayer.isHoldingButton(Button.CROUCH)
-    @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) != (eventPlayer.isHoldingButton(Button.SECONDARY_FIRE))
+    @Condition Command_PracticeSkip.condition
     #@Condition hostPlayer.editor_on or (eventPlayer.toggle_practice and eventPlayer.isHoldingButton(Button.ABILITY_1))
     eventPlayer.lockState = true
     eventPlayer.timer_split = 0
     eventPlayer.timer_practice = 0
-    eventPlayer.checkpoint_current += len(CheckpointPositions) - 1 if eventPlayer.isHoldingButton(Button.SECONDARY_FIRE) else true
+    eventPlayer.checkpoint_current += Command_PracticeSkip.input1 or len(CheckpointPositions) - true
     eventPlayer.checkpoint_current %= len(CheckpointPositions)
     eventPlayer.checkpoint_moved = true
-    #waitUntil(eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) == eventPlayer.isHoldingButton(Button.SECONDARY_FIRE), 0.256) # faster if you spam button
     if eventPlayer.checkpoint_skip:
         wait(0.32, Wait.RESTART_WHEN_TRUE)
         UpdateCache()
@@ -282,8 +262,7 @@ rule "Command | Practice Skip (Crouch + Primary-Next | Secondary-Previous)":
 
 rule "Command | Quick Reset (Reload | Hold Reload to Enable)":
     @Event eachPlayer
-    input@Fw_Commands_QuickReset()
-
+    @Condition Command_QuickReset.condition
     if eventPlayer.toggle_quickRestart:
         if eventPlayer.editor_fly:
             eventPlayer.editor_fly = CheckpointPositions[eventPlayer.checkpoint_current].last()
@@ -299,8 +278,7 @@ rule "Command | Quick Reset (Reload | Hold Reload to Enable)":
 rule "Command | Toggle Hud (Hold Secondary)":
     @Event eachPlayer
     @Condition EditorMoveItem == false
-    input@Fw_Commands_Huds()
-
+    @Condition Command_Huds.condition
     wait(1.5, Wait.ABORT_WHEN_FALSE)
     eventPlayer.toggle_guide = not eventPlayer.toggle_guide
     smallMessage(eventPlayer, t"   HUD Is Now Shown" if eventPlayer.toggle_guide else t"   HUD Is Now Hidden")
@@ -312,8 +290,7 @@ rule "Command | Toggle Hud (Hold Secondary)":
 rule "Command | Toggle Hints (Melee + Deflect)":
     @Event eachPlayer
     @Condition HintText != null
-    input@Fw_Commands_Hints()
-
+    @Condition Command_Hints.condition
     @Condition eventPlayer.toggle_hints or eventPlayer.checkpoint_current in HintCp
     eventPlayer.toggle_hints = not eventPlayer.toggle_hints
 
@@ -323,8 +300,7 @@ rule "Command | Toggle 3rd Person Camera (Hold Crouch + Jump)":
     @Condition eventPlayer.lockState == false
     @Condition eventPlayer.editor_lock == false
     @Condition eventPlayer.isOnGround()
-    input@Fw_Commands_3rdPerson()
-
+    @Condition Command_3rdPerson.condition
     wait(1, Wait.ABORT_WHEN_FALSE)
     eventPlayer.addon_toggle3rdPov = not eventPlayer.addon_toggle3rdPov
     Addon3rdPerson()

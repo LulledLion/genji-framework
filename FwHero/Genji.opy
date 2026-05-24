@@ -8,6 +8,9 @@
 #!include "all.opy"
 #!include "climbers.opy"
 ################################################################################
+/* Hero Key Bind Override  */
+
+################################################################################
 
 macro Fw_Parkour_Setup_Hero():
     Ability1Checkpoints = Ability1Checkpoints.exclude(-1) if len(Ability1Checkpoints) else []
@@ -29,10 +32,10 @@ macro Fw_Parkour_UpdateCache_Hero():
     if eventPlayer.checkpoint_notLast:
         eventPlayer.cache_startAbility1 = eventPlayer.checkpoint_current in Ability1Checkpoints
         if eventPlayer.cache_startAbility1:
-            smallMessage(eventPlayer, f"   {abilityIconString(Hero.GENJI, Button.ABILITY_1)} {t'Dash Is Ready'}")
+            smallMessage(eventPlayer, f"   {abilityIconString(FwHero.Hero, Button.ABILITY_1)} {t'Dash Is Ready'}")
         eventPlayer.cache_startUlt = eventPlayer.checkpoint_current in UltCheckpoints
         if eventPlayer.cache_startUlt:
-            smallMessage(eventPlayer, f"   {abilityIconString(Hero.GENJI, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
+            smallMessage(eventPlayer, f"   {abilityIconString(FwHero.Hero, Button.ULTIMATE)} {t'Ultimate Is Ready'}")
         eventPlayer.ban_create = createWorkshopSettingBool(SettingsText.BanCategory, SettingsText.Ban_CreateBhop, false, 1) or eventPlayer.checkpoint_current in BanCreate
         if eventPlayer.ban_create:
             eventPlayer.banString = f"♂ {eventPlayer.banString}"

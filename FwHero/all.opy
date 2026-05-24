@@ -3,67 +3,82 @@
 ################################################################################
 /* Default Command Input Binds*/
 
-macro input@Fw_Commands_Leaderboard():
-    @Condition eventPlayer.isHoldingButton(Button.MELEE)
+enum Command_Leaderboard:
+    input = eventPlayer.isHoldingButton(Button.MELEE)
+    condition = Command_Leaderboard.input
 
-macro input@Fw_Commands_Split():
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_1)
-    @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
-    @Condition eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
+enum Command_Split:
+    input = eventPlayer.isHoldingButton(Button.ABILITY_1) and eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) \
+        and eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
+    condition = Command_Split.input
 
-macro input@Fw_Commands_Invisible():
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2)
+enum Command_Invisible:
+    input = eventPlayer.isHoldingButton(Button.ABILITY_2)
+    condition = Command_Invisible.input
 
-macro input@Fw_Commands_Preview():
-    pass
+enum Command_Preview:
+    input = hostPlayer.isHoldingButton(Button.PRIMARY_FIRE) and hostPlayer.isHoldingButton(Button.SECONDARY_FIRE)
+    condition = Command_Preview.input
 
-macro input@Fw_Commands_Restart():
-    @Condition eventPlayer.isHoldingButton(Button.CROUCH)
-    @Condition eventPlayer.isHoldingButton(Button.INTERACT)
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2)
+enum Command_Restart:
+    input = eventPlayer.isHoldingButton(Button.CROUCH) and eventPlayer.isHoldingButton(Button.INTERACT) \
+        and eventPlayer.isHoldingButton(Button.ABILITY_2)
+    condition = Command_Restart.input
 
-macro input@Fw_Commands_Spectate():
-    @Condition eventPlayer.isHoldingButton(Button.INTERACT)
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2) == false
-    @Condition (EditorOn and (
+enum Command_Spectate:
+    input = eventPlayer.isHoldingButton(Button.INTERACT)
+    block = eventPlayer.isHoldingButton(Button.ABILITY_2)
+    editor = EditorOn and (
         eventPlayer.isHoldingButton(Button.MELEE) or
         eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) or
-        eventPlayer.isHoldingButton(Button.SECONDARY_FIRE))) == false
+        eventPlayer.isHoldingButton(Button.SECONDARY_FIRE))
+    condition = Command_Spectate.input and not Command_Spectate.block and not Command_Spectate.editor
 
-macro input@Fw_Commands_Invincible():
-    @Condition eventPlayer.isHoldingButton(Button.MELEE)
-    @Condition eventPlayer.isHoldingButton(Button.RELOAD)
-    @Condition eventPlayer.isHoldingButton(Button.INTERACT) == false
+enum Command_Invincible:
+    input = eventPlayer.isHoldingButton(Button.MELEE) and eventPlayer.isHoldingButton(Button.RELOAD)
+    block = eventPlayer.isHoldingButton(Button.INTERACT)
+    condition = Command_Invincible.input and not Command_Invincible.block
 
-macro input@Fw_Commands_Practice():
-    @Condition eventPlayer.isHoldingButton(Button.RELOAD) == false
-    @Condition eventPlayer.isHoldingButton(Button.MELEE)
-    @Condition eventPlayer.isHoldingButton(Button.ULTIMATE)
+enum Command_Practice:
+    input = eventPlayer.isHoldingButton(Button.MELEE) and eventPlayer.isHoldingButton(Button.ULTIMATE)
+    block = eventPlayer.isHoldingButton(Button.RELOAD)
+    condition = Command_Practice.input and not Command_Practice.block
 
-macro input@input@Fw_Commands_PracticeRestart():
-    pass
+enum Command_PracticeRestart:
+    input = eventPlayer.isHoldingButton(Button.INTERACT)
+    block1 = eventPlayer.isHoldingButton(Button.CROUCH)
+    block2 = eventPlayer.isHoldingButton(Button.ULTIMATE)
+    block3 = eventPlayer.isHoldingButton(Button.MELEE)
+    block4 = eventPlayer.isHoldingButton(Button.ABILITY_2)
+    condition = Command_PracticeRestart.input and not Command_PracticeRestart.block1 and not Command_PracticeRestart.block2 \
+        and not Command_PracticeRestart.block3 and not Command_PracticeRestart.block4
 
-macro input@Fw_Commands_PracticeSkip():
-    pass
+enum Command_PracticeSkip:
+    input1 = eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
+    input2 = eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
+    input3 = eventPlayer.isHoldingButton(Button.CROUCH)
+    condition = Command_PracticeSkip.input3 and Command_PracticeSkip.input1 != Command_PracticeSkip.input2
 
-macro input@Fw_Commands_QuickReset():
-    @Condition eventPlayer.isHoldingButton(Button.RELOAD)
-    @Condition eventPlayer.isHoldingButton(Button.MELEE) == false
-    @Condition eventPlayer.isHoldingButton(Button.INTERACT) == false
+enum Command_QuickReset:
+    input = eventPlayer.isHoldingButton(Button.RELOAD)
+    block1 = eventPlayer.isHoldingButton(Button.MELEE)
+    block2 = eventPlayer.isHoldingButton(Button.INTERACT)
+    condition = Command_QuickReset.input and not Command_QuickReset.block1 and not Command_QuickReset.block2
 
-macro input@Fw_Commands_Huds():
-    @Condition (EditorOn and eventPlayer == hostPlayer and eventPlayer.isHoldingButton(Button.MELEE)) == false
-    @Condition eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
-    @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) == false
-    @Condition eventPlayer.isHoldingButton(Button.CROUCH) == false # don't activate during skipping
+enum Command_Huds:
+    input = eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
+    block1 = eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
+    block2 = eventPlayer.isHoldingButton(Button.CROUCH) # don't activate during skipping
+    editor = EditorOn and eventPlayer == hostPlayer and eventPlayer.isHoldingButton(Button.MELEE)
+    condition = Command_Huds.input and not Command_Huds.block1 and not Command_Huds.block2 and not Command_Huds.editor
 
-macro input@Fw_Commands_Hints():
-    @Condition eventPlayer.isHoldingButton(Button.MELEE)
-    @Condition eventPlayer.isHoldingButton(Button.ABILITY_2)
+enum Command_Hints:
+    input = eventPlayer.isHoldingButton(Button.MELEE) and eventPlayer.isHoldingButton(Button.ABILITY_2)
+    condition = Command_Hints.input
 
-macro input@Fw_Commands_3rdPerson():
-    @Condition eventPlayer.isHoldingButton(Button.CROUCH)
-    @Condition eventPlayer.isHoldingButton(Button.JUMP)
+enum Command_3rdPerson:
+    input = eventPlayer.isHoldingButton(Button.CROUCH) and eventPlayer.isHoldingButton(Button.JUMP)
+    condition = Command_3rdPerson.input
 
 ################################################################################
 /* Generalized mechanics for all heroes here */
