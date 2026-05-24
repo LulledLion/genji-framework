@@ -752,3 +752,7 @@ fixed:
  - Fixed math simplification to Fencer Breaker
    * Reported by `kuma0997` +10xp
    * Thanks `Zezombye` for spotting the math mistake x-y+z ≠ x-(y+z)
+
+# 1.10.4I
+### General
+ - Simplify editor export process
