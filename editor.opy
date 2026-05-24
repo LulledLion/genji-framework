@@ -4,8 +4,6 @@ rule "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒�
     @Delimiter
 
 rule "Editor | Export Map":
-    @Event eachPlayer
-    @Condition eventPlayer == hostPlayer
     @Condition EditorOn
     @Condition hostPlayer.isHoldingButton(Button.MELEE)
     @Condition hostPlayer.isHoldingButton(Button.INTERACT)

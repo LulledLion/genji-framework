@@ -122,7 +122,7 @@ rule "Parkour | Player Initialize":
     eventPlayer.enableDeathSpectateTargetHud()
     eventPlayer.disableRespawn()
     eventPlayer.preloadHero(FwHero.Hero)
-    eventPlayer.WARNING = "Variable Target → Global\n变量目标 → 全局   ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​".replace([],[])
+    #eventPlayer.WARNING = "Variable Target → Global\n变量目标 → 全局   ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​".replace([],[])
     eventPlayer.editor_lock = true
     eventPlayer.toggle_guide = true
     #eventPlayer.toggle_quickRestart = true
