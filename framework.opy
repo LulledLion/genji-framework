@@ -5,6 +5,7 @@
 #!suppressWarnings w_tags
 #!suppressWarnings w_lone_else
 #!suppressWarnings w_enum_constant
+#!writeToOutputFile
 ################################################################################
 #!define versionhere "1.10.4I"
 #♨ Dev Build Icon
