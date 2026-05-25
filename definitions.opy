@@ -34,7 +34,8 @@ globalvar Ability1Checkpoints 13            # int                       --- dash
 globalvar EditSelected 14
 globalvar EditSelectIdArray 15
 globalvar EditorOn 16                        # bool                      --- editor rules enabled?
-#globalvar R 17
+#!define MapObjects R
+globalvar MapObjects 17
 #!define BouncePositions TQ
 globalvar BouncePositions 18                # list[vect]                --- list of bouncepad positions
 #globalvar T 19
