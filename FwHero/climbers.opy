@@ -40,8 +40,6 @@ macro Fw_Mechanics_Climber():
         @Event eachPlayer
         @Condition eventPlayer.isInAir()
         @Condition eventPlayer.isCrouching()
-        @Condition eventPlayer.isJumping() == false
-        @Condition eventPlayer.isHoldingButton(Button.CROUCH)
         @Condition eventPlayer.isHoldingButton(Button.JUMP) == false
         eventPlayer.skill_usedBhop = false
         if eventPlayer.lockState: return # prevent restart from giving messsage, but stil allow it to become green
