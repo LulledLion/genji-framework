@@ -412,3 +412,7 @@ macro Player.flyMovementDelta():
 
 macro Player.spectateIf(condition): # Testing, currently unused
     true if (condition) else (self.toggle_spectate or self.getSlot() < null)
+
+macro setupTags(var):
+    var = "​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​"
+    var = f"​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​­{var}〼".replace(f"​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​­{var}〼".replace([], []), f"​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​­{var}ࡀ".replace([], []).substring(171, true))
