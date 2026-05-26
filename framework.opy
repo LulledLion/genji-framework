@@ -42,9 +42,9 @@ macro compMarathon = false # Enforce Marathon: false
 ##!keepUnusedTranslations
 macro overrideLanguage = Languages.Automatic
 ################################################################################
-#!disableInspector
+##!disableInspector
 #!globalvarInitRuleName "OverPy | Global Init"
-##!playervarInitRuleName "OverPy | Player Init"
+#!playervarInitRuleName "OverPy | Player Init"
 ################################################################################
 Fw_Include_Hero
 ################################################################################
@@ -68,10 +68,6 @@ rule "":
     @NewPage ("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒"
     " Map Data & Addon Settings Are On Page 2 ◆ 地图数据和附加组件的设置在第2页 "
     "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-rule "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒" \
-    " Map Data & Addon Settings Are On Page 2 ◆ 地图数据和附加组件的设置在第2页 "\
-    "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒":
-    @Delimiter #Duplicate to fix rule deletion offset in #!postCompileHook
 ################################################################################
 testData
 ################################################################################
