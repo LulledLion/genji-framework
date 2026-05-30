@@ -295,7 +295,6 @@ rule "Editor | Hud & Effects":
                 []
             ][EditorMode.current]),
             HudPosition.RIGHT, HO.edit_instructions_edit4, Color.YELLOW, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
-        # ==
         /*
         hudSubtext(
             hostPlayer if hostPlayer.toggle_guide else null,
