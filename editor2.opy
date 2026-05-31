@@ -4,8 +4,23 @@ rule "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒�
     @Delimiter
 
 #!include "menu/menu.opy"
-#globalvar EditorOn
-globalvar debug_ult_on
+
+macro hostUpdateCache():
+    hostPlayer.editor_callSUB = 1
+macro hostCheckpointFailReset():
+    hostPlayer.editor_callSUB = 2
+macro hostUpdateReset():
+    hostPlayer.editor_callSUB = true
+
+rule "Editor | Call Player SUB":
+    @Event eachPlayer
+    @Condition eventPlayer == hostPlayer
+    @Condition hostPlayer.editor_callSUB
+    if hostPlayer.editor_callSUB == 1:
+        UpdateCache()
+    if hostPlayer.editor_callSUB == 2:
+        CheckpointFailReset()
+    hostPlayer.editor_callSUB = null
 
 rule "Editor | Menu - HUD":
     @Condition EditorOn
@@ -32,8 +47,6 @@ rule "Editor | Menu - Move Selection":
         hostPlayer.MenuPrev()
 
 rule "Editor | Menu - Selected Menu or Action":
-    @Event eachPlayer
-    @Condition hostPlayer == eventPlayer #Required for UpdateCache
     @Condition hostPlayer.MenuIsVisible()
     #@Condition hostPlayer.isHoldingButton(Button.PRIMARY_FIRE) != hostPlayer.isHoldingButton(Button.SECONDARY_FIRE)
     @Condition hostPlayer.isHoldingButton(Button.JUMP) != hostPlayer.isHoldingButton(Button.CROUCH)
@@ -44,17 +57,18 @@ rule "Editor | Menu - Selected Menu or Action":
 
 MenuCreate(menu = {
     text: `t"Main Menu
- 1. Editor Movement
- 2. Checkpoints
- 3. Abilities
- 4. Ban Skills
- 5. Objects
- 6. Save
+ 1. Editor Options
+ 2. Create Checkpoint
+ 3. Delete Checkpoint
+ 4. Edit Checkpoint
+ 5. Next Checkpoint
+ 6. Previous Checkpoint
+ 7. Export Map Data
  0. Close"`,
-    /* code: `smallMessage(true[0], "  Hello!") #eventPlayer.MenuToggleVisibility()`, */
+    /* code: `smallMessage(true[0], "  Hello!") #hostPlayer.MenuToggleVisibility()`, */
     pages: [
-        {
-            text: `t"Editor Movement
+        { //#Editor Options
+            text: `t"Editor Options
  1. Fly
  2. Walk
  3. Collision Off
@@ -64,94 +78,100 @@ MenuCreate(menu = {
  7. Move Fast 300%
  8. Slow Motion 50%
  9. Slow Motion Off
+ 10. Toggle Visual Hitbox
  0. Back"`,
             pages: [
-                { code: `eventPlayer.startForcingPosition(eventPlayer.getPosition() + eventPlayer.flyMovementDelta(), true)` },
-                { code: `eventPlayer.stopForcingPosition()` },
-                { code: `eventPlayer.disableEnvironmentCollision(false)` },
-                { code: `eventPlayer.enableEnvironmentCollision()` },
-                { code: `eventPlayer.setMoveSpeed(3)` },
-                { code: `eventPlayer.setMoveSpeed(100)` },
-                { code: `eventPlayer.setMoveSpeed(300)` },
+                { code: `hostPlayer.startForcingPosition(hostPlayer.getPosition() + hostPlayer.flyMovementDelta(), true)` },
+                { code: `hostPlayer.stopForcingPosition()` },
+                { code: `hostPlayer.disableEnvironmentCollision(false)` },
+                { code: `hostPlayer.enableEnvironmentCollision()` },
+                { code: `hostPlayer.setMoveSpeed(3)` },
+                { code: `hostPlayer.setMoveSpeed(100)` },
+                { code: `hostPlayer.setMoveSpeed(300)` },
                 { code: `setSlowMotion(50)` },
-                { code: `setSlowMotion(100)` }
+                { code: `setSlowMotion(100)` },
+                { code: `hostPlayer.editor_hitboxToggle = not hostPlayer.editor_hitboxToggle`}
             ]
         },
-        {
-            text: `t"Checkpoints
- 1. Create
- 2. Move
- 3. Delete
- 4. Toggle Teleport
- 5. Toggle Visual Hitbox
- #. Set Facing Angle
- 0. Back"`,
-            /*code: `smallMessage(true[0], "  Checkpoint Menu Opened!")`,*/
-            pages: [
-                {
-                    code: `
-    if len(CheckpointPositions) and distance(eventPlayer, CheckpointPositions[eventPlayer.checkpoint_current]) <= cpCircleRadius:
-        smallMessage(eventPlayer, "   Cannot Place Checkpoint Too Close.") #"   放置的检查点距离太近"
-    else:
-        CheckpointPositions.insertAt(eventPlayer.checkpoint_current, eventPlayer.getPosition())
-        eventPlayer.checkpoint_current++
-        #Abilities
-        UltCheckpoints.shiftAt(hostPlayer.checkpoint_current)
-        Ability1Checkpoints.shiftAt(hostPlayer.checkpoint_current)
-        #Bans
-        BanMulti.shiftAt(eventPlayer.checkpoint_current)
-        BanCreate.shiftAt(eventPlayer.checkpoint_current)
-        BanStand.shiftAt(eventPlayer.checkpoint_current)
-        BanDead.shiftAt(eventPlayer.checkpoint_current)
-        BanEmote.shiftAt(eventPlayer.checkpoint_current)
-        BanClimb.shiftAt(eventPlayer.checkpoint_current)
-        BanSaveDouble.shiftAt(eventPlayer.checkpoint_current)
-        BanBhop.shiftAt(eventPlayer.checkpoint_current)
-        BanDjump.shiftAt(eventPlayer.checkpoint_current)
+        { //#Create Checkpoint
+            code: `
+                if len(CheckpointPositions) and distance(hostPlayer, CheckpointPositions[hostPlayer.checkpoint_current]) <= cpCircleRadius:
+                    smallMessage(hostPlayer, "   Cannot Place Checkpoint Too Close.") #"   放置的检查点距离太近"
+                else:
+                    hostPlayer.checkpoint_current++
+                    CheckpointPositions.insertAt(hostPlayer.checkpoint_current, hostPlayer.getPosition())
+                    #Abilities
+                    UltCheckpoints.shiftAt(hostPlayer.checkpoint_current)
+                    Ability1Checkpoints.shiftAt(hostPlayer.checkpoint_current)
+                    #Bans
+                    BanMulti.shiftAt(hostPlayer.checkpoint_current)
+                    BanCreate.shiftAt(hostPlayer.checkpoint_current)
+                    BanStand.shiftAt(hostPlayer.checkpoint_current)
+                    BanDead.shiftAt(hostPlayer.checkpoint_current)
+                    BanEmote.shiftAt(hostPlayer.checkpoint_current)
+                    BanClimb.shiftAt(hostPlayer.checkpoint_current)
+                    BanSaveDouble.shiftAt(hostPlayer.checkpoint_current)
+                    BanBhop.shiftAt(hostPlayer.checkpoint_current)
+                    BanDjump.shiftAt(hostPlayer.checkpoint_current)
 
-        smallMessage(eventPlayer, "   Checkpoint Created!")
-        UpdateCache()`
-                },
-                0,
-                {
-                    code: `
-    #Abilities
-    UltCheckpoints.removeAndShift(hostPlayer.checkpoint_current)
-    Ability1Checkpoints.removeAndShift(hostPlayer.checkpoint_current)
-    #Bans
-    BanMulti.removeAndShift(hostPlayer.checkpoint_current)
-    BanCreate.removeAndShift(hostPlayer.checkpoint_current)
-    BanStand.removeAndShift(hostPlayer.checkpoint_current)
-    BanDead.removeAndShift(hostPlayer.checkpoint_current)
-    BanEmote.removeAndShift(hostPlayer.checkpoint_current)
-    BanClimb.removeAndShift(hostPlayer.checkpoint_current)
-    BanSaveDouble.removeAndShift(hostPlayer.checkpoint_current)
-    BanBhop.removeAndShift(hostPlayer.checkpoint_current)
-    BanDjump.removeAndShift(hostPlayer.checkpoint_current)
-    
-    del CheckpointPositions[eventPlayer.checkpoint_current]
-    eventPlayer.checkpoint_current = max(eventPlayer.checkpoint_current - 1, 0 - not len(CheckpointPositions))
-    smallMessage(eventPlayer, "   Checkpoint Deleted!")
-    UpdateCache()`
-                },
-                {
-                    code: `
-    if eventPlayer.checkpoint_current <= 0:
-        smallMessage(eventPlayer, "   Teleport Unavailable For Level") # "   不能在第一个检查点设置传送门"
-    elif len(CheckpointPositions[eventPlayer.checkpoint_current]) > 1:
-        CheckpointPositions[eventPlayer.checkpoint_current] = CheckpointPositions[eventPlayer.checkpoint_current][0]
-        smallMessage(eventPlayer, "   Teleport Removed For Level") # "   关卡{0}的传送点已移除"
-    else:
-        CheckpointPositions[eventPlayer.checkpoint_current] = [CheckpointPositions[eventPlayer.checkpoint_current], eventPlayer.getPosition()]
-        smallMessage(eventPlayer, "   Teleport Added For Level") # "   传送点已添加到当前关卡"`
-                },
-                {
-                    code: `eventPlayer.editor_hitboxToggle = not eventPlayer.editor_hitboxToggle`
-                }
-            ]
+                    smallMessage(hostPlayer, "   Checkpoint Created!")
+                    hostUpdateCache()`
         },
-        {
-            text: `tf"Abilities
+        { //#Delete Checkpoint
+            code: `
+                #Abilities
+                UltCheckpoints.removeAndShift(hostPlayer.checkpoint_current)
+                Ability1Checkpoints.removeAndShift(hostPlayer.checkpoint_current)
+                #Bans
+                BanMulti.removeAndShift(hostPlayer.checkpoint_current)
+                BanCreate.removeAndShift(hostPlayer.checkpoint_current)
+                BanStand.removeAndShift(hostPlayer.checkpoint_current)
+                BanDead.removeAndShift(hostPlayer.checkpoint_current)
+                BanEmote.removeAndShift(hostPlayer.checkpoint_current)
+                BanClimb.removeAndShift(hostPlayer.checkpoint_current)
+                BanSaveDouble.removeAndShift(hostPlayer.checkpoint_current)
+                BanBhop.removeAndShift(hostPlayer.checkpoint_current)
+                BanDjump.removeAndShift(hostPlayer.checkpoint_current)
+                
+                del CheckpointPositions[hostPlayer.checkpoint_current]
+                hostPlayer.checkpoint_current = max(hostPlayer.checkpoint_current - 1, 0 - not len(CheckpointPositions))
+                smallMessage(hostPlayer, "   Checkpoint Deleted!")
+                hostUpdateCache()`
+        },
+        { //#Edit Checkpoint
+            text: `t"Edit Checkpoint
+ 1. Move Checkpoint
+ 2. Toggle Teleport
+ 3. Set Facing Angle
+ 4. Abilities
+ 5. Ban Skills
+ 6. Objects
+ 0. Back"`,
+            code: `
+    if not len(CheckpointPositions):
+        smallMessage(hostPlayer, t"  ▶ Create Checkpoint")
+        hostPlayer.MenuInvalidateSelect()
+    `,
+            pages: [
+                { //#Move Checkpoint
+                    code: `pass`
+                },
+                { //#Toggle Teleport
+                    code: `
+                        if hostPlayer.checkpoint_current <= 0:
+                            smallMessage(hostPlayer, "   Teleport Unavailable For Level") # "   不能在第一个检查点设置传送门"
+                        elif len(CheckpointPositions[hostPlayer.checkpoint_current]) > 1:
+                            CheckpointPositions[hostPlayer.checkpoint_current] = CheckpointPositions[hostPlayer.checkpoint_current][0]
+                            smallMessage(hostPlayer, "   Teleport Removed For Level") # "   关卡{0}的传送点已移除"
+                        else:
+                            CheckpointPositions[hostPlayer.checkpoint_current] = [CheckpointPositions[hostPlayer.checkpoint_current], hostPlayer.getPosition()]
+                            smallMessage(hostPlayer, "   Teleport Added For Level") # "   传送点已添加到当前关卡"`
+                },
+                { //#Set Facing Angle
+                    code: `pass`
+                },
+                { //#Abilities
+                    text: `ft"Abilities
  1. Ultimate {abilityIconString(FwHero.Hero, Button.ULTIMATE)}
  2. Ability 1 {abilityIconString(FwHero.Hero, Button.ABILITY_1)}
  #. Ability 2 {abilityIconString(FwHero.Hero, Button.ABILITY_2)}
@@ -160,32 +180,27 @@ MenuCreate(menu = {
  #. Crouch
  #. Jump
  0. Back"`,
-            code: `
-    if not len(CheckpointPositions):
-        eventPlayer.MenuInvalidateSelect()
-        #UpdateCache()
-    `,
-            pages: [
-                {
-                    text: `ft"Ultimate: {eventPlayer.checkpoint_current in UltCheckpoints}\n 1. On\n 2. Off\n 0. Back"`,
-                    update: true,
                     pages: [
-                        {code: `UltCheckpoints.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `UltCheckpoints.remove(eventPlayer.checkpoint_current)`}
+                        {
+                            text: `ft"Ultimate: {hostPlayer.checkpoint_current in UltCheckpoints}\n 1. On\n 2. Off\n 0. Back"`,
+                            update: true,
+                            pages: [
+                                {code: `UltCheckpoints.addUnique(hostPlayer.checkpoint_current)`},
+                                {code: `UltCheckpoints.remove(hostPlayer.checkpoint_current)`}
+                            ]
+                        },
+                        {
+                            text: `ft"Ability 1: {hostPlayer.checkpoint_current in Ability1Checkpoints}\n 1. On\n 2. Off\n 0. Back"`,
+                            update: true,
+                            pages: [
+                                {code: `Ability1Checkpoints.addUnique(hostPlayer.checkpoint_current)`},
+                                {code: `Ability1Checkpoints.remove(hostPlayer.checkpoint_current)`}
+                            ]
+                        }
                     ]
                 },
-                {
-                    text: `ft"Ability 1: {eventPlayer.checkpoint_current in Ability1Checkpoints}\n 1. On\n 2. Off\n 0. Back"`,
-                    update: true,
-                    pages: [
-                        {code: `Ability1Checkpoints.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `Ability1Checkpoints.remove(eventPlayer.checkpoint_current)`}
-                    ]
-                }
-            ]
-        },
-        {
-            text: `t"Ban Skills
+                { //#Ban Skills
+                    text: `t"Ban Skills
  1. Multi-Climb ∞ 
  2. Create ♂
  3. Stand Create ♠
@@ -197,85 +212,83 @@ MenuCreate(menu = {
  8. Bhop ≥
  9. Double Jump »
  0. Back"`,
-            code: `if not len(CheckpointPositions):
-        eventPlayer.MenuInvalidateSelect()`,
-            pages: [
-                {
-                    text: `ft"Ban Multi-Climb ∞: {eventPlayer.checkpoint_current in BanMulti}\n 1. On\n 2. Off\n 0. Back"`,
-                    update: true,
                     pages: [
-                        {code: `BanMulti.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `BanMulti.remove(eventPlayer.checkpoint_current)`}
+                        {
+                            text: `ft"Ban Multi-Climb ∞: {hostPlayer.checkpoint_current in BanMulti}\n 1. On\n 2. Off\n 0. Back"`,
+                            update: true,
+                            pages: [
+                                {code: `BanMulti.addUnique(hostPlayer.checkpoint_current)`},
+                                {code: `BanMulti.remove(hostPlayer.checkpoint_current)`}
+                            ]
+                        },
+                        {
+                            text: `ft"Ban Create ♂: {hostPlayer.checkpoint_current in BanCreate}\n 1. On\n 2. Off\n 0. Back"`,
+                            update: true,
+                            pages: [
+                                {code: `BanCreate.addUnique(hostPlayer.checkpoint_current)`},
+                                {code: `BanCreate.remove(hostPlayer.checkpoint_current)`}
+                            ]
+                        },
+                        {
+                            text: `ft"Ban Stand Create ♠: {hostPlayer.checkpoint_current in BanStand}\n 1. On\n 2. Off\n 0. Back"`,
+                            update: true,
+                            pages: [
+                                {code: `BanStand.addUnique(hostPlayer.checkpoint_current)`},
+                                {code: `BanStand.remove(hostPlayer.checkpoint_current)`}
+                            ]
+                        },
+                        {
+                            text: `ft"Ban Dead Hop ×: {hostPlayer.checkpoint_current in BanDead}\n 1. On\n 2. Off\n 0. Back"`,
+                            update: true,
+                            pages: [
+                                {code: `BanDead.addUnique(hostPlayer.checkpoint_current)`},
+                                {code: `BanDead.remove(hostPlayer.checkpoint_current)`}
+                            ]
+                        },
+                        {
+                            text: `ft"Ban Emote ♥: {hostPlayer.checkpoint_current in BanEmote}\n 1. On\n 2. Off\n 0. Back"`,
+                            update: true,
+                            pages: [
+                                {code: `BanEmote.addUnique(hostPlayer.checkpoint_current)`},
+                                {code: `BanEmote.remove(hostPlayer.checkpoint_current)`}
+                            ]
+                        },
+                        {
+                            text: `ft"Ban Save Double △: {hostPlayer.checkpoint_current in BanSaveDouble}\n 1. On\n 2. Off\n 0. Back"`,
+                            update: true,
+                            pages: [
+                                {code: `BanSaveDouble.addUnique(hostPlayer.checkpoint_current)`},
+                                {code: `BanSaveDouble.remove(hostPlayer.checkpoint_current)`}
+                            ]
+                        },
+                        {
+                            text: `ft"Ban Climb ↑: {hostPlayer.checkpoint_current in BanClimb}\n 1. On\n 2. Off\n 0. Back"`,
+                            update: true,
+                            pages: [
+                                {code: `BanClimb.addUnique(hostPlayer.checkpoint_current)`},
+                                {code: `BanClimb.remove(hostPlayer.checkpoint_current)`}
+                            ]
+                        },
+                        {
+                            text: `ft"Unused Bhop ≥: {hostPlayer.checkpoint_current in BanBhop}\n 1. On\n 2. Off\n 0. Back"`,
+                            update: true,
+                            pages: [
+                                {code: `BanBhop.addUnique(hostPlayer.checkpoint_current)`},
+                                {code: `BanBhop.remove(hostPlayer.checkpoint_current)`}
+                            ]
+                        },
+                        {
+                            text: `ft"Unused Double Jump »: {hostPlayer.checkpoint_current in BanDjump}\n 1. On\n 2. Off\n 0. Back"`,
+                            update: true,
+                            pages: [
+                                {code: `BanDjump.addUnique(hostPlayer.checkpoint_current)`},
+                                {code: `BanDjump.remove(hostPlayer.checkpoint_current)`}
+                            ]
+                        }
                     ]
                 },
-                {
-                    text: `ft"Ban Create ♂: {eventPlayer.checkpoint_current in BanCreate}\n 1. On\n 2. Off\n 0. Back"`,
-                    update: true,
-                    pages: [
-                        {code: `BanCreate.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `BanCreate.remove(eventPlayer.checkpoint_current)`}
-                    ]
-                },
-                {
-                    text: `ft"Ban Stand Create ♠: {eventPlayer.checkpoint_current in BanStand}\n 1. On\n 2. Off\n 0. Back"`,
-                    update: true,
-                    pages: [
-                        {code: `BanStand.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `BanStand.remove(eventPlayer.checkpoint_current)`}
-                    ]
-                },
-                {
-                    text: `ft"Ban Dead Hop ×: {eventPlayer.checkpoint_current in BanDead}\n 1. On\n 2. Off\n 0. Back"`,
-                    update: true,
-                    pages: [
-                        {code: `BanDead.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `BanDead.remove(eventPlayer.checkpoint_current)`}
-                    ]
-                },
-                {
-                    text: `ft"Ban Emote ♥: {eventPlayer.checkpoint_current in BanEmote}\n 1. On\n 2. Off\n 0. Back"`,
-                    update: true,
-                    pages: [
-                        {code: `BanEmote.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `BanEmote.remove(eventPlayer.checkpoint_current)`}
-                    ]
-                },
-                {
-                    text: `ft"Ban Save Double △: {eventPlayer.checkpoint_current in BanSaveDouble}\n 1. On\n 2. Off\n 0. Back"`,
-                    update: true,
-                    pages: [
-                        {code: `BanSaveDouble.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `BanSaveDouble.remove(eventPlayer.checkpoint_current)`}
-                    ]
-                },
-                {
-                    text: `ft"Ban Climb ↑: {eventPlayer.checkpoint_current in BanClimb}\n 1. On\n 2. Off\n 0. Back"`,
-                    update: true,
-                    pages: [
-                        {code: `BanClimb.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `BanClimb.remove(eventPlayer.checkpoint_current)`}
-                    ]
-                },
-                {
-                    text: `ft"Unused Bhop ≥: {eventPlayer.checkpoint_current in BanBhop}\n 1. On\n 2. Off\n 0. Back"`,
-                    update: true,
-                    pages: [
-                        {code: `BanBhop.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `BanBhop.remove(eventPlayer.checkpoint_current)`}
-                    ]
-                },
-                {
-                    text: `ft"Unused Double Jump »: {eventPlayer.checkpoint_current in BanDjump}\n 1. On\n 2. Off\n 0. Back"`,
-                    update: true,
-                    pages: [
-                        {code: `BanDjump.addUnique(eventPlayer.checkpoint_current)`},
-                        {code: `BanDjump.remove(eventPlayer.checkpoint_current)`}
-                    ]
-                }
-            ]
-        },
-        {
-            text: `t"Objects
+                { //#Objects
+                    text: `t"Objects
  1. Collectibles
  2. Lava Spheres
  3. Portals
@@ -284,86 +297,118 @@ MenuCreate(menu = {
  6. Safe Zones
  7. Dummies
  0. Back"`,
-            code: `if not len(CheckpointPositions):
-        eventPlayer.MenuInvalidateSelect()`,
-            pages: [
-                {
-                    text: `t"Collectable Orbs
+                    pages: [
+                        {
+                            text: `t"Collectable Orbs
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-                    pages: [0, 0, 0, 0, 0]
-                },
-                {
-                    text: `t"Lava Spheres
+                            pages: [0, 0, 0, 0, 0]
+                        },
+                        {
+                            text: `t"Lava Spheres
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-                    pages: [0, 0, 0, 0, 0]
-                },
-                {
-                    text: `t"Portals
+                            pages: [0, 0, 0, 0, 0]
+                        },
+                        {
+                            text: `t"Portals
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-                    pages: [0, 0, 0, 0, 0]
-                },
-                {
-                    text: `t"Targets
+                            pages: [0, 0, 0, 0, 0]
+                        },
+                        {
+                            text: `t"Targets
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-                    pages: [0, 0, 0, 0, 0]
-                },
-                {
-                    text: `t"Group Up
+                            pages: [0, 0, 0, 0, 0]
+                        },
+                        {
+                            text: `t"Group Up
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-                    pages: [0, 0, 0, 0, 0]
-                },
-                {
-                    text: `t"Safe Zones
+                            pages: [0, 0, 0, 0, 0]
+                        },
+                        {
+                            text: `t"Safe Zones
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-                    pages: [0, 0, 0, 0, 0]
-                },
-                {
-                    text: `t"Dummies
+                            pages: [0, 0, 0, 0, 0]
+                        },
+                        {
+                            text: `t"Dummies
  1. Create
  2. Move
  3. Delete
  4. Next
  5. Previous
  0. Back"`,
-                    pages: [0, 0, 0, 0, 0]
+                            pages: [0, 0, 0, 0, 0]
+                        },
+                    ]
                 },
             ]
         },
-        {
-            code: `#Export to Inspector
-    eventPlayer.MenuToggleVisibility()
-    enableInspector()
-    disableInspector()`
+        { //#Next Checkpoint
+            code: `
+                hostPlayer.checkpoint_current += true
+                hostPlayer.checkpoint_current %= len(CheckpointPositions)
+                hostUpdateReset()`
+        },
+        { //#Previous Checkpoint
+            code: `
+                hostPlayer.checkpoint_current += len(CheckpointPositions) - true
+                hostPlayer.checkpoint_current %= len(CheckpointPositions)
+                hostUpdateReset()`
+        },
+        { //#Export Map Data
+            code: `
+                hostPlayer.MenuToggleVisibility()
+                hostPlayer.editor_saveCache = [TimeRemaining, ColorConfig, __MenuPointer__, __MenuString__]
+                EditorOn = null
+                TimeRemaining = null
+                ColorConfig = null
+                __MenuPointer__ = null
+                __MenuString__ = null
+                __overpyTranslationHelper__ = null
+                if Name == "name here - 作者":
+                    Name = "{}".format(hostPlayer)
+                Cachedcredits = [Name, Code]
+                Name = null
+                Code = null
+
+                enableInspector()
+                disableInspector()
+
+                EditorOn = true
+                TimeRemaining = hostPlayer.editor_saveCache[0]
+                ColorConfig = hostPlayer.editor_saveCache[1]
+                __MenuPointer__ = hostPlayer.editor_saveCache[2]
+                __MenuString__ = hostPlayer.editor_saveCache.last()
+                __overpyTranslationHelper__ = "\uec480White0白色0흰색".split(null[0])`
         }
     ]
 })
