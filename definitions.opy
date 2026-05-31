@@ -201,6 +201,7 @@ playervar ban_bhop
 playervar ban_djump
 
 #playervar editor_on                          # bool                      --- on all players, but only gets checked from host player
+playervar editor_callSUB
 playervar editor_modeSelect                 # int                       --- EditMode - 1 checkpoint | 2 Killing sphere | 3 Bouncing ball
 playervar editor_fly                         # vector/null               --- null if not flying, else vector position, added by fisho
 playervar editor_saveCache                        # array                     --- array of save map hud ids
