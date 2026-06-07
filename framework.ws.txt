@@ -247,21 +247,22 @@ variables {
         54: ban_climb
         55: ban_bhop
         56: ban_djump
-        57: editor_modeSelect
-        58: editor_fly
-        59: editor_saveCache
-        60: editor_undo
-        61: editor_lock
-        62: editor_hitboxEffect
-        63: editor_hitboxToggle
-        64: editor_bounceIndex
-        65: editor_killIndex
-        66: editor_temp
-        67: comp_countAttempts
-        68: comp_instructionHud
-        69: addon_toggle3rdPov
-        70: addon_ledgeDash
-        71: addon_enableDoubleChecks
+        57: editor_callSUB
+        58: editor_modeSelect
+        59: editor_fly
+        60: editor_saveCache
+        61: editor_undo
+        62: editor_lock
+        63: editor_hitboxEffect
+        64: editor_hitboxToggle
+        65: editor_bounceIndex
+        66: editor_killIndex
+        67: editor_temp
+        68: comp_countAttempts
+        69: comp_instructionHud
+        70: addon_toggle3rdPov
+        71: addon_ledgeDash
+        72: addon_enableDoubleChecks
         127: __languageIndex__
 }
 
