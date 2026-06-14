@@ -5,6 +5,7 @@
 #!suppressWarnings w_tags
 #!suppressWarnings w_lone_else
 #!suppressWarnings w_enum_constant
+#!suppressWarnings w_dark_color
 ##!writeToOutputFile
 ################################################################################
 #!define versionhere "1.10.4I"
@@ -39,7 +40,7 @@ macro compMarathon = false # Enforce Marathon: false
 #!translations en zh ko
 #!disableTranslationSourceLines
 #!translateWithPlayerVar noDetectionRule noTlErr
-##!keepUnusedTranslations
+#!keepUnusedTranslations
 macro overrideLanguage = Languages.Automatic
 ################################################################################
 ##!disableInspector

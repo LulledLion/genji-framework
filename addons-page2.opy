@@ -18,8 +18,8 @@ rule "Addon | Custom Difficulty Hud ◆ 自定义难度hud <---- INSERT HERE / �
     #2) 勾选此规则 点击上方的 开启/关闭 开启此规则
     #3) 修改下面的 创建hud文本 中的“enter custom difficulty here”
     hudText(true[0],
-        ("游戏测试" checkCN "Playtest") if Difficultyhud.last() else [],
-        "Enter Custom Difficulty Here",
+        null, #("游戏测试" checkCN "Playtest") if Difficultyhud.last() else [],
+        "Custom Difficulty Here",
         null,
         HudPosition.TOP, HO.data_dif,
         Color.BLUE, Color.GREEN, null, HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)

@@ -275,10 +275,6 @@ msgid "Restart Practice"
 msgstr "回到练习模式起点"
 
 #. file huds.opy, rule "Huds | Global Localplayer"
-msgid "Playtest"
-msgstr "游戏测试"
-
-#. file huds.opy, rule "Huds | Global Localplayer"
 msgid "Restart"
 msgstr "重新开始"
 
@@ -325,3 +321,7 @@ msgstr "已通关! 用时"
 #. file parkour.opy, rule "Parkour | Match time"
 msgid "Maximum Lobby Time Reached, Restarting"
 msgstr "房间已达最大持续时间, 即将重启"
+
+#. Unused translation
+msgid "Playtest"
+msgstr "游戏测试"

@@ -92,27 +92,25 @@ rule "Huds | Global Localplayer":
             #"{0} + {1} + {2} | Restart\nHold {3} | leaderboard".format(buttonString(Button.CROUCH), buttonString(Button.ABILITY_2), buttonString(Button.INTERACT),buttonString(Button.MELEE)),
             HudPosition.RIGHT, HO.com_restart_n_board, ColorConfig[Customize.command_normal], HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
 
-        Difficultyhud = [
-            createWorkshopSettingEnum(SettingsText.MapCategory, SettingsText.Map_Difficulty, 0, [
+        Difficultyhud = createWorkshopSettingEnum(SettingsText.MapCategory, SettingsText.Map_Difficulty, 0, [
                 SettingsText.Map_DiffOptions[0], SettingsText.Map_DiffOptions[1], SettingsText.Map_DiffOptions[2],
                 SettingsText.Map_DiffOptions[3], SettingsText.Map_DiffOptions[4], SettingsText.Map_DiffOptions[5],
                 SettingsText.Map_DiffOptions[6], SettingsText.Map_DiffOptions[7], SettingsText.Map_DiffOptions[8],
                 SettingsText.Map_DiffOptions[9], SettingsText.Map_DiffOptions[10], SettingsText.Map_DiffOptions[11],
                 SettingsText.Map_DiffOptions[12], SettingsText.Map_DiffOptions[13], SettingsText.Map_DiffOptions[14],
-                SettingsText.Map_DiffOptions[15], SettingsText.Map_DiffOptions[16], SettingsText.Map_DiffOptions[17],], 1),
-            createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.Map_Playtest, false, 2)]
+                SettingsText.Map_DiffOptions[15], SettingsText.Map_DiffOptions[16], SettingsText.Map_DiffOptions[17],], 1)
+            #createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.Map_Playtest, false, 2) ]
         # display
-        if Difficultyhud[0] != 17: # 17th entry is 'dont display'
+        if Difficultyhud != 17: # 17th entry is 'dont display'
             hudText((localPlayer.toggle_guide and not localPlayer.toggle_leaderboard)[0],
-                t"Playtest"
-                #("游戏测试" checkCN "Playtest")
-                if Difficultyhud.last() else [],
-                ["Playtest", "Easy -", "Easy", "Easy +","Medium -","Medium","Medium +","Hard -","Hard","Hard +","Very Hard -","Very Hard","Very Hard +","Extreme -","Extreme","Extreme +","Hell",null][Difficultyhud[0]],
+                #t"Playtest" if Difficultyhud.last() else [], #("游戏测试" checkCN "Playtest")
+                null,
+                ["Playtest", "Easy -", "Easy", "Easy +","Medium -","Medium","Medium +","Hard -","Hard","Hard +","Very Hard -","Very Hard","Very Hard +","Extreme -","Extreme","Extreme +","Hell",null][Difficultyhud],
                 null,
                 HudPosition.TOP, HO.data_dif,
                 Color.BLUE,
                 [Color.BLUE, Color.LIME_GREEN, Color.LIME_GREEN, Color.LIME_GREEN, Color.YELLOW, Color.YELLOW, Color.YELLOW, Color.ORANGE, Color.ORANGE, Color.ORANGE,
-                rgb(255, 69, 0), rgb(255, 69, 0), rgb(255, 69, 0), Color.RED, Color.RED, Color.RED, rgb(150, 0, 0), null][Difficultyhud[0]],
+                rgb(255, 69, 0), rgb(255, 69, 0), rgb(255, 69, 0), Color.RED, Color.RED, Color.RED, rgb(150, 0, 0), null][Difficultyhud],
                 null,
                 HudReeval.VISIBILITY_AND_STRING, SpecVisibility.DEFAULT)
 
