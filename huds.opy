@@ -98,7 +98,7 @@ rule "Huds | Global Localplayer":
                 SettingsText.Map_DiffOptions[6], SettingsText.Map_DiffOptions[7], SettingsText.Map_DiffOptions[8],
                 SettingsText.Map_DiffOptions[9], SettingsText.Map_DiffOptions[10], SettingsText.Map_DiffOptions[11],
                 SettingsText.Map_DiffOptions[12], SettingsText.Map_DiffOptions[13], SettingsText.Map_DiffOptions[14],
-                SettingsText.Map_DiffOptions[15], SettingsText.Map_DiffOptions[16], SettingsText.Map_DiffOptions[17],], 1)
+                SettingsText.Map_DiffOptions[15], SettingsText.Map_DiffOptions[16], SettingsText.Map_DiffOptions[17],], 1) or Difficultyhud
             #createWorkshopSettingBool(SettingsText.MapCategory, SettingsText.Map_Playtest, false, 2) ]
         # display
         if Difficultyhud != 17: # 17th entry is 'dont display'
