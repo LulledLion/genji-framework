@@ -9,7 +9,7 @@ rule "Ø Map Data - 数据录入 <---- INSERT HERE / 在这输入":
     BounceToggleLock = [false, false, false, true, false, false, false, false]
     killballnumber = [72, 72, 85]
     pinballnumber = [27, 37, 57, 98, 98, 84, 91, 92]
-    Difficultyhud = [17, false]
+    Difficultyhud = [5, false]
     Cachedcredits = ["NOOTER", "HHVRK"]
 
 rule "Addon | Title Data - 标题数据 <---- EDIT ME / 在此处编辑":
