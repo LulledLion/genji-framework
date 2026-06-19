@@ -237,6 +237,22 @@ rule "Addon | Ms. Destructo | Destroys Breakable Objects On All Maps":
     DestructoIter = null
     MsDestructo = null
 
+rule "Addon | Invisible":
+    @Event eachPlayer
+    @Condition false # Too much server load
+    @Condition CompMode == false
+    @Condition eventPlayer.isAlive()
+    if getLivingPlayers(Team.ALL).exclude(eventPlayer).any(lambda e: distance(
+        e.getEyePosition() + 0.5 * e.getFacingDirection(), eventPlayer.getPosition()) +
+        distance(e.getEyePosition() + 0.5 * e.getFacingDirection(), eventPlayer.getEyePosition()) <= 2):
+        eventPlayer.setInvisibility(Invis.ALL)
+    else:
+        eventPlayer.setInvisibility(Invis.NONE)
+    wait(0.016 * 4)
+    if ruleCondition:
+        loop()
+
+
 /*
 def AddonCheckMap():
     @Name "Addon | SUB Basic Map Validator"
